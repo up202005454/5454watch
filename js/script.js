@@ -4,9 +4,9 @@ const customizationOptions = {
         { id: 1, name: "Onda Cinza", price: 20, image: "images/dials/wave1.png" },
         { id: 2, name: "Onda Preto", price: 20, image: "images/dials/wave2.png" },
         { id: 3, name: "MarineMaster", price: 20, image: "images/dials/marinemaster1" },
-        { id: 4, name: "Quadricula", price: 20, image: "thindetailed1" },
-        { id: 5, name: "Carbon", price: 50, color: "#2c3e50", pattern: "carbon" },
-        { id: 6, name: "Verde Militar", price: 20, color: "#556B2F", pattern: "matte" }
+        { id: 4, name: "Quadricula Preto", price: 20, image: "images/dials/thindetailed1" },
+        { id: 5, name: "Quadricula Branco", price: 50, image: "images/dials/thindetailed2" },
+        { id: 6, name: "Quadricula4 Azul", price: 20, image: "images/dials/thindetailed3" }
     ],
     hands: [
         { id: 1, name: "Clássicos", price: 0, hourColor: "#e74c3c", minuteColor: "#3498db", secondColor: "#f1c40f" },
