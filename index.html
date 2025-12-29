@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relógios Personalizados - Monte seu Relógio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⌚</text></svg>">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">Relógios<span>Premium</span></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="#ready-watches">Relógios Prontos</a></li>
+                    <li><a href="#customize" class="active">Personalizar</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">Monte o Seu Relógio Personalizado</h1>
+        
+        <div class="customizer-container">
+            <div class="watch-preview">
+                <h2>Pré-visualização</h2>
+                <div class="watch-display">
+                    <div id="watch-strap"></div>
+                    <div id="watch-case">
+                        <div id="watch-dial"></div>
+                        <div id="hour-hand" class="watch-hand"></div>
+                        <div id="minute-hand" class="watch-hand"></div>
+                        <div id="second-hand" class="watch-hand"></div>
+                    </div>
+                </div>
+                <p>Ajuste as opções ao lado para personalizar seu relógio</p>
+            </div>
+            
+            <div class="customization-options">
+                <div class="option-section">
+                    <h3 class="option-title"><i class="fas fa-gem"></i> Mostrador (Dial)</h3>
+                    <div class="options-grid" id="dial-options">
+                        <!-- As opções serão geradas via JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="option-section">
+                    <h3 class="option-title"><i class="fas fa-clock"></i> Ponteiros</h3>
+                    <div class="options-grid" id="hands-options">
+                        <!-- As opções serão geradas via JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="option-section">
+                    <h3 class="option-title"><i class="fas fa-link"></i> Pulseira</h3>
+                    <div class="options-grid" id="strap-options">
+                        <!-- As opções serão geradas via JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="price-summary">
+                    <h3 class="option-title"><i class="fas fa-receipt"></i> Resumo do Pedido</h3>
+                    <div class="price-details">
+                        <span>Relógio base:</span>
+                        <span>R$ 299,00</span>
+                    </div>
+                    <div class="price-details">
+                        <span>Mostrador selecionado:</span>
+                        <span id="dial-price">R$ 0,00</span>
+                    </div>
+                    <div class="price-details">
+                        <span>Ponteiros selecionados:</span>
+                        <span id="hands-price">R$ 0,00</span>
+                    </div>
+                    <div class="price-details">
+                        <span>Pulseira selecionada:</span>
+                        <span id="strap-price">R$ 0,00</span>
+                    </div>
+                    <div class="price-details" style="border-bottom: 2px solid #2c3e50;">
+                        <span>Personalização:</span>
+                        <span id="custom-price">R$ 0,00</span>
+                    </div>
+                    <div class="total-price">
+                        Total: <span id="total-price">R$ 299,00</span>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="add-to-cart">
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
+                        </button>
+                        <button class="btn btn-secondary" id="save-design">
+                            <i class="fas fa-save"></i> Salvar Design
+                        </button>
+                        <a href="index.html" class="btn btn-outline">
+                            <i class="fas fa-undo"></i> Reiniciar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <section id="ready-watches" class="section">
+            <h2 class="section-title">Relógios Prontos</h2>
+            <div class="watches-grid">
+                <div class="watch-card">
+                    <div class="watch-card-image" style="background: linear-gradient(135deg, #2c3e50 0%, #1a2a3a 100%);"></div>
+                    <h3>Clássico Executivo</h3>
+                    <p>Design sofisticado para ocasiões formais</p>
+                    <div class="watch-price">R$ 349,00</div>
+                    <button class="btn btn-outline btn-small">Ver Detalhes</button>
+                </div>
+                
+                <div class="watch-card">
+                    <div class="watch-card-image" style="background: linear-gradient(135deg, #1e90ff 0%, #0057a3 100%);"></div>
+                    <h3>Esportivo Aquático</h3>
+                    <p>Resistente à água, ideal para esportes</p>
+                    <div class="watch-price">R$ 399,00</div>
+                    <button class="btn btn-outline btn-small">Ver Detalhes</button>
+                </div>
+                
+                <div class="watch-card">
+                    <div class="watch-card-image" style="background: linear-gradient(135deg, #D4AF37 0%, #b8941f 100%);"></div>
+                    <h3>Luxo Dourado</h3>
+                    <p>Elegância e sofisticação em ouro</p>
+                    <div class="watch-price">R$ 499,00</div>
+                    <button class="btn btn-outline btn-small">Ver Detalhes</button>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="section">
+            <h2 class="section-title">Contato</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>contato@relogiospremium.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <h3>Telefone</h3>
+                    <p>(11) 99999-9999</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Localização</h3>
+                    <p>São Paulo, Brasil</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 RelógiosPremium. Todos os direitos reservados.</p>
+            <p>Este é um protótipo funcional. Imagens reais necessárias para produção.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
