@@ -3,8 +3,8 @@ const customizationOptions = {
     dials: [
         { id: 1, name: "Onda Cinza", price: 20, image: "images/dials/wave1.png" },
         { id: 2, name: "Onda Preto", price: 20, image: "images/dials/wave2.png" },
-        { id: 3, name: "Prata Metálico", price: 30, color: "#c0c0c0", pattern: "metal" },
-        { id: 4, name: "Madeira", price: 40, color: "#8B4513", pattern: "wood" },
+        { id: 3, name: "MarineMaster", price: 20, image: "images/dials/marinemaster1" },
+        { id: 4, name: "Quadricula", price: 20, image: "thindetailed1" },
         { id: 5, name: "Carbon", price: 50, color: "#2c3e50", pattern: "carbon" },
         { id: 6, name: "Verde Militar", price: 20, color: "#556B2F", pattern: "matte" }
     ],
