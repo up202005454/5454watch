@@ -1,0 +1,454 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
+    color: white;
+    padding: 20px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.logo span {
+    color: #e74c3c;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 25px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+nav ul li a:hover {
+    color: #e74c3c;
+}
+
+nav ul li a.active {
+    background-color: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+}
+
+.page-title {
+    text-align: center;
+    margin: 30px 0;
+    color: #2c3e50;
+    font-size: 2.5rem;
+}
+
+.section {
+    margin: 60px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #2c3e50;
+    font-size: 2rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #e74c3c;
+    margin: 10px auto;
+    border-radius: 2px;
+}
+
+.customizer-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.watch-preview {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.watch-display {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    margin: 20px 0 30px;
+    background: #f9f9f9;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #eee;
+}
+
+#watch-case {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: #2c3e50;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+#watch-dial {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background-color: #111;
+    background-size: cover;
+    background-position: center;
+}
+
+.watch-hand {
+    position: absolute;
+    transform-origin: bottom center;
+    z-index: 3;
+    border-radius: 4px;
+}
+
+#hour-hand {
+    width: 6px;
+    height: 50px;
+    background: #e74c3c;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#minute-hand {
+    width: 4px;
+    height: 70px;
+    background: #3498db;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#second-hand {
+    width: 2px;
+    height: 80px;
+    background: #f1c40f;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#watch-strap {
+    width: 250px;
+    height: 60px;
+    position: absolute;
+    bottom: 0;
+    z-index: 0;
+    border-radius: 30px;
+    background-color: #8B4513;
+    background-size: cover;
+    background-position: center;
+}
+
+.customization-options {
+    flex: 1;
+    min-width: 300px;
+}
+
+.option-section {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+.option-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.option-title i {
+    margin-right: 10px;
+    color: #e74c3c;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 15px;
+}
+
+.option-item {
+    cursor: pointer;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s;
+    border: 2px solid #eee;
+}
+
+.option-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.option-item.active {
+    border-color: #e74c3c;
+    background-color: rgba(231, 76, 60, 0.05);
+}
+
+.option-preview {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 8px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+}
+
+.price-summary {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    margin-top: 20px;
+}
+
+.price-details {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #ddd;
+}
+
+.total-price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #e74c3c;
+    margin-top: 10px;
+    text-align: right;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.btn {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #c0392b;
+    transform: translateY(-3px);
+    box-shadow: 0 7px 14px rgba(231, 76, 60, 0.3);
+}
+
+.btn-secondary {
+    background: #3498db;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #2980b9;
+    transform: translateY(-3px);
+}
+
+.btn-outline {
+    background: white;
+    color: #2c3e50;
+    border: 2px solid #2c3e50;
+}
+
+.btn-outline:hover {
+    background: #2c3e50;
+    color: white;
+}
+
+.btn-small {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+}
+
+.watches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.watch-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s;
+    padding: 20px;
+    text-align: center;
+}
+
+.watch-card:hover {
+    transform: translateY(-10px);
+}
+
+.watch-card-image {
+    height: 200px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.watch-card h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.watch-card p {
+    color: #7f8c8d;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.watch-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #e74c3c;
+    margin: 15px 0;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.contact-item {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+.contact-item i {
+    font-size: 2.5rem;
+    color: #e74c3c;
+    margin-bottom: 15px;
+}
+
+.contact-item h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.contact-item p {
+    color: #7f8c8d;
+}
+
+footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    nav ul {
+        margin-top: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    nav ul li {
+        margin: 5px 10px;
+    }
+    
+    .customizer-container {
+        flex-direction: column;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+}
