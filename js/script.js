@@ -1,8 +1,8 @@
 // Dados das opções de personalização
 const customizationOptions = {
     dials: [
-        { id: 1, name: "Clássico Preto", price: 0, color: "#111111", pattern: "solid" },
-        { id: 2, name: "Azul Celeste", price: 25, color: "#1e90ff", pattern: "gradient" },
+        { id: 1, name: "Onda Cinza", price: 20, image: "images/dials/wave1.png" },
+        { id: 2, name: "Onda Preto", price: 20, image: "images/dials/wave2.png" },
         { id: 3, name: "Prata Metálico", price: 30, color: "#c0c0c0", pattern: "metal" },
         { id: 4, name: "Madeira", price: 40, color: "#8B4513", pattern: "wood" },
         { id: 5, name: "Carbon", price: 50, color: "#2c3e50", pattern: "carbon" },
