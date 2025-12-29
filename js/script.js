@@ -7,9 +7,9 @@ const customizationOptions = {
         { id: 4, name: "Quadricula Preto", price: 20, image: "images/dials/thindetailed1.png" },
         { id: 5, name: "Quadricula Branco", price: 20, image: "images/dials/thindetailed2.png" },
         { id: 6, name: "Quadricula Azul", price: 20, image: "images/dials/thindetailed3.png" },
-        { id: 6, name: "Diver Branco", price: 20, image: "images/dials/diverwhite.png" },
-        { id: 6, name: "Diver Azul", price: 20, image: "images/dials/diverbabyblue.png" },
-        { id: 6, name: "Quadricula4 Azul", price: 20, image: "images/dials/thindetailed3" },
+        { id: 7, name: "Diver Branco", price: 20, image: "images/dials/diverwhite.png" },
+        { id: 8, name: "Diver Azul", price: 20, image: "images/dials/diverbabyblue.png" },
+        { id: 9, name: "Quadricula Azul", price: 20, image: "images/dials/thindetailed3" }
     ],
     hands: [
         { id: 1, name: "Clássicos", price: 0, hourColor: "#e74c3c", minuteColor: "#3498db", secondColor: "#f1c40f" },
