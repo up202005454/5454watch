@@ -85,20 +85,41 @@ function createOptionElement(option, type) {
     
     // Definir cor/estilo baseado no tipo
     if (type === 'dial') {
-        preview.style.backgroundColor = option.color;
-        if (option.pattern === 'gradient') {
-            preview.style.background = `linear-gradient(135deg, ${option.color} 0%, #87CEEB 100%)`;
-        } else if (option.pattern === 'metal') {
-            preview.style.background = `linear-gradient(135deg, ${option.color} 0%, #ffffff 100%)`;
-        } else if (option.pattern === 'wood') {
-            preview.style.background = `repeating-linear-gradient(45deg, ${option.color} 0px, ${option.color} 2px, #A0522D 2px, #A0522D 4px)`;
+        // Se tem imagem, usa imagem
+        if (option.image) {
+            preview.style.backgroundImage = `url('${option.image}')`;
+            preview.style.backgroundSize = 'cover';
+            preview.style.backgroundPosition = 'center';
+            preview.style.backgroundColor = 'transparent';
+        } 
+        // Se não tem imagem, usa cor/pattern
+        else if (option.color) {
+            preview.style.backgroundColor = option.color;
+            if (option.pattern === 'gradient') {
+                preview.style.background = `linear-gradient(135deg, ${option.color} 0%, #87CEEB 100%)`;
+            } else if (option.pattern === 'metal') {
+                preview.style.background = `linear-gradient(135deg, ${option.color} 0%, #ffffff 100%)`;
+            } else if (option.pattern === 'wood') {
+                preview.style.background = `repeating-linear-gradient(45deg, ${option.color} 0px, ${option.color} 2px, #A0522D 2px, #A0522D 4px)`;
+            } else if (option.pattern === 'carbon') {
+                preview.style.background = `linear-gradient(135deg, #1a1a1a 25%, transparent 25%) -10px 0,
+                                          linear-gradient(225deg, #1a1a1a 25%, transparent 25%) -10px 0,
+                                          linear-gradient(315deg, #1a1a1a 25%, transparent 25%),
+                                          linear-gradient(45deg, #1a1a1a 25%, transparent 25%)`;
+                preview.style.backgroundSize = '20px 20px';
+                preview.style.backgroundColor = option.color;
+            }
         }
-    } else if (type === 'hands') {
+    } 
+    else if (type === 'hands') {
         preview.style.background = `linear-gradient(90deg, ${option.hourColor} 33%, ${option.minuteColor} 33%, ${option.minuteColor} 66%, ${option.secondColor} 66%)`;
-    } else if (type === 'strap') {
+    } 
+    else if (type === 'strap') {
         preview.style.backgroundColor = option.color;
         if (option.material === 'metal') {
             preview.style.background = `linear-gradient(135deg, ${option.color} 0%, #ffffff 100%)`;
+        } else if (option.material === 'fabric') {
+            preview.style.background = `repeating-linear-gradient(45deg, ${option.color} 0px, ${option.color} 2px, #ffffff 2px, #ffffff 4px)`;
         }
     }
     
@@ -162,26 +183,44 @@ function updateWatchPreview() {
     const dial = document.getElementById('watch-dial');
     const dialOption = currentSelections.dial;
     
-    if (dialOption.pattern === 'solid') {
-        dial.style.backgroundColor = dialOption.color;
-        dial.style.backgroundImage = 'none';
-    } else if (dialOption.pattern === 'gradient') {
-        dial.style.background = `radial-gradient(circle, ${dialOption.color} 0%, #000000 100%)`;
-    } else if (dialOption.pattern === 'metal') {
-        dial.style.background = `radial-gradient(circle at 30% 30%, #ffffff 0%, ${dialOption.color} 70%, #000000 100%)`;
-    } else if (dialOption.pattern === 'wood') {
-        // Simulação de textura de madeira
-        dial.style.background = `repeating-linear-gradient(45deg, ${dialOption.color} 0px, ${dialOption.color} 2px, #A0522D 2px, #A0522D 4px)`;
-    } else if (dialOption.pattern === 'carbon') {
-        // Simulação de fibra de carbono
-        dial.style.background = `linear-gradient(135deg, #1a1a1a 25%, transparent 25%) -10px 0,
-                                linear-gradient(225deg, #1a1a1a 25%, transparent 25%) -10px 0,
-                                linear-gradient(315deg, #1a1a1a 25%, transparent 25%),
-                                linear-gradient(45deg, #1a1a1a 25%, transparent 25%)`;
-        dial.style.backgroundSize = '20px 20px';
-        dial.style.backgroundColor = dialOption.color;
-    } else {
-        dial.style.backgroundColor = dialOption.color;
+    // Resetar estilos
+    dial.style.backgroundImage = 'none';
+    dial.style.backgroundColor = '';
+    dial.style.background = '';
+    dial.style.backgroundSize = '';
+    
+    // Se tem imagem, usar imagem
+    if (dialOption.image) {
+        dial.style.backgroundImage = `url('${dialOption.image}')`;
+        dial.style.backgroundSize = 'cover';
+        dial.style.backgroundPosition = 'center';
+        dial.style.backgroundColor = 'transparent';
+    }
+    // Se não tem imagem, usar cor/pattern
+    else if (dialOption.color) {
+        if (dialOption.pattern === 'solid') {
+            dial.style.backgroundColor = dialOption.color;
+        } else if (dialOption.pattern === 'gradient') {
+            dial.style.background = `radial-gradient(circle, ${dialOption.color} 0%, #000000 100%)`;
+        } else if (dialOption.pattern === 'metal') {
+            dial.style.background = `radial-gradient(circle at 30% 30%, #ffffff 0%, ${dialOption.color} 70%, #000000 100%)`;
+        } else if (dialOption.pattern === 'wood') {
+            // Simulação de textura de madeira
+            dial.style.background = `repeating-linear-gradient(45deg, ${dialOption.color} 0px, ${dialOption.color} 2px, #A0522D 2px, #A0522D 4px)`;
+        } else if (dialOption.pattern === 'carbon') {
+            // Simulação de fibra de carbono
+            dial.style.background = `linear-gradient(135deg, #1a1a1a 25%, transparent 25%) -10px 0,
+                                    linear-gradient(225deg, #1a1a1a 25%, transparent 25%) -10px 0,
+                                    linear-gradient(315deg, #1a1a1a 25%, transparent 25%),
+                                    linear-gradient(45deg, #1a1a1a 25%, transparent 25%)`;
+            dial.style.backgroundSize = '20px 20px';
+            dial.style.backgroundColor = dialOption.color;
+        } else if (dialOption.pattern === 'matte') {
+            dial.style.backgroundColor = dialOption.color;
+            dial.style.background = `linear-gradient(135deg, ${dialOption.color} 0%, #333 100%)`;
+        } else {
+            dial.style.backgroundColor = dialOption.color;
+        }
     }
     
     // Atualizar ponteiros
@@ -194,16 +233,22 @@ function updateWatchPreview() {
     const strap = document.getElementById('watch-strap');
     const strapOption = currentSelections.strap;
     
+    // Resetar estilos da pulseira
+    strap.style.backgroundImage = 'none';
+    strap.style.backgroundColor = '';
+    strap.style.background = '';
+    strap.style.boxShadow = '';
+    
     if (strapOption.material === 'leather') {
         strap.style.backgroundColor = strapOption.color;
-        strap.style.backgroundImage = 'none';
         strap.style.boxShadow = 'inset 0 0 10px rgba(0,0,0,0.3)';
     } else if (strapOption.material === 'metal') {
         strap.style.background = `linear-gradient(90deg, #888 0%, ${strapOption.color} 30%, ${strapOption.color} 70%, #888 100%)`;
         strap.style.boxShadow = '0 0 10px rgba(255,255,255,0.5)';
+    } else if (strapOption.material === 'fabric') {
+        strap.style.background = `repeating-linear-gradient(45deg, ${strapOption.color} 0px, ${strapOption.color} 2px, #ffffff 2px, #ffffff 4px)`;
     } else {
         strap.style.backgroundColor = strapOption.color;
-        strap.style.backgroundImage = 'none';
     }
 }
 
@@ -293,4 +338,14 @@ function saveDesign() {
             console.log("Não foi possível salvar no localStorage");
         }
     }
+}
+
+// Função adicional para carregar imagens com fallback
+function loadImageWithFallback(imageUrl, fallbackColor) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(imageUrl);
+        img.onerror = () => resolve(fallbackColor);
+        img.src = imageUrl;
+    });
 }
