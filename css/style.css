@@ -137,55 +137,7 @@ nav ul li a.active {
     box-shadow: 0 0 20px rgba(0,0,0,0.2);
 }
 
-#watch-dial {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    background-color: #111;
-    background-size: cover;
-    background-position: center;
-}
-
-/* Estilos específicos para os ponteiros com imagens */
-.watch-hand {
-    position: absolute;
-    transform-origin: bottom center;
-    z-index: 3;
-    border-radius: 0;
-    width: 20px; /* Largura adequada para imagens PNG */
-    height: 80px; /* Altura base, será ajustada por cada ponteiro */
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-100%);
-    background-size: contain;
-    background-position: center bottom;
-    background-repeat: no-repeat;
-}
-
-/* Alturas específicas para cada ponteiro */
-#hour-hand {
-    height: 50px;
-    transform-origin: center bottom;
-}
-
-#minute-hand {
-    height: 70px;
-    transform-origin: center bottom;
-}
-
-#second-hand {
-    height: 80px;
-    transform-origin: center bottom;
-    z-index: 4;
-    /* Segundo ponteiro por cima */
-}
-
-/* Container do mostrador - centralização perfeita */
+/* MOSTRADOR - CENTRALIZADO */
 #watch-dial {
     width: 180px;
     height: 180px;
@@ -201,56 +153,50 @@ nav ul li a.active {
     background-repeat: no-repeat;
 }
 
-/* Estilos para opções de ponteiros */
-.option-preview.hands-preview {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 3px;
-    background-color: #f5f5f5;
-    border-radius: 6px;
-}
-
-.hand-mini {
-    width: 15px;
-    height: 25px;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-/*Aqui*/
+/* PONTEIROS COM IMAGENS PNG - TAMANHO CORRETO */
 .watch-hand {
     position: absolute;
-    transform-origin: bottom center;
+    transform-origin: center bottom; /* Gira do fundo do ponteiro */
     z-index: 3;
-    border-radius: 4px;
+    background-size: contain;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    left: 50%;
+    top: 50%;
 }
 
+/* Ponteiro das Horas - maior */
 #hour-hand {
-    width: 6px;
-    height: 50px;
-    background: #e74c3c;
-    top: 40px;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 30px; /* Largura suficiente para a imagem */
+    height: 70px; /* Altura do ponteiro */
+    margin-left: -15px; /* Metade da largura para centralizar */
+    margin-top: -70px; /* Move para cima (altura total) */
+    transform-origin: 15px 70px; /* Ponto de rotação: centro inferior */
 }
 
+/* Ponteiro dos Minutos - mais comprido */
 #minute-hand {
-    width: 4px;
-    height: 70px;
-    background: #3498db;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 25px;
+    height: 90px;
+    margin-left: -12.5px;
+    margin-top: -90px;
+    transform-origin: 12.5px 90px;
+    z-index: 4;
 }
 
+/* Ponteiro dos Segundos - mais fino e comprido */
 #second-hand {
-    width: 2px;
-    height: 80px;
-    background: #f1c40f;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 15px;
+    height: 100px;
+    margin-left: -7.5px;
+    margin-top: -100px;
+    transform-origin: 7.5px 100px;
+    z-index: 5; /* Por cima dos outros */
+}
+
+/* Para debug - mostra bordas nos ponteiros */
+.debug-hands .watch-hand {
+    border: 1px solid red;
 }
 
 #watch-strap {
@@ -320,8 +266,10 @@ nav ul li a.active {
     height: 60px;
     margin: 0 auto 8px;
     border-radius: 8px;
-    background-size: cover;
+    background-size: contain; /* Mudei de 'cover' para 'contain' */
     background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f5f5f5;
 }
 
 .price-summary {
@@ -519,4 +467,18 @@ footer {
     .section-title {
         font-size: 1.8rem;
     }
+}
+
+/* Botão de debug para ajudar a ver os ponteiros */
+.debug-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
 }
