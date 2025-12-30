@@ -62,8 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('add-to-cart').addEventListener('click', addToCart);
     document.getElementById('save-design').addEventListener('click', saveDesign);
     
-    // Animar ponteiros
-    animateWatchHands();
+    // REMOVIDO: animateWatchHands() - sem animação
 });
 
 // Inicializar as opções na página
@@ -350,26 +349,7 @@ function updatePriceSummary() {
     document.getElementById('total-price').textContent = `R$ ${totalPrice.toFixed(2)}`;
 }
 
-// Animar ponteiros do relógio
-function animateWatchHands() {
-    function updateClock() {
-        const now = new Date();
-        const hours = now.getHours() % 12;
-        const minutes = now.getMinutes();
-        const seconds = now.getSeconds();
-        
-        const hourDeg = (hours * 30) + (minutes * 0.5);
-        const minuteDeg = (minutes * 6) + (seconds * 0.1);
-        const secondDeg = seconds * 6;
-        
-        document.getElementById('hour-hand').style.transform = `translateX(-50%) rotate(${hourDeg}deg)`;
-        document.getElementById('minute-hand').style.transform = `translateX(-50%) rotate(${minuteDeg}deg)`;
-        document.getElementById('second-hand').style.transform = `translateX(-50%) rotate(${secondDeg}deg)`;
-    }
-    
-    updateClock();
-    setInterval(updateClock, 1000);
-}
+// REMOVIDA: Função animateWatchHands() - sem animação
 
 // Adicionar ao carrinho
 function addToCart() {
