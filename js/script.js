@@ -33,8 +33,8 @@ const customizationOptions = {
             name: "Prata", 
             image: "images/hands/silver_set.png",
             position: {
-                top: "0px",
-                left: "0px",
+                top: "10px",
+                left: "-30px",
                 scale: 1.0
             }
         }
