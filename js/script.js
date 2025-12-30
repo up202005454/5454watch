@@ -13,23 +13,32 @@ const customizationOptions = {
         { id: 10, name: "Romanic Grey", price: 20, image: "images/dials/romangrey.png" },
         { id: 11, name: "Romanic Green", price: 20, image: "images/dials/romangreen.png" },
         { id: 12, name: "Romanic Black", price: 20, image: "images/dials/romanblack.png" },
-        { id: 13, name: "Romanic BabyBlue", price: 20, image: "images/dials/romangreen.png" },
+        { id: 13, name: "Romanic BabyBlue", price: 20, image: "images/dials/romanbabyblue.png" },
         { id: 14, name: "Diamond Brown", price: 20, image: "images/dials/diamondbrown.png" },
         { id: 15, name: "Diamond Grey", price: 20, image: "images/dials/diamondgrey.png" }
     ],
     hands: [
-        { id: 1, name: "Clássicos", price: 0, hourColor: "#e74c3c", minuteColor: "#3498db", secondColor: "#f1c40f" },
-        { id: 2, name: "Prata", price: 15, hourColor: "#bdc3c7", minuteColor: "#95a5a6", secondColor: "#7f8c8d" },
-        { id: 3, name: "Dourados", price: 30, hourColor: "#D4AF37", minuteColor: "#F1C40F", secondColor: "#F7DC6F" },
-        { id: 4, name: "Luminosos", price: 25, hourColor: "#00ff00", minuteColor: "#00ffff", secondColor: "#ff00ff" }
+        { 
+            id: 1, 
+            name: "Clássicos", 
+            price: 0, 
+            hourImage: "images/hands/hour_classic.png",
+            minuteImage: "images/hands/minute_classic.png", 
+            secondImage: "images/hands/second_classic.png"
+        },
+        { 
+            id: 2, 
+            name: "Prata", 
+            price: 15, 
+            hourImage: "images/hands/hour_silver.png",
+            minuteImage: "images/hands/minute_silver.png", 
+            secondImage: "images/hands/second_silver.png"
+        }
     ],
     straps: [
         { id: 1, name: "Couro Marrom", price: 0, color: "#8B4513", material: "leather" },
         { id: 2, name: "Couro Preto", price: 20, color: "#111111", material: "leather" },
-        { id: 3, name: "Metal Prata", price: 40, color: "#c0c0c0", material: "metal" },
-        { id: 4, name: "Silicone Azul", price: 15, color: "#1e90ff", material: "silicone" },
-        { id: 5, name: "Náutico", price: 25, color: "#2c3e50", material: "fabric" },
-        { id: 6, name: "Esportivo", price: 18, color: "#e74c3c", material: "rubber" }
+        { id: 3, name: "Metal Prata", price: 40, color: "#c0c0c0", material: "metal" }
     ]
 };
 
@@ -62,98 +71,177 @@ function initializeOptions() {
     // Opções de mostrador
     const dialOptionsContainer = document.getElementById('dial-options');
     customizationOptions.dials.forEach(dial => {
-        const optionElement = createOptionElement(dial, 'dial');
+        const optionElement = createDialOptionElement(dial);
         dialOptionsContainer.appendChild(optionElement);
     });
 
     // Opções de ponteiros
     const handsOptionsContainer = document.getElementById('hands-options');
     customizationOptions.hands.forEach(hand => {
-        const optionElement = createOptionElement(hand, 'hands');
+        const optionElement = createHandsOptionElement(hand);
         handsOptionsContainer.appendChild(optionElement);
     });
 
     // Opções de pulseira
     const strapOptionsContainer = document.getElementById('strap-options');
     customizationOptions.straps.forEach(strap => {
-        const optionElement = createOptionElement(strap, 'strap');
+        const optionElement = createStrapOptionElement(strap);
         strapOptionsContainer.appendChild(optionElement);
     });
 }
 
-// Criar elemento de opção
-function createOptionElement(option, type) {
+// Criar elemento de opção para mostradores
+function createDialOptionElement(dial) {
     const div = document.createElement('div');
     div.className = 'option-item';
-    div.dataset.id = option.id;
-    div.dataset.type = type;
+    div.dataset.id = dial.id;
+    div.dataset.type = 'dial';
     
-    // Criar pré-visualização visual
+    // Pré-visualização
     const preview = document.createElement('div');
     preview.className = 'option-preview';
     
-    // Definir cor/estilo baseado no tipo
-    if (type === 'dial') {
-        // Se tem imagem, usa imagem
-        if (option.image) {
-            preview.style.backgroundImage = `url('${option.image}')`;
-            preview.style.backgroundSize = 'cover';
-            preview.style.backgroundPosition = 'center';
-            preview.style.backgroundColor = 'transparent';
-        } 
-        // Se não tem imagem, usa cor/pattern
-        else if (option.color) {
-            preview.style.backgroundColor = option.color;
-            if (option.pattern === 'gradient') {
-                preview.style.background = `linear-gradient(135deg, ${option.color} 0%, #87CEEB 100%)`;
-            } else if (option.pattern === 'metal') {
-                preview.style.background = `linear-gradient(135deg, ${option.color} 0%, #ffffff 100%)`;
-            } else if (option.pattern === 'wood') {
-                preview.style.background = `repeating-linear-gradient(45deg, ${option.color} 0px, ${option.color} 2px, #A0522D 2px, #A0522D 4px)`;
-            } else if (option.pattern === 'carbon') {
-                preview.style.background = `linear-gradient(135deg, #1a1a1a 25%, transparent 25%) -10px 0,
-                                          linear-gradient(225deg, #1a1a1a 25%, transparent 25%) -10px 0,
-                                          linear-gradient(315deg, #1a1a1a 25%, transparent 25%),
-                                          linear-gradient(45deg, #1a1a1a 25%, transparent 25%)`;
-                preview.style.backgroundSize = '20px 20px';
-                preview.style.backgroundColor = option.color;
-            }
-        }
-    } 
-    else if (type === 'hands') {
-        preview.style.background = `linear-gradient(90deg, ${option.hourColor} 33%, ${option.minuteColor} 33%, ${option.minuteColor} 66%, ${option.secondColor} 66%)`;
-    } 
-    else if (type === 'strap') {
-        preview.style.backgroundColor = option.color;
-        if (option.material === 'metal') {
-            preview.style.background = `linear-gradient(135deg, ${option.color} 0%, #ffffff 100%)`;
-        } else if (option.material === 'fabric') {
-            preview.style.background = `repeating-linear-gradient(45deg, ${option.color} 0px, ${option.color} 2px, #ffffff 2px, #ffffff 4px)`;
-        }
+    if (dial.image) {
+        preview.style.backgroundImage = `url('${dial.image}')`;
+        preview.style.backgroundSize = 'contain';
+        preview.style.backgroundPosition = 'center';
+        preview.style.backgroundRepeat = 'no-repeat';
+        preview.style.backgroundColor = '#f5f5f5';
     }
     
     const name = document.createElement('p');
-    name.textContent = option.name;
+    name.textContent = dial.name;
     name.style.fontSize = '0.9rem';
     name.style.marginTop = '5px';
     name.style.fontWeight = '500';
     
     const price = document.createElement('p');
-    price.textContent = option.price > 0 ? `+ R$ ${option.price.toFixed(2)}` : 'Incluído';
+    price.textContent = dial.price > 0 ? `+ R$ ${dial.price.toFixed(2)}` : 'Incluído';
     price.style.fontSize = '0.8rem';
-    price.style.color = option.price > 0 ? '#e74c3c' : '#27ae60';
+    price.style.color = dial.price > 0 ? '#e74c3c' : '#27ae60';
     
     div.appendChild(preview);
     div.appendChild(name);
     div.appendChild(price);
     
     // Marcar a primeira opção como ativa
-    if (option.id === 1) {
+    if (dial.id === 1) {
         div.classList.add('active');
     }
     
-    // Adicionar evento de clique
-    div.addEventListener('click', () => selectOption(option, type));
+    div.addEventListener('click', () => selectOption(dial, 'dial'));
+    
+    return div;
+}
+
+// Criar elemento de opção para ponteiros
+function createHandsOptionElement(hand) {
+    const div = document.createElement('div');
+    div.className = 'option-item';
+    div.dataset.id = hand.id;
+    div.dataset.type = 'hands';
+    
+    // Pré-visualização
+    const preview = document.createElement('div');
+    preview.className = 'option-preview';
+    
+    // Para ponteiros, mostramos as três imagens juntas
+    preview.style.display = 'flex';
+    preview.style.justifyContent = 'center';
+    preview.style.alignItems = 'center';
+    preview.style.gap = '2px';
+    preview.style.backgroundColor = '#f5f5f5';
+    
+    // Criar miniaturas dos três ponteiros
+    const hourHand = document.createElement('div');
+    hourHand.style.width = '15px';
+    hourHand.style.height = '25px';
+    hourHand.style.backgroundImage = hand.hourImage ? `url('${hand.hourImage}')` : 'linear-gradient(90deg, #e74c3c 0%, #c0392b 100%)';
+    hourHand.style.backgroundSize = 'contain';
+    hourHand.style.backgroundPosition = 'center';
+    hourHand.style.backgroundRepeat = 'no-repeat';
+    
+    const minuteHand = document.createElement('div');
+    minuteHand.style.width = '15px';
+    minuteHand.style.height = '30px';
+    minuteHand.style.backgroundImage = hand.minuteImage ? `url('${hand.minuteImage}')` : 'linear-gradient(90deg, #3498db 0%, #2980b9 100%)';
+    minuteHand.style.backgroundSize = 'contain';
+    minuteHand.style.backgroundPosition = 'center';
+    minuteHand.style.backgroundRepeat = 'no-repeat';
+    
+    const secondHand = document.createElement('div');
+    secondHand.style.width = '10px';
+    secondHand.style.height = '35px';
+    secondHand.style.backgroundImage = hand.secondImage ? `url('${hand.secondImage}')` : 'linear-gradient(90deg, #f1c40f 0%, #f39c12 100%)';
+    secondHand.style.backgroundSize = 'contain';
+    secondHand.style.backgroundPosition = 'center';
+    secondHand.style.backgroundRepeat = 'no-repeat';
+    
+    preview.appendChild(hourHand);
+    preview.appendChild(minuteHand);
+    preview.appendChild(secondHand);
+    
+    const name = document.createElement('p');
+    name.textContent = hand.name;
+    name.style.fontSize = '0.9rem';
+    name.style.marginTop = '5px';
+    name.style.fontWeight = '500';
+    
+    const price = document.createElement('p');
+    price.textContent = hand.price > 0 ? `+ R$ ${hand.price.toFixed(2)}` : 'Incluído';
+    price.style.fontSize = '0.8rem';
+    price.style.color = hand.price > 0 ? '#e74c3c' : '#27ae60';
+    
+    div.appendChild(preview);
+    div.appendChild(name);
+    div.appendChild(price);
+    
+    if (hand.id === 1) {
+        div.classList.add('active');
+    }
+    
+    div.addEventListener('click', () => selectOption(hand, 'hands'));
+    
+    return div;
+}
+
+// Criar elemento de opção para pulseiras
+function createStrapOptionElement(strap) {
+    const div = document.createElement('div');
+    div.className = 'option-item';
+    div.dataset.id = strap.id;
+    div.dataset.type = 'strap';
+    
+    const preview = document.createElement('div');
+    preview.className = 'option-preview';
+    preview.style.backgroundColor = strap.color;
+    
+    if (strap.material === 'metal') {
+        preview.style.background = `linear-gradient(135deg, ${strap.color} 0%, #ffffff 100%)`;
+    } else if (strap.material === 'fabric') {
+        preview.style.background = `repeating-linear-gradient(45deg, ${strap.color} 0px, ${strap.color} 2px, #ffffff 2px, #ffffff 4px)`;
+    }
+    
+    const name = document.createElement('p');
+    name.textContent = strap.name;
+    name.style.fontSize = '0.9rem';
+    name.style.marginTop = '5px';
+    name.style.fontWeight = '500';
+    
+    const price = document.createElement('p');
+    price.textContent = strap.price > 0 ? `+ R$ ${strap.price.toFixed(2)}` : 'Incluído';
+    price.style.fontSize = '0.8rem';
+    price.style.color = strap.price > 0 ? '#e74c3c' : '#27ae60';
+    
+    div.appendChild(preview);
+    div.appendChild(name);
+    div.appendChild(price);
+    
+    if (strap.id === 1) {
+        div.classList.add('active');
+    }
+    
+    div.addEventListener('click', () => selectOption(strap, 'strap'));
     
     return div;
 }
@@ -192,72 +280,56 @@ function updateWatchPreview() {
     const dial = document.getElementById('watch-dial');
     const dialOption = currentSelections.dial;
     
-    // Resetar estilos
-    dial.style.backgroundImage = 'none';
-    dial.style.backgroundColor = '';
-    dial.style.background = '';
-    dial.style.backgroundSize = '';
+    dial.style.backgroundImage = dialOption.image ? `url('${dialOption.image}')` : 'none';
+    dial.style.backgroundSize = 'contain';
+    dial.style.backgroundPosition = 'center';
+    dial.style.backgroundRepeat = 'no-repeat';
+    dial.style.backgroundColor = 'transparent';
     
-    // Se tem imagem, usar imagem
-    if (dialOption.image) {
-        dial.style.backgroundImage = `url('${dialOption.image}')`;
-        dial.style.backgroundSize = 'cover';
-        dial.style.backgroundPosition = 'center';
-        dial.style.backgroundColor = 'transparent';
-    }
-    // Se não tem imagem, usar cor/pattern
-    else if (dialOption.color) {
-        if (dialOption.pattern === 'solid') {
-            dial.style.backgroundColor = dialOption.color;
-        } else if (dialOption.pattern === 'gradient') {
-            dial.style.background = `radial-gradient(circle, ${dialOption.color} 0%, #000000 100%)`;
-        } else if (dialOption.pattern === 'metal') {
-            dial.style.background = `radial-gradient(circle at 30% 30%, #ffffff 0%, ${dialOption.color} 70%, #000000 100%)`;
-        } else if (dialOption.pattern === 'wood') {
-            // Simulação de textura de madeira
-            dial.style.background = `repeating-linear-gradient(45deg, ${dialOption.color} 0px, ${dialOption.color} 2px, #A0522D 2px, #A0522D 4px)`;
-        } else if (dialOption.pattern === 'carbon') {
-            // Simulação de fibra de carbono
-            dial.style.background = `linear-gradient(135deg, #1a1a1a 25%, transparent 25%) -10px 0,
-                                    linear-gradient(225deg, #1a1a1a 25%, transparent 25%) -10px 0,
-                                    linear-gradient(315deg, #1a1a1a 25%, transparent 25%),
-                                    linear-gradient(45deg, #1a1a1a 25%, transparent 25%)`;
-            dial.style.backgroundSize = '20px 20px';
-            dial.style.backgroundColor = dialOption.color;
-        } else if (dialOption.pattern === 'matte') {
-            dial.style.backgroundColor = dialOption.color;
-            dial.style.background = `linear-gradient(135deg, ${dialOption.color} 0%, #333 100%)`;
-        } else {
-            dial.style.backgroundColor = dialOption.color;
-        }
-    }
-    
-    // Atualizar ponteiros
+    // Atualizar ponteiros com imagens
     const handsOption = currentSelections.hands;
-    document.getElementById('hour-hand').style.backgroundColor = handsOption.hourColor;
-    document.getElementById('minute-hand').style.backgroundColor = handsOption.minuteColor;
-    document.getElementById('second-hand').style.backgroundColor = handsOption.secondColor;
+    
+    // Ponteiro das horas
+    const hourHand = document.getElementById('hour-hand');
+    if (handsOption.hourImage) {
+        hourHand.style.backgroundImage = `url('${handsOption.hourImage}')`;
+        hourHand.style.backgroundColor = 'transparent';
+        hourHand.style.backgroundSize = 'contain';
+        hourHand.style.backgroundPosition = 'center';
+        hourHand.style.backgroundRepeat = 'no-repeat';
+    }
+    
+    // Ponteiro dos minutos
+    const minuteHand = document.getElementById('minute-hand');
+    if (handsOption.minuteImage) {
+        minuteHand.style.backgroundImage = `url('${handsOption.minuteImage}')`;
+        minuteHand.style.backgroundColor = 'transparent';
+        minuteHand.style.backgroundSize = 'contain';
+        minuteHand.style.backgroundPosition = 'center';
+        minuteHand.style.backgroundRepeat = 'no-repeat';
+    }
+    
+    // Ponteiro dos segundos
+    const secondHand = document.getElementById('second-hand');
+    if (handsOption.secondImage) {
+        secondHand.style.backgroundImage = `url('${handsOption.secondImage}')`;
+        secondHand.style.backgroundColor = 'transparent';
+        secondHand.style.backgroundSize = 'contain';
+        secondHand.style.backgroundPosition = 'center';
+        secondHand.style.backgroundRepeat = 'no-repeat';
+    }
     
     // Atualizar pulseira
     const strap = document.getElementById('watch-strap');
     const strapOption = currentSelections.strap;
     
-    // Resetar estilos da pulseira
+    strap.style.backgroundColor = strapOption.color;
     strap.style.backgroundImage = 'none';
-    strap.style.backgroundColor = '';
-    strap.style.background = '';
-    strap.style.boxShadow = '';
     
-    if (strapOption.material === 'leather') {
-        strap.style.backgroundColor = strapOption.color;
-        strap.style.boxShadow = 'inset 0 0 10px rgba(0,0,0,0.3)';
-    } else if (strapOption.material === 'metal') {
+    if (strapOption.material === 'metal') {
         strap.style.background = `linear-gradient(90deg, #888 0%, ${strapOption.color} 30%, ${strapOption.color} 70%, #888 100%)`;
-        strap.style.boxShadow = '0 0 10px rgba(255,255,255,0.5)';
     } else if (strapOption.material === 'fabric') {
         strap.style.background = `repeating-linear-gradient(45deg, ${strapOption.color} 0px, ${strapOption.color} 2px, #ffffff 2px, #ffffff 4px)`;
-    } else {
-        strap.style.backgroundColor = strapOption.color;
     }
 }
 
@@ -267,16 +339,13 @@ function updatePriceSummary() {
     const handsPrice = currentSelections.hands.price;
     const strapPrice = currentSelections.strap.price;
     
-    // Atualizar valores individuais
     document.getElementById('dial-price').textContent = `R$ ${dialPrice.toFixed(2)}`;
     document.getElementById('hands-price').textContent = `R$ ${handsPrice.toFixed(2)}`;
     document.getElementById('strap-price').textContent = `R$ ${strapPrice.toFixed(2)}`;
     
-    // Calcular preço de personalização
     const customPrice = dialPrice + handsPrice + strapPrice;
     document.getElementById('custom-price').textContent = `R$ ${customPrice.toFixed(2)}`;
     
-    // Calcular e atualizar preço total
     const totalPrice = basePrice + customPrice;
     document.getElementById('total-price').textContent = `R$ ${totalPrice.toFixed(2)}`;
 }
@@ -298,10 +367,7 @@ function animateWatchHands() {
         document.getElementById('second-hand').style.transform = `translateX(-50%) rotate(${secondDeg}deg)`;
     }
     
-    // Atualizar imediatamente
     updateClock();
-    
-    // Atualizar a cada segundo
     setInterval(updateClock, 1000);
 }
 
@@ -311,8 +377,6 @@ function addToCart() {
     
     alert(`Relógio personalizado adicionado ao carrinho!\n\nConfiguração:\n- Mostrador: ${currentSelections.dial.name}\n- Ponteiros: ${currentSelections.hands.name}\n- Pulseira: ${currentSelections.strap.name}\n\nTotal: R$ ${totalPrice.toFixed(2)}`);
     
-    // Em um site real, aqui você enviaria os dados para o carrinho
-    // Exemplo com localStorage:
     try {
         const cart = JSON.parse(localStorage.getItem('watchCart')) || [];
         cart.push({
@@ -334,7 +398,6 @@ function saveDesign() {
     if (designName) {
         alert(`Design "${designName}" salvo com sucesso!`);
         
-        // Salvar no localStorage
         try {
             const savedDesigns = JSON.parse(localStorage.getItem('watchDesigns')) || [];
             savedDesigns.push({
@@ -347,14 +410,4 @@ function saveDesign() {
             console.log("Não foi possível salvar no localStorage");
         }
     }
-}
-
-// Função adicional para carregar imagens com fallback
-function loadImageWithFallback(imageUrl, fallbackColor) {
-    return new Promise((resolve) => {
-        const img = new Image();
-        img.onload = () => resolve(imageUrl);
-        img.onerror = () => resolve(fallbackColor);
-        img.src = imageUrl;
-    });
 }
