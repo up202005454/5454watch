@@ -1,8 +1,285 @@
+// Dados das opções de personalização
+const customizationOptions = {
+    dials: [
+        { id: 1, name: "Wave Grey", image: "images/dials/wave1.png" },
+        { id: 2, name: "Wave Black", image: "images/dials/wave2.png" },
+        { id: 3, name: "Marine Master Y", image: "images/dials/marinemaster1.png" },
+        { id: 4, name: "Thin Preto", image: "images/dials/thindetailed1.png" },
+        { id: 5, name: "Thin Branco", image: "images/dials/thindetailed2.png" },
+        { id: 6, name: "Thin Azul", image: "images/dials/thindetailed3.png" },
+        { id: 7, name: "Diver Branco", image: "images/dials/diverwhite.png" },
+        { id: 8, name: "Diver Azul", image: "images/dials/diverbabyblue.png" },
+        { id: 9, name: "Marine Master Blue", image: "images/dials/marinemasterblue.png" },
+        { id: 10, name: "Romanic Grey", image: "images/dials/romangrey.png" },
+        { id: 11, name: "Romanic Green", image: "images/dials/romangreen.png" },
+        { id: 12, name: "Romanic Black", image: "images/dials/romanblack.png" },
+        { id: 13, name: "Romanic BabyBlue", image: "images/dials/romanbabyblue.png" },
+        { id: 14, name: "Diamond Brown", image: "images/dials/diamondbrown.png" },
+        { id: 15, name: "Diamond Grey", image: "images/dials/diamondgrey.png" }
+    ],
+    hands: [
+        { 
+            id: 1, 
+            name: "Clássicos", 
+            image: "images/hands/classic_set.png",
+            position: {
+                top: "0px",
+                left: "0px",
+                scale: 1.0
+            }
+        },
+        { 
+            id: 2, 
+            name: "Prata", 
+            image: "images/hands/silver_set.png",
+            position: {
+                top: "0px",
+                left: "0px",
+                scale: 1.0
+            }
+        }
+    ],
+    straps: [
+        { id: 1, name: "Couro Marrom", color: "#8B4513", material: "leather" },
+        { id: 2, name: "Couro Preto", color: "#111111", material: "leather" },
+        { id: 3, name: "Metal Prata", color: "#c0c0c0", material: "metal" },
+        { id: 4, name: "Silicone Azul", color: "#1e90ff", material: "silicone" },
+        { id: 5, name: "Náutico", color: "#2c3e50", material: "fabric" },
+        { id: 6, name: "Esportivo", color: "#e74c3c", material: "rubber" }
+    ]
+};
+
+// Estado atual das seleções
+let currentSelections = {
+    dial: customizationOptions.dials[0],
+    hands: customizationOptions.hands[0],
+    strap: customizationOptions.straps[0]
+};
+
+// Inicializar a interface
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("🚀 Inicializando customizador...");
+    initializeOptions();
+    updateWatchPreview();
+    
+    // Iniciar ferramenta de ajuste
+    initializePositionAdjuster();
+    
+    // DEBUG: Verificar inicialização
+    console.log("✅ Customizador inicializado");
+    console.log("Mostrador atual:", currentSelections.dial.name);
+    console.log("Ponteiros atuais:", currentSelections.hands.name);
+    console.log("Pulseira atual:", currentSelections.strap.name);
+});
+
+// Inicializar as opções na página
+function initializeOptions() {
+    console.log("📋 Inicializando opções...");
+    
+    // Opções de mostrador
+    const dialOptionsContainer = document.getElementById('dial-options');
+    if (!dialOptionsContainer) {
+        console.error("❌ Elemento 'dial-options' não encontrado!");
+        return;
+    }
+    
+    dialOptionsContainer.innerHTML = '';
+    customizationOptions.dials.forEach(dial => {
+        const optionElement = createDialOptionElement(dial);
+        dialOptionsContainer.appendChild(optionElement);
+    });
+
+    // Opções de ponteiros
+    const handsOptionsContainer = document.getElementById('hands-options');
+    if (handsOptionsContainer) {
+        handsOptionsContainer.innerHTML = '';
+        customizationOptions.hands.forEach(hand => {
+            const optionElement = createHandsOptionElement(hand);
+            handsOptionsContainer.appendChild(optionElement);
+        });
+    }
+
+    // Opções de pulseira
+    const strapOptionsContainer = document.getElementById('strap-options');
+    if (strapOptionsContainer) {
+        strapOptionsContainer.innerHTML = '';
+        customizationOptions.straps.forEach(strap => {
+            const optionElement = createStrapOptionElement(strap);
+            strapOptionsContainer.appendChild(optionElement);
+        });
+    }
+    
+    console.log(`✅ ${customizationOptions.dials.length} mostradores carregados`);
+    console.log(`✅ ${customizationOptions.hands.length} conjuntos de ponteiros carregados`);
+    console.log(`✅ ${customizationOptions.straps.length} pulseiras carregadas`);
+}
+
+// Criar elemento de opção para mostradores
+function createDialOptionElement(dial) {
+    const div = document.createElement('div');
+    div.className = 'option-item';
+    div.dataset.id = dial.id;
+    div.dataset.type = 'dial';
+    
+    // Pré-visualização
+    const preview = document.createElement('div');
+    preview.className = 'option-preview';
+    
+    if (dial.image) {
+        preview.style.backgroundImage = `url('${dial.image}')`;
+        preview.style.backgroundSize = 'contain';
+        preview.style.backgroundPosition = 'center';
+        preview.style.backgroundRepeat = 'no-repeat';
+        preview.style.backgroundColor = '#f5f5f5';
+    } else {
+        preview.style.backgroundColor = '#ccc';
+        preview.style.display = 'flex';
+        preview.style.alignItems = 'center';
+        preview.style.justifyContent = 'center';
+        preview.innerHTML = '<span style="font-size: 10px; color: #666;">Sem imagem</span>';
+    }
+    
+    const name = document.createElement('p');
+    name.textContent = dial.name;
+    name.style.fontSize = '0.9rem';
+    name.style.marginTop = '5px';
+    name.style.fontWeight = '500';
+    
+    div.appendChild(preview);
+    div.appendChild(name);
+    
+    // Marcar a primeira opção como ativa
+    if (dial.id === 1) {
+        div.classList.add('active');
+    }
+    
+    div.addEventListener('click', () => selectOption(dial, 'dial'));
+    
+    return div;
+}
+
+// Criar elemento de opção para ponteiros
+function createHandsOptionElement(hand) {
+    const div = document.createElement('div');
+    div.className = 'option-item';
+    div.dataset.id = hand.id;
+    div.dataset.type = 'hands';
+    
+    // Pré-visualização
+    const preview = document.createElement('div');
+    preview.className = 'option-preview';
+    
+    if (hand.image) {
+        preview.style.backgroundImage = `url('${hand.image}')`;
+        preview.style.backgroundSize = 'contain';
+        preview.style.backgroundPosition = 'center';
+        preview.style.backgroundRepeat = 'no-repeat';
+        preview.style.backgroundColor = '#f5f5f5';
+    } else {
+        preview.style.backgroundColor = '#ccc';
+        preview.style.display = 'flex';
+        preview.style.alignItems = 'center';
+        preview.style.justifyContent = 'center';
+        preview.innerHTML = '<span style="font-size: 10px; color: #666;">Sem imagem</span>';
+    }
+    
+    const name = document.createElement('p');
+    name.textContent = hand.name;
+    name.style.fontSize = '0.9rem';
+    name.style.marginTop = '5px';
+    name.style.fontWeight = '500';
+    
+    div.appendChild(preview);
+    div.appendChild(name);
+    
+    if (hand.id === 1) {
+        div.classList.add('active');
+    }
+    
+    div.addEventListener('click', () => selectOption(hand, 'hands'));
+    
+    return div;
+}
+
+// Criar elemento de opção para pulseiras
+function createStrapOptionElement(strap) {
+    const div = document.createElement('div');
+    div.className = 'option-item';
+    div.dataset.id = strap.id;
+    div.dataset.type = 'strap';
+    
+    const preview = document.createElement('div');
+    preview.className = 'option-preview';
+    preview.style.backgroundColor = strap.color;
+    
+    if (strap.material === 'metal') {
+        preview.style.background = `linear-gradient(135deg, ${strap.color} 0%, #ffffff 100%)`;
+    } else if (strap.material === 'fabric') {
+        preview.style.background = `repeating-linear-gradient(45deg, ${strap.color} 0px, ${strap.color} 2px, #ffffff 2px, #ffffff 4px)`;
+    }
+    
+    const name = document.createElement('p');
+    name.textContent = strap.name;
+    name.style.fontSize = '0.9rem';
+    name.style.marginTop = '5px';
+    name.style.fontWeight = '500';
+    
+    div.appendChild(preview);
+    div.appendChild(name);
+    
+    if (strap.id === 1) {
+        div.classList.add('active');
+    }
+    
+    div.addEventListener('click', () => selectOption(strap, 'strap'));
+    
+    return div;
+}
+
+// Selecionar uma opção
+function selectOption(option, type) {
+    console.log(`🎯 Selecionado: ${type} - ${option.name}`);
+    
+    // Atualizar seleção atual
+    currentSelections[type] = option;
+    
+    // Atualizar visualização
+    updateWatchPreview();
+    
+    // Atualizar estado visual das opções
+    updateActiveOptions(type, option.id);
+}
+
+// Atualizar opções ativas
+function updateActiveOptions(type, id) {
+    // Remover classe 'active' de todas as opções deste tipo
+    const options = document.querySelectorAll(`.option-item[data-type="${type}"]`);
+    options.forEach(opt => opt.classList.remove('active'));
+    
+    // Adicionar classe 'active' à opção selecionada
+    const selectedOption = document.querySelector(`.option-item[data-type="${type}"][data-id="${id}"]`);
+    if (selectedOption) {
+        selectedOption.classList.add('active');
+    }
+}
+
 // Atualizar pré-visualização do relógio
 function updateWatchPreview() {
-    // Atualizar mostrador
+    console.log("🔄 Atualizando visualização...");
+    
+    // Elementos
     const dial = document.getElementById('watch-dial');
+    const handsOverlay = document.getElementById('watch-hands');
+    const strap = document.getElementById('watch-strap');
+    
+    if (!dial || !handsOverlay || !strap) {
+        console.error("❌ Elementos do relógio não encontrados!");
+        return;
+    }
+    
+    // 1. ATUALIZAR MOSTRADOR
     const dialOption = currentSelections.dial;
+    console.log("Aplicando mostrador:", dialOption.name, "Imagem:", dialOption.image);
     
     dial.style.backgroundImage = dialOption.image ? `url('${dialOption.image}')` : 'none';
     dial.style.backgroundSize = 'contain';
@@ -10,9 +287,9 @@ function updateWatchPreview() {
     dial.style.backgroundRepeat = 'no-repeat';
     dial.style.backgroundColor = 'transparent';
     
-    // Atualizar ponteiros com ajuste de posição
+    // 2. ATUALIZAR PONTEIROS
     const handsOption = currentSelections.hands;
-    const handsOverlay = document.getElementById('watch-hands');
+    console.log("Aplicando ponteiros:", handsOption.name, "Imagem:", handsOption.image);
     
     if (handsOption.image) {
         handsOverlay.style.backgroundImage = `url('${handsOption.image}')`;
@@ -22,30 +299,30 @@ function updateWatchPreview() {
         handsOverlay.style.backgroundRepeat = 'no-repeat';
         handsOverlay.style.opacity = '1';
         
-        // RESETAR POSIÇÃO PRIMEIRO
-        handsOverlay.style.top = '50%';
-        handsOverlay.style.left = '50%';
-        handsOverlay.style.transform = 'translate(-50%, -50%)';
-        
-        // APLICAR AJUSTES DE POSIÇÃO - VERSÃO SIMPLIFICADA
+        // APLICAR AJUSTES DE POSIÇÃO
         if (handsOption.position) {
             const pos = handsOption.position;
             const topValue = parseInt(pos.top) || 0;
             const leftValue = parseInt(pos.left) || 0;
             const scaleValue = pos.scale || 1.0;
             
-            // USAR TRANSFORM PARA MOVER - FUNCIONA MELHOR
-            handsOverlay.style.transform = `translate(calc(-50% + ${leftValue}px), calc(-50% + ${topValue}px)) scale(${scaleValue})`;
+            // USAR TRANSFORM PARA MOVER
+            const transform = `translate(calc(-50% + ${leftValue}px), calc(-50% + ${topValue}px)) scale(${scaleValue})`;
+            handsOverlay.style.transform = transform;
             
-            console.log(`Transform: translate(calc(-50% + ${leftValue}px), calc(-50% + ${topValue}px)) scale(${scaleValue})`);
+            console.log(`Posição aplicada: transform="${transform}"`);
+        } else {
+            // Posição padrão
+            handsOverlay.style.transform = 'translate(-50%, -50%)';
         }
     } else {
         handsOverlay.style.opacity = '0';
+        console.warn("⚠️ Sem imagem para os ponteiros");
     }
     
-    // Atualizar pulseira
-    const strap = document.getElementById('watch-strap');
+    // 3. ATUALIZAR PULSEIRA
     const strapOption = currentSelections.strap;
+    console.log("Aplicando pulseira:", strapOption.name, "Cor:", strapOption.color);
     
     strap.style.backgroundColor = strapOption.color;
     strap.style.backgroundImage = 'none';
@@ -55,11 +332,13 @@ function updateWatchPreview() {
     } else if (strapOption.material === 'fabric') {
         strap.style.background = `repeating-linear-gradient(45deg, ${strapOption.color} 0px, ${strapOption.color} 2px, #ffffff 2px, #ffffff 4px)`;
     }
-} // ← FECHA AQUI A FUNÇÃO
+    
+    console.log("✅ Visualização atualizada");
+}
 
 // FERRAMENTA DE AJUSTE DE POSIÇÃO
 function initializePositionAdjuster() {
-    console.log("🚀 Criando ferramenta de ajuste...");
+    console.log("🔧 Inicializando ferramenta de ajuste...");
     
     // REMOVER elementos antigos se existirem
     const oldBtn = document.getElementById('toggle-adjuster');
@@ -119,7 +398,7 @@ function initializePositionAdjuster() {
         </div>
         
         <div style="background: #f8f9fa; padding: 10px; border-radius: 8px; margin-bottom: 15px;">
-            <div style="font-size: 12px; color: #666; margin-bottom: 5px;">Ponteiros atuais: <strong id="current-hands-name">Clássicos</strong></div>
+            <div style="font-size: 12px; color: #666; margin-bottom: 5px;">Ponteiros atuais: <strong id="current-hands-name">${currentSelections.hands.name}</strong></div>
         </div>
         
         <div style="margin-bottom: 15px;">
@@ -180,6 +459,16 @@ function initializePositionAdjuster() {
     const horizontalSlider = document.getElementById('horizontal-slider');
     const verticalSlider = document.getElementById('vertical-slider');
     const scaleSlider = document.getElementById('scale-slider');
+    
+    // Configurar valores iniciais baseados na posição atual
+    const currentPos = currentSelections.hands.position || { top: "0px", left: "0px", scale: 1.0 };
+    horizontalSlider.value = parseInt(currentPos.left) || 0;
+    verticalSlider.value = parseInt(currentPos.top) || 0;
+    scaleSlider.value = (currentPos.scale || 1.0) * 100;
+    
+    document.getElementById('horizontal-value').textContent = `${horizontalSlider.value}px`;
+    document.getElementById('vertical-value').textContent = `${verticalSlider.value}px`;
+    document.getElementById('scale-value').textContent = `${scaleSlider.value}%`;
     
     horizontalSlider.addEventListener('input', (e) => {
         document.getElementById('horizontal-value').textContent = `${e.target.value}px`;
@@ -242,64 +531,45 @@ function initializePositionAdjuster() {
     });
 }
 
-// TESTE RÁPIDO - Adiciona controles visuais
-setTimeout(function() {
-    // Criar controles simples
-    const debugControls = document.createElement('div');
-    debugControls.style.cssText = `
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        background: rgba(0,0,0,0.8);
-        color: white;
-        padding: 15px;
-        border-radius: 10px;
-        z-index: 9999;
-        font-family: monospace;
-    `;
+// DEBUG: Verificar imagens
+function debugImages() {
+    console.log("=== DEBUG DE IMAGENS ===");
     
-    debugControls.innerHTML = `
-        <h4 style="margin: 0 0 10px 0;">🎯 DEBUG Ponteiros</h4>
-        <div style="margin-bottom: 10px;">
-            <button onclick="moveHands(-10, 0)" style="padding: 5px 10px; margin-right: 5px;">← Esquerda</button>
-            <button onclick="moveHands(10, 0)" style="padding: 5px 10px;">Direita →</button>
-        </div>
-        <div style="margin-bottom: 10px;">
-            <button onclick="moveHands(0, -10)" style="padding: 5px 10px; margin-right: 5px;">↑ Cima</button>
-            <button onclick="moveHands(0, 10)" style="padding: 5px 10px;">Baixo ↓</button>
-        </div>
-        <div style="font-size: 12px;">
-            <div id="debug-info">Posição: 0px, 0px</div>
-            <div id="debug-css">CSS: ...</div>
-        </div>
-    `;
+    // Testar imagens com fallback
+    const testImages = [
+        'images/dials/wave1.png',
+        'images/hands/classic_set.png'
+    ];
     
-    document.body.appendChild(debugControls);
+    testImages.forEach(url => {
+        const img = new Image();
+        img.onload = () => console.log(`✅ ${url} - CARREGADA`);
+        img.onerror = () => console.log(`❌ ${url} - NÃO ENCONTRADA`);
+        img.src = url;
+    });
     
-    // Funções de movimento
-    window.moveHands = function(left, top) {
+    // Verificar elementos
+    console.log("Elementos encontrados:");
+    console.log("- watch-dial:", document.getElementById('watch-dial') ? "✅" : "❌");
+    console.log("- watch-hands:", document.getElementById('watch-hands') ? "✅" : "❌");
+    console.log("- watch-strap:", document.getElementById('watch-strap') ? "✅" : "❌");
+    
+    // Adicionar bordas para visualização
+    setTimeout(() => {
+        const dial = document.getElementById('watch-dial');
         const hands = document.getElementById('watch-hands');
-        const currentLeft = parseInt(hands.style.left) || 50;
-        const currentTop = parseInt(hands.style.top) || 50;
         
-        hands.style.left = `${currentLeft + left}%`;
-        hands.style.top = `${currentTop + top}%`;
+        if (dial) {
+            dial.style.border = "2px dashed red";
+            console.log("🔴 Borda vermelha adicionada ao mostrador");
+        }
         
-        // Atualizar info
-        document.getElementById('debug-info').textContent = 
-            `Posição: ${hands.style.left}, ${hands.style.top}`;
-        document.getElementById('debug-css').textContent = 
-            `CSS: left: ${hands.style.left}; top: ${hands.style.top}`;
-        
-        console.log(`Movido: left=${hands.style.left}, top=${hands.style.top}`);
-    };
-    
-    // Atualizar info inicial
-    const hands = document.getElementById('watch-hands');
-    document.getElementById('debug-info').textContent = 
-        `Posição: ${hands.style.left || '50%'}, ${hands.style.top || '50%'}`;
-    document.getElementById('debug-css').textContent = 
-        `CSS: left: ${hands.style.left || '50%'}; top: ${hands.style.top || '50%'}`;
-    
-    console.log("🔧 Controles de debug adicionados!");
-}, 1000);
+        if (hands) {
+            hands.style.border = "2px dashed blue";
+            console.log("🔵 Borda azul adicionada aos ponteiros");
+        }
+    }, 500);
+}
+
+// Executar debug após carregamento
+setTimeout(debugImages, 1000);
