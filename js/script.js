@@ -573,3 +573,56 @@ function debugImages() {
 
 // Executar debug após carregamento
 setTimeout(debugImages, 1000);
+
+// DEBUG AVANÇADO: Testar todos os caminhos de imagem
+function testAllImagePaths() {
+    console.log("🔍 TESTANDO TODOS OS CAMINHOS DE IMAGEM...");
+    
+    const allImages = [];
+    
+    // Coletar todas as imagens
+    customizationOptions.dials.forEach(dial => {
+        allImages.push({ type: 'dial', name: dial.name, path: dial.image });
+    });
+    
+    customizationOptions.hands.forEach(hand => {
+        allImages.push({ type: 'hands', name: hand.name, path: hand.image });
+    });
+    
+    // Testar cada imagem
+    allImages.forEach(item => {
+        const img = new Image();
+        img.onload = () => {
+            console.log(`✅ ${item.type.toUpperCase()} - ${item.name}: CARREGADA`);
+            console.log(`   Caminho: ${item.path}`);
+        };
+        img.onerror = () => {
+            console.log(`❌ ${item.type.toUpperCase()} - ${item.name}: FALHA`);
+            console.log(`   Caminho: ${item.path}`);
+            console.log(`   URL tentada: ${img.src}`);
+        };
+        img.src = item.path;
+    });
+    
+    // Verificar estrutura de elementos
+    console.log("\n🎯 ESTRUTURA DO RELÓGIO:");
+    console.log("- watch-case:", document.getElementById('watch-case') ? "✅ EXISTE" : "❌ NÃO EXISTE");
+    console.log("- watch-dial:", document.getElementById('watch-dial') ? "✅ EXISTE" : "❌ NÃO EXISTE");
+    console.log("- watch-hands:", document.getElementById('watch-hands') ? "✅ EXISTE" : "❌ NÃO EXISTE");
+    console.log("- watch-strap:", document.getElementById('watch-strap') ? "✅ EXISTE" : "❌ NÃO EXISTE");
+    
+    // Forçar visualização dos elementos
+    setTimeout(() => {
+        const elements = ['watch-case', 'watch-dial', 'watch-hands', 'watch-strap'];
+        elements.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.style.border = "2px solid red";
+                console.log(`🔴 Borda vermelha adicionada a #${id}`);
+            }
+        });
+    }, 1000);
+}
+
+// Executar após 2 segundos
+setTimeout(testAllImagePaths, 2000);
