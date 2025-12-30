@@ -22,23 +22,34 @@ const customizationOptions = {
             id: 1, 
             name: "Clássicos", 
             price: 0, 
-            hourImage: "images/hands/hour_classic.png",
-            minuteImage: "images/hands/minute_classic.png", 
-            secondImage: "images/hands/second_classic.png"
+            image: "images/hands/classic_set.png" // Imagem com os 3 ponteiros
         },
         { 
             id: 2, 
             name: "Prata", 
             price: 15, 
-            hourImage: "images/hands/hour_silver.png",
-            minuteImage: "images/hands/minute_silver.png", 
-            secondImage: "images/hands/second_silver.png"
+            image: "images/hands/silver_set.png" // Imagem com os 3 ponteiros
+        },
+        { 
+            id: 3, 
+            name: "Dourados", 
+            price: 30, 
+            image: "images/hands/gold_set.png" // Imagem com os 3 ponteiros
+        },
+        { 
+            id: 4, 
+            name: "Luminosos", 
+            price: 25, 
+            image: "images/hands/luminous_set.png" // Imagem com os 3 ponteiros
         }
     ],
     straps: [
         { id: 1, name: "Couro Marrom", price: 0, color: "#8B4513", material: "leather" },
         { id: 2, name: "Couro Preto", price: 20, color: "#111111", material: "leather" },
-        { id: 3, name: "Metal Prata", price: 40, color: "#c0c0c0", material: "metal" }
+        { id: 3, name: "Metal Prata", price: 40, color: "#c0c0c0", material: "metal" },
+        { id: 4, name: "Silicone Azul", price: 15, color: "#1e90ff", material: "silicone" },
+        { id: 5, name: "Náutico", price: 25, color: "#2c3e50", material: "fabric" },
+        { id: 6, name: "Esportivo", price: 18, color: "#e74c3c", material: "rubber" }
     ]
 };
 
@@ -61,8 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Adicionar eventos aos botões
     document.getElementById('add-to-cart').addEventListener('click', addToCart);
     document.getElementById('save-design').addEventListener('click', saveDesign);
-    
-    // REMOVIDO: animateWatchHands() - sem animação
 });
 
 // Inicializar as opções na página
@@ -74,7 +83,7 @@ function initializeOptions() {
         dialOptionsContainer.appendChild(optionElement);
     });
 
-    // Opções de ponteiros
+    // Opções de ponteiros (agora apenas uma imagem)
     const handsOptionsContainer = document.getElementById('hands-options');
     customizationOptions.hands.forEach(hand => {
         const optionElement = createHandsOptionElement(hand);
@@ -133,52 +142,24 @@ function createDialOptionElement(dial) {
     return div;
 }
 
-// Criar elemento de opção para ponteiros
+// Criar elemento de opção para ponteiros (agora apenas uma imagem)
 function createHandsOptionElement(hand) {
     const div = document.createElement('div');
     div.className = 'option-item';
     div.dataset.id = hand.id;
     div.dataset.type = 'hands';
     
-    // Pré-visualização
+    // Pré-visualização - apenas uma imagem
     const preview = document.createElement('div');
     preview.className = 'option-preview';
     
-    // Para ponteiros, mostramos as três imagens juntas
-    preview.style.display = 'flex';
-    preview.style.justifyContent = 'center';
-    preview.style.alignItems = 'center';
-    preview.style.gap = '2px';
-    preview.style.backgroundColor = '#f5f5f5';
-    
-    // Criar miniaturas dos três ponteiros
-    const hourHand = document.createElement('div');
-    hourHand.style.width = '15px';
-    hourHand.style.height = '25px';
-    hourHand.style.backgroundImage = hand.hourImage ? `url('${hand.hourImage}')` : 'linear-gradient(90deg, #e74c3c 0%, #c0392b 100%)';
-    hourHand.style.backgroundSize = 'contain';
-    hourHand.style.backgroundPosition = 'center';
-    hourHand.style.backgroundRepeat = 'no-repeat';
-    
-    const minuteHand = document.createElement('div');
-    minuteHand.style.width = '15px';
-    minuteHand.style.height = '30px';
-    minuteHand.style.backgroundImage = hand.minuteImage ? `url('${hand.minuteImage}')` : 'linear-gradient(90deg, #3498db 0%, #2980b9 100%)';
-    minuteHand.style.backgroundSize = 'contain';
-    minuteHand.style.backgroundPosition = 'center';
-    minuteHand.style.backgroundRepeat = 'no-repeat';
-    
-    const secondHand = document.createElement('div');
-    secondHand.style.width = '10px';
-    secondHand.style.height = '35px';
-    secondHand.style.backgroundImage = hand.secondImage ? `url('${hand.secondImage}')` : 'linear-gradient(90deg, #f1c40f 0%, #f39c12 100%)';
-    secondHand.style.backgroundSize = 'contain';
-    secondHand.style.backgroundPosition = 'center';
-    secondHand.style.backgroundRepeat = 'no-repeat';
-    
-    preview.appendChild(hourHand);
-    preview.appendChild(minuteHand);
-    preview.appendChild(secondHand);
+    if (hand.image) {
+        preview.style.backgroundImage = `url('${hand.image}')`;
+        preview.style.backgroundSize = 'contain';
+        preview.style.backgroundPosition = 'center';
+        preview.style.backgroundRepeat = 'no-repeat';
+        preview.style.backgroundColor = '#f5f5f5';
+    }
     
     const name = document.createElement('p');
     name.textContent = hand.name;
@@ -285,37 +266,19 @@ function updateWatchPreview() {
     dial.style.backgroundRepeat = 'no-repeat';
     dial.style.backgroundColor = 'transparent';
     
-    // Atualizar ponteiros com imagens
+    // Atualizar ponteiros (agora apenas uma imagem sobreposta)
     const handsOption = currentSelections.hands;
+    const handsOverlay = document.getElementById('watch-hands');
     
-    // Ponteiro das horas
-    const hourHand = document.getElementById('hour-hand');
-    if (handsOption.hourImage) {
-        hourHand.style.backgroundImage = `url('${handsOption.hourImage}')`;
-        hourHand.style.backgroundColor = 'transparent';
-        hourHand.style.backgroundSize = 'contain';
-        hourHand.style.backgroundPosition = 'center';
-        hourHand.style.backgroundRepeat = 'no-repeat';
-    }
-    
-    // Ponteiro dos minutos
-    const minuteHand = document.getElementById('minute-hand');
-    if (handsOption.minuteImage) {
-        minuteHand.style.backgroundImage = `url('${handsOption.minuteImage}')`;
-        minuteHand.style.backgroundColor = 'transparent';
-        minuteHand.style.backgroundSize = 'contain';
-        minuteHand.style.backgroundPosition = 'center';
-        minuteHand.style.backgroundRepeat = 'no-repeat';
-    }
-    
-    // Ponteiro dos segundos
-    const secondHand = document.getElementById('second-hand');
-    if (handsOption.secondImage) {
-        secondHand.style.backgroundImage = `url('${handsOption.secondImage}')`;
-        secondHand.style.backgroundColor = 'transparent';
-        secondHand.style.backgroundSize = 'contain';
-        secondHand.style.backgroundPosition = 'center';
-        secondHand.style.backgroundRepeat = 'no-repeat';
+    if (handsOption.image) {
+        handsOverlay.style.backgroundImage = `url('${handsOption.image}')`;
+        handsOverlay.style.backgroundColor = 'transparent';
+        handsOverlay.style.backgroundSize = 'contain';
+        handsOverlay.style.backgroundPosition = 'center';
+        handsOverlay.style.backgroundRepeat = 'no-repeat';
+        handsOverlay.style.opacity = '1';
+    } else {
+        handsOverlay.style.opacity = '0';
     }
     
     // Atualizar pulseira
@@ -348,8 +311,6 @@ function updatePriceSummary() {
     const totalPrice = basePrice + customPrice;
     document.getElementById('total-price').textContent = `R$ ${totalPrice.toFixed(2)}`;
 }
-
-// REMOVIDA: Função animateWatchHands() - sem animação
 
 // Adicionar ao carrinho
 function addToCart() {
