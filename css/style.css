@@ -153,14 +153,13 @@ nav ul li a.active {
     background-repeat: no-repeat;
 }
 
-/* PONTEIROS ESTÁTICOS */
 #watch-hands {
-    width: 180px;
-    height: 180px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 47%;
+    left: 60%;
     transform: translate(-50%, -50%);
     z-index: 3; /* Acima do mostrador */
     background-size: contain;
@@ -168,7 +167,6 @@ nav ul li a.active {
     background-repeat: no-repeat;
     pointer-events: none; /* Não interfere com cliques */
 }
-
 #watch-strap {
     width: 250px;
     height: 60px;
