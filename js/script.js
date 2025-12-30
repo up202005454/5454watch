@@ -24,7 +24,7 @@ const customizationOptions = {
             image: "images/hands/classic_set.png",
             position: {
                 top: "0px",
-                left: "0px",
+                left: "60px",
                 scale: 1.0
             }
         },
