@@ -151,6 +151,74 @@ nav ul li a.active {
     background-position: center;
 }
 
+/* Estilos específicos para os ponteiros com imagens */
+.watch-hand {
+    position: absolute;
+    transform-origin: bottom center;
+    z-index: 3;
+    border-radius: 0;
+    width: 20px; /* Largura adequada para imagens PNG */
+    height: 80px; /* Altura base, será ajustada por cada ponteiro */
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-100%);
+    background-size: contain;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+}
+
+/* Alturas específicas para cada ponteiro */
+#hour-hand {
+    height: 50px;
+    transform-origin: center bottom;
+}
+
+#minute-hand {
+    height: 70px;
+    transform-origin: center bottom;
+}
+
+#second-hand {
+    height: 80px;
+    transform-origin: center bottom;
+    z-index: 4;
+    /* Segundo ponteiro por cima */
+}
+
+/* Container do mostrador - centralização perfeita */
+#watch-dial {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background-color: transparent;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Estilos para opções de ponteiros */
+.option-preview.hands-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    background-color: #f5f5f5;
+    border-radius: 6px;
+}
+
+.hand-mini {
+    width: 15px;
+    height: 25px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+/*Aqui*/
 .watch-hand {
     position: absolute;
     transform-origin: bottom center;
