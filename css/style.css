@@ -180,6 +180,45 @@ nav ul li a.active {
     background-position: center;
 }
 
+/* GARANTIR VISIBILIDADE DO BOTÃO */
+#toggle-adjuster {
+    position: fixed !important;
+    bottom: 100px !important;
+    right: 20px !important;
+    z-index: 99999 !important;
+    background: #e74c3c !important;
+    color: white !important;
+    border: 3px solid white !important;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5) !important;
+}
+
+/* Painel de ajuste */
+#position-adjuster {
+    z-index: 99998 !important;
+}
+
+/* Se ainda não vires, adiciona este estilo de emergência */
+#toggle-adjuster:before {
+    content: "⬅️ CLIQUE AQUI";
+    position: absolute;
+    right: 90px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #2c3e50;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
 .customization-options {
     flex: 1;
     min-width: 300px;
