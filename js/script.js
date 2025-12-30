@@ -1,27 +1,27 @@
 // Dados das opções de personalização
 const customizationOptions = {
     dials: [
-        { id: 1, name: "Wave Grey", image: "images/dials/wave1.png" },
-        { id: 2, name: "Wave Black", image: "images/dials/wave2.png" },
-        { id: 3, name: "Marine Master Y", image: "images/dials/marinemaster1.png" },
-        { id: 4, name: "Thin Preto", image: "images/dials/thindetailed1.png" },
-        { id: 5, name: "Thin Branco", image: "images/dials/thindetailed2.png" },
-        { id: 6, name: "Thin Azul", image: "images/dials/thindetailed3.png" },
-        { id: 7, name: "Diver Branco", image: "images/dials/diverwhite.png" },
-        { id: 8, name: "Diver Azul", image: "images/dials/diverbabyblue.png" },
-        { id: 9, name: "Marine Master Blue", image: "images/dials/marinemasterblue.png" },
-        { id: 10, name: "Romanic Grey", image: "images/dials/romangrey.png" },
-        { id: 11, name: "Romanic Green", image: "images/dials/romangreen.png" },
-        { id: 12, name: "Romanic Black", image: "images/dials/romanblack.png" },
-        { id: 13, name: "Romanic BabyBlue", image: "images/dials/romanbabyblue.png" },
-        { id: 14, name: "Diamond Brown", image: "images/dials/diamondbrown.png" },
-        { id: 15, name: "Diamond Grey", image: "images/dials/diamondgrey.png" }
+        { id: 1, name: "Wave Grey", image: "/5454watch/images/dials/wave1.png" },
+        { id: 2, name: "Wave Black", image: "/5454watch/images/dials/wave2.png" },
+        { id: 3, name: "Marine Master Y", image: "/5454watch/images/dials/marinemaster1.png" },
+        { id: 4, name: "Thin Preto", image: "/5454watch/images/dials/thindetailed1.png" },
+        { id: 5, name: "Thin Branco", image: "/5454watch/images/dials/thindetailed2.png" },
+        { id: 6, name: "Thin Azul", image: "/5454watch/images/dials/thindetailed3.png" },
+        { id: 7, name: "Diver Branco", image: "/5454watch/images/dials/diverwhite.png" },
+        { id: 8, name: "Diver Azul", image: "/5454watch/images/dials/diverbabyblue.png" },
+        { id: 9, name: "Marine Master Blue", image: "/5454watch/images/dials/marinemasterblue.png" },
+        { id: 10, name: "Romanic Grey", image: "/5454watch/images/dials/romangrey.png" },
+        { id: 11, name: "Romanic Green", image: "/5454watch/images/dials/romangreen.png" },
+        { id: 12, name: "Romanic Black", image: "/5454watch/images/dials/romanblack.png" },
+        { id: 13, name: "Romanic BabyBlue", image: "/5454watch/images/dials/romanbabyblue.png" },
+        { id: 14, name: "Diamond Brown", image: "/5454watch/images/dials/diamondbrown.png" },
+        { id: 15, name: "Diamond Grey", image: "/5454watch/images/dials/diamondgrey.png" }
     ],
     hands: [
         { 
             id: 1, 
             name: "Clássicos", 
-            image: "images/hands/classic_set.png",
+            image: "/5454watch/images/hands/classic_set.png",
             position: {
                 top: "0px",
                 left: "0px",
@@ -31,7 +31,7 @@ const customizationOptions = {
         { 
             id: 2, 
             name: "Prata", 
-            image: "images/hands/silver_set.png",
+            image: "/5454watch/images/hands/silver_set.png",
             position: {
                 top: "0px",
                 left: "0px",
