@@ -23,8 +23,8 @@ const customizationOptions = {
             name: "Clássicos", 
             image: "images/hands/classic_set.png",
             position: {
-                top: "0px",
-                left: "60px",
+                top: "10px",
+                left: "80px",
                 scale: 1.0
             }
         },
@@ -33,9 +33,9 @@ const customizationOptions = {
             name: "Prata", 
             image: "images/hands/silver_set.png",
             position: {
-                top: "10px",
+                top: "5px",
                 left: "-30px",
-                scale: 1.0
+                scale: 1.5
             }
         }
         // Adiciona mais opções quando tiveres as imagens
