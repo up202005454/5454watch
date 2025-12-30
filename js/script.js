@@ -1,4 +1,4 @@
-// Dados das opções de personalização
+// Dados das opções de personalização COM AJUSTES DE POSIÇÃO
 const customizationOptions = {
     dials: [
         { id: 1, name: "Wave Grey", price: 20, image: "images/dials/wave1.png" },
@@ -22,25 +22,46 @@ const customizationOptions = {
             id: 1, 
             name: "Clássicos", 
             price: 0, 
-            image: "images/hands/classic_set.png" // Imagem com os 3 ponteiros
+            image: "images/hands/classic_set.png",
+            // AJUSTES DE POSIÇÃO PARA ESTA IMAGEM
+            position: {
+                top: "-50%",      // Ajuste vertical
+                left: "-50%",     // Ajuste horizontal
+                scale: 1.0        // Tamanho (1.0 = 100%)
+            }
         },
         { 
             id: 2, 
             name: "Prata", 
             price: 15, 
-            image: "images/hands/silver_set.png" // Imagem com os 3 ponteiros
+            image: "images/hands/silver_set.png",
+            position: {
+                top: "-50%",
+                left: "-50%",
+                scale: 1.0
+            }
         },
         { 
             id: 3, 
             name: "Dourados", 
             price: 30, 
-            image: "images/hands/gold_set.png" // Imagem com os 3 ponteiros
+            image: "images/hands/gold_set.png",
+            position: {
+                top: "-50%",
+                left: "-50%",
+                scale: 1.0
+            }
         },
         { 
             id: 4, 
             name: "Luminosos", 
             price: 25, 
-            image: "images/hands/luminous_set.png" // Imagem com os 3 ponteiros
+            image: "images/hands/luminous_set.png",
+            position: {
+                top: "-50%",
+                left: "-50%",
+                scale: 1.0
+            }
         }
     ],
     straps: [
@@ -72,6 +93,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Adicionar eventos aos botões
     document.getElementById('add-to-cart').addEventListener('click', addToCart);
     document.getElementById('save-design').addEventListener('click', saveDesign);
+    
+    // Iniciar ferramenta de ajuste (opcional - remove em produção)
+    initializePositionAdjuster();
 });
 
 // Inicializar as opções na página
@@ -83,7 +107,7 @@ function initializeOptions() {
         dialOptionsContainer.appendChild(optionElement);
     });
 
-    // Opções de ponteiros (agora apenas uma imagem)
+    // Opções de ponteiros
     const handsOptionsContainer = document.getElementById('hands-options');
     customizationOptions.hands.forEach(hand => {
         const optionElement = createHandsOptionElement(hand);
@@ -142,14 +166,14 @@ function createDialOptionElement(dial) {
     return div;
 }
 
-// Criar elemento de opção para ponteiros (agora apenas uma imagem)
+// Criar elemento de opção para ponteiros
 function createHandsOptionElement(hand) {
     const div = document.createElement('div');
     div.className = 'option-item';
     div.dataset.id = hand.id;
     div.dataset.type = 'hands';
     
-    // Pré-visualização - apenas uma imagem
+    // Pré-visualização
     const preview = document.createElement('div');
     preview.className = 'option-preview';
     
@@ -266,7 +290,7 @@ function updateWatchPreview() {
     dial.style.backgroundRepeat = 'no-repeat';
     dial.style.backgroundColor = 'transparent';
     
-    // Atualizar ponteiros (agora apenas uma imagem sobreposta)
+    // Atualizar ponteiros com ajuste de posição
     const handsOption = currentSelections.hands;
     const handsOverlay = document.getElementById('watch-hands');
     
@@ -277,6 +301,23 @@ function updateWatchPreview() {
         handsOverlay.style.backgroundPosition = 'center';
         handsOverlay.style.backgroundRepeat = 'no-repeat';
         handsOverlay.style.opacity = '1';
+        
+        // APLICAR AJUSTES DE POSIÇÃO
+        if (handsOption.position) {
+            const pos = handsOption.position;
+            
+            // Ajustar posição
+            handsOverlay.style.top = `calc(50% ${pos.top})`;
+            handsOverlay.style.left = `calc(50% ${pos.left})`;
+            
+            // Ajustar tamanho
+            handsOverlay.style.transform = `translate(-50%, -50%) scale(${pos.scale})`;
+        } else {
+            // Posição padrão se não houver ajustes
+            handsOverlay.style.top = '50%';
+            handsOverlay.style.left = '50%';
+            handsOverlay.style.transform = 'translate(-50%, -50%)';
+        }
     } else {
         handsOverlay.style.opacity = '0';
     }
@@ -351,4 +392,149 @@ function saveDesign() {
             console.log("Não foi possível salvar no localStorage");
         }
     }
+}
+
+// FERRAMENTA DE AJUSTE DE POSIÇÃO (REMOVER EM PRODUÇÃO)
+function initializePositionAdjuster() {
+    // Cria painel de ajuste
+    const adjusterPanel = document.createElement('div');
+    adjusterPanel.id = 'position-adjuster';
+    adjusterPanel.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        z-index: 1000;
+        width: 300px;
+        display: none;
+    `;
+    
+    adjusterPanel.innerHTML = `
+        <h4 style="margin-bottom: 15px;">Ajustar Posição dos Ponteiros</h4>
+        <div style="margin-bottom: 10px;">
+            <label>Horizontal: <span id="horizontal-value">0px</span></label>
+            <input type="range" id="horizontal-slider" min="-50" max="50" value="0" style="width: 100%;">
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label>Vertical: <span id="vertical-value">0px</span></label>
+            <input type="range" id="vertical-slider" min="-50" max="50" value="0" style="width: 100%;">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label>Tamanho: <span id="scale-value">100%</span></label>
+            <input type="range" id="scale-slider" min="50" max="150" value="100" step="5" style="width: 100%;">
+        </div>
+        <div style="display: flex; gap: 10px;">
+            <button id="apply-adjustment" style="flex: 1; padding: 8px; background: #4CAF50; color: white; border: none; border-radius: 5px;">
+                Aplicar
+            </button>
+            <button id="reset-adjustment" style="flex: 1; padding: 8px; background: #f44336; color: white; border: none; border-radius: 5px;">
+                Resetar
+            </button>
+            <button id="hide-adjuster" style="flex: 1; padding: 8px; background: #2196F3; color: white; border: none; border-radius: 5px;">
+                Fechar
+            </button>
+        </div>
+        <div style="margin-top: 10px; font-size: 12px; color: #666;">
+            Dica: Use os sliders para ajustar, clique em "Aplicar" para salvar
+        </div>
+    `;
+    
+    document.body.appendChild(adjusterPanel);
+    
+    // Botão para mostrar/ocultar ajustador
+    const toggleButton = document.createElement('button');
+    toggleButton.id = 'toggle-adjuster';
+    toggleButton.textContent = '⚙️ Ajustar Posição';
+    toggleButton.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #2c3e50;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 999;
+        font-size: 14px;
+    `;
+    
+    document.body.appendChild(toggleButton);
+    
+    // Eventos
+    toggleButton.addEventListener('click', () => {
+        adjusterPanel.style.display = adjusterPanel.style.display === 'none' ? 'block' : 'none';
+    });
+    
+    document.getElementById('hide-adjuster').addEventListener('click', () => {
+        adjusterPanel.style.display = 'none';
+    });
+    
+    // Atualizar valores dos sliders
+    const horizontalSlider = document.getElementById('horizontal-slider');
+    const verticalSlider = document.getElementById('vertical-slider');
+    const scaleSlider = document.getElementById('scale-slider');
+    
+    horizontalSlider.addEventListener('input', (e) => {
+        document.getElementById('horizontal-value').textContent = `${e.target.value}px`;
+    });
+    
+    verticalSlider.addEventListener('input', (e) => {
+        document.getElementById('vertical-value').textContent = `${e.target.value}px`;
+    });
+    
+    scaleSlider.addEventListener('input', (e) => {
+        document.getElementById('scale-value').textContent = `${e.target.value}%`;
+    });
+    
+    // Aplicar ajustes
+    document.getElementById('apply-adjustment').addEventListener('click', () => {
+        const handsOption = currentSelections.hands;
+        const horizontal = parseInt(horizontalSlider.value);
+        const vertical = parseInt(verticalSlider.value);
+        const scale = parseInt(scaleSlider.value) / 100;
+        
+        // Atualizar objeto da opção atual
+        handsOption.position = {
+            top: `${vertical}px`,
+            left: `${horizontal}px`,
+            scale: scale
+        };
+        
+        // Atualizar visualização
+        updateWatchPreview();
+        
+        // Mostrar no console os valores para copiar
+        console.log(`Ajustes aplicados para "${handsOption.name}":`);
+        console.log(`position: {`);
+        console.log(`  top: "${vertical}px",`);
+        console.log(`  left: "${horizontal}px",`);
+        console.log(`  scale: ${scale}`);
+        console.log(`}`);
+        
+        alert(`Ajustes aplicados! Copie os valores do console.`);
+    });
+    
+    // Resetar ajustes
+    document.getElementById('reset-adjustment').addEventListener('click', () => {
+        horizontalSlider.value = 0;
+        verticalSlider.value = 0;
+        scaleSlider.value = 100;
+        
+        document.getElementById('horizontal-value').textContent = '0px';
+        document.getElementById('vertical-value').textContent = '0px';
+        document.getElementById('scale-value').textContent = '100%';
+        
+        const handsOption = currentSelections.hands;
+        handsOption.position = {
+            top: "-50%",
+            left: "-50%",
+            scale: 1.0
+        };
+        
+        updateWatchPreview();
+    });
 }
