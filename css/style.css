@@ -167,8 +167,8 @@ nav ul li a.active {
 
 /* Ponteiro das Horas - maior */
 #hour-hand {
-    width: 30px; /* Largura suficiente para a imagem */
-    height: 70px; /* Altura do ponteiro */
+    width: 100px; /* Largura suficiente para a imagem */
+    height: 130px; /* Altura do ponteiro */
     margin-left: -15px; /* Metade da largura para centralizar */
     margin-top: -70px; /* Move para cima (altura total) */
     transform-origin: 15px 70px; /* Ponto de rotação: centro inferior */
@@ -176,8 +176,8 @@ nav ul li a.active {
 
 /* Ponteiro dos Minutos - mais comprido */
 #minute-hand {
-    width: 25px;
-    height: 90px;
+    width: 80px;
+    height: 200px;
     margin-left: -12.5px;
     margin-top: -90px;
     transform-origin: 12.5px 90px;
@@ -186,8 +186,8 @@ nav ul li a.active {
 
 /* Ponteiro dos Segundos - mais fino e comprido */
 #second-hand {
-    width: 15px;
-    height: 100px;
+    width: 60px;
+    height: 250px;
     margin-left: -7.5px;
     margin-top: -100px;
     transform-origin: 7.5px 100px;
