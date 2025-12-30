@@ -1,15 +1,21 @@
 // Dados das opções de personalização
 const customizationOptions = {
     dials: [
-        { id: 1, name: "Onda Cinza", price: 20, image: "images/dials/wave1.png" },
-        { id: 2, name: "Onda Preto", price: 20, image: "images/dials/wave2.png" },
-        { id: 3, name: "MarineMaster", price: 20, image: "images/dials/marinemaster1.png" },
-        { id: 4, name: "Quadricula Preto", price: 20, image: "images/dials/thindetailed1.png" },
-        { id: 5, name: "Quadricula Branco", price: 20, image: "images/dials/thindetailed2.png" },
-        { id: 6, name: "Quadricula Azul", price: 20, image: "images/dials/thindetailed3.png" },
+        { id: 1, name: "Wave Grey", price: 20, image: "images/dials/wave1.png" },
+        { id: 2, name: "Wave Black", price: 20, image: "images/dials/wave2.png" },
+        { id: 3, name: "Marine Master Y", price: 20, image: "images/dials/marinemaster1.png" },
+        { id: 4, name: "Thin Preto", price: 20, image: "images/dials/thindetailed1.png" },
+        { id: 5, name: "Thin Branco", price: 20, image: "images/dials/thindetailed2.png" },
+        { id: 6, name: "Thin Azul", price: 20, image: "images/dials/thindetailed3.png" },
         { id: 7, name: "Diver Branco", price: 20, image: "images/dials/diverwhite.png" },
         { id: 8, name: "Diver Azul", price: 20, image: "images/dials/diverbabyblue.png" },
-        { id: 9, name: "Quadricula Azul", price: 20, image: "images/dials/thindetailed3" }
+        { id: 9, name: "Marine Master Blue", price: 20, image: "images/dials/marinemasterblue.png" },
+        { id: 10, name: "Romanic Grey", price: 20, image: "images/dials/romangrey.png" },
+        { id: 11, name: "Romanic Green", price: 20, image: "images/dials/romangreen.png" },
+        { id: 12, name: "Romanic Black", price: 20, image: "images/dials/romanblack.png" },
+        { id: 13, name: "Romanic BabyBlue", price: 20, image: "images/dials/romangreen.png" },
+        { id: 14, name: "Diamond Brown", price: 20, image: "images/dials/diamondbrown.png" },
+        { id: 15, name: "Diamond Grey", price: 20, image: "images/dials/diamondgrey.png" }
     ],
     hands: [
         { id: 1, name: "Clássicos", price: 0, hourColor: "#e74c3c", minuteColor: "#3498db", secondColor: "#f1c40f" },
