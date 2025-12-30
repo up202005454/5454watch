@@ -1,76 +1,52 @@
-// Dados das opções de personalização COM AJUSTES DE POSIÇÃO
+// Dados das opções de personalização
 const customizationOptions = {
     dials: [
-        { id: 1, name: "Wave Grey", price: 20, image: "images/dials/wave1.png" },
-        { id: 2, name: "Wave Black", price: 20, image: "images/dials/wave2.png" },
-        { id: 3, name: "Marine Master Y", price: 20, image: "images/dials/marinemaster1.png" },
-        { id: 4, name: "Thin Preto", price: 20, image: "images/dials/thindetailed1.png" },
-        { id: 5, name: "Thin Branco", price: 20, image: "images/dials/thindetailed2.png" },
-        { id: 6, name: "Thin Azul", price: 20, image: "images/dials/thindetailed3.png" },
-        { id: 7, name: "Diver Branco", price: 20, image: "images/dials/diverwhite.png" },
-        { id: 8, name: "Diver Azul", price: 20, image: "images/dials/diverbabyblue.png" },
-        { id: 9, name: "Marine Master Blue", price: 20, image: "images/dials/marinemasterblue.png" },
-        { id: 10, name: "Romanic Grey", price: 20, image: "images/dials/romangrey.png" },
-        { id: 11, name: "Romanic Green", price: 20, image: "images/dials/romangreen.png" },
-        { id: 12, name: "Romanic Black", price: 20, image: "images/dials/romanblack.png" },
-        { id: 13, name: "Romanic BabyBlue", price: 20, image: "images/dials/romanbabyblue.png" },
-        { id: 14, name: "Diamond Brown", price: 20, image: "images/dials/diamondbrown.png" },
-        { id: 15, name: "Diamond Grey", price: 20, image: "images/dials/diamondgrey.png" }
+        { id: 1, name: "Wave Grey", image: "images/dials/wave1.png" },
+        { id: 2, name: "Wave Black", image: "images/dials/wave2.png" },
+        { id: 3, name: "Marine Master Y", image: "images/dials/marinemaster1.png" },
+        { id: 4, name: "Thin Preto", image: "images/dials/thindetailed1.png" },
+        { id: 5, name: "Thin Branco", image: "images/dials/thindetailed2.png" },
+        { id: 6, name: "Thin Azul", image: "images/dials/thindetailed3.png" },
+        { id: 7, name: "Diver Branco", image: "images/dials/diverwhite.png" },
+        { id: 8, name: "Diver Azul", image: "images/dials/diverbabyblue.png" },
+        { id: 9, name: "Marine Master Blue", image: "images/dials/marinemasterblue.png" },
+        { id: 10, name: "Romanic Grey", image: "images/dials/romangrey.png" },
+        { id: 11, name: "Romanic Green", image: "images/dials/romangreen.png" },
+        { id: 12, name: "Romanic Black", image: "images/dials/romanblack.png" },
+        { id: 13, name: "Romanic BabyBlue", image: "images/dials/romanbabyblue.png" },
+        { id: 14, name: "Diamond Brown", image: "images/dials/diamondbrown.png" },
+        { id: 15, name: "Diamond Grey", image: "images/dials/diamondgrey.png" }
     ],
     hands: [
         { 
             id: 1, 
             name: "Clássicos", 
-            price: 0, 
             image: "images/hands/classic_set.png",
-            // AJUSTES DE POSIÇÃO PARA ESTA IMAGEM
             position: {
-                top: "-50%",      // Ajuste vertical
-                left: "-50%",     // Ajuste horizontal
-                scale: 1.0        // Tamanho (1.0 = 100%)
+                top: "0px",
+                left: "0px",
+                scale: 1.0
             }
         },
         { 
             id: 2, 
             name: "Prata", 
-            price: 15, 
             image: "images/hands/silver_set.png",
             position: {
-                top: "-50%",
-                left: "-50%",
-                scale: 1.0
-            }
-        },
-        { 
-            id: 3, 
-            name: "Dourados", 
-            price: 30, 
-            image: "images/hands/gold_set.png",
-            position: {
-                top: "-50%",
-                left: "-50%",
-                scale: 1.0
-            }
-        },
-        { 
-            id: 4, 
-            name: "Luminosos", 
-            price: 25, 
-            image: "images/hands/luminous_set.png",
-            position: {
-                top: "-50%",
-                left: "-50%",
+                top: "0px",
+                left: "0px",
                 scale: 1.0
             }
         }
+        // Adiciona mais opções quando tiveres as imagens
     ],
     straps: [
-        { id: 1, name: "Couro Marrom", price: 0, color: "#8B4513", material: "leather" },
-        { id: 2, name: "Couro Preto", price: 20, color: "#111111", material: "leather" },
-        { id: 3, name: "Metal Prata", price: 40, color: "#c0c0c0", material: "metal" },
-        { id: 4, name: "Silicone Azul", price: 15, color: "#1e90ff", material: "silicone" },
-        { id: 5, name: "Náutico", price: 25, color: "#2c3e50", material: "fabric" },
-        { id: 6, name: "Esportivo", price: 18, color: "#e74c3c", material: "rubber" }
+        { id: 1, name: "Couro Marrom", color: "#8B4513", material: "leather" },
+        { id: 2, name: "Couro Preto", color: "#111111", material: "leather" },
+        { id: 3, name: "Metal Prata", color: "#c0c0c0", material: "metal" },
+        { id: 4, name: "Silicone Azul", color: "#1e90ff", material: "silicone" },
+        { id: 5, name: "Náutico", color: "#2c3e50", material: "fabric" },
+        { id: 6, name: "Esportivo", color: "#e74c3c", material: "rubber" }
     ]
 };
 
@@ -81,20 +57,12 @@ let currentSelections = {
     strap: customizationOptions.straps[0]
 };
 
-// Preço base do relógio
-const basePrice = 299.00;
-
 // Inicializar a interface
 document.addEventListener('DOMContentLoaded', function() {
     initializeOptions();
     updateWatchPreview();
-    updatePriceSummary();
     
-    // Adicionar eventos aos botões
-    document.getElementById('add-to-cart').addEventListener('click', addToCart);
-    document.getElementById('save-design').addEventListener('click', saveDesign);
-    
-    // Iniciar ferramenta de ajuste (opcional - remove em produção)
+    // Iniciar ferramenta de ajuste
     initializePositionAdjuster();
 });
 
@@ -147,14 +115,8 @@ function createDialOptionElement(dial) {
     name.style.marginTop = '5px';
     name.style.fontWeight = '500';
     
-    const price = document.createElement('p');
-    price.textContent = dial.price > 0 ? `+ R$ ${dial.price.toFixed(2)}` : 'Incluído';
-    price.style.fontSize = '0.8rem';
-    price.style.color = dial.price > 0 ? '#e74c3c' : '#27ae60';
-    
     div.appendChild(preview);
     div.appendChild(name);
-    div.appendChild(price);
     
     // Marcar a primeira opção como ativa
     if (dial.id === 1) {
@@ -191,14 +153,8 @@ function createHandsOptionElement(hand) {
     name.style.marginTop = '5px';
     name.style.fontWeight = '500';
     
-    const price = document.createElement('p');
-    price.textContent = hand.price > 0 ? `+ R$ ${hand.price.toFixed(2)}` : 'Incluído';
-    price.style.fontSize = '0.8rem';
-    price.style.color = hand.price > 0 ? '#e74c3c' : '#27ae60';
-    
     div.appendChild(preview);
     div.appendChild(name);
-    div.appendChild(price);
     
     if (hand.id === 1) {
         div.classList.add('active');
@@ -232,14 +188,8 @@ function createStrapOptionElement(strap) {
     name.style.marginTop = '5px';
     name.style.fontWeight = '500';
     
-    const price = document.createElement('p');
-    price.textContent = strap.price > 0 ? `+ R$ ${strap.price.toFixed(2)}` : 'Incluído';
-    price.style.fontSize = '0.8rem';
-    price.style.color = strap.price > 0 ? '#e74c3c' : '#27ae60';
-    
     div.appendChild(preview);
     div.appendChild(name);
-    div.appendChild(price);
     
     if (strap.id === 1) {
         div.classList.add('active');
@@ -257,9 +207,6 @@ function selectOption(option, type) {
     
     // Atualizar visualização
     updateWatchPreview();
-    
-    // Atualizar preço
-    updatePriceSummary();
     
     // Atualizar estado visual das opções
     updateActiveOptions(type, option.id);
@@ -336,66 +283,7 @@ function updateWatchPreview() {
     }
 }
 
-// Atualizar resumo de preço
-function updatePriceSummary() {
-    const dialPrice = currentSelections.dial.price;
-    const handsPrice = currentSelections.hands.price;
-    const strapPrice = currentSelections.strap.price;
-    
-    document.getElementById('dial-price').textContent = `R$ ${dialPrice.toFixed(2)}`;
-    document.getElementById('hands-price').textContent = `R$ ${handsPrice.toFixed(2)}`;
-    document.getElementById('strap-price').textContent = `R$ ${strapPrice.toFixed(2)}`;
-    
-    const customPrice = dialPrice + handsPrice + strapPrice;
-    document.getElementById('custom-price').textContent = `R$ ${customPrice.toFixed(2)}`;
-    
-    const totalPrice = basePrice + customPrice;
-    document.getElementById('total-price').textContent = `R$ ${totalPrice.toFixed(2)}`;
-}
-
-// Adicionar ao carrinho
-function addToCart() {
-    const totalPrice = basePrice + currentSelections.dial.price + currentSelections.hands.price + currentSelections.strap.price;
-    
-    alert(`Relógio personalizado adicionado ao carrinho!\n\nConfiguração:\n- Mostrador: ${currentSelections.dial.name}\n- Ponteiros: ${currentSelections.hands.name}\n- Pulseira: ${currentSelections.strap.name}\n\nTotal: R$ ${totalPrice.toFixed(2)}`);
-    
-    try {
-        const cart = JSON.parse(localStorage.getItem('watchCart')) || [];
-        cart.push({
-            id: Date.now(),
-            configuration: currentSelections,
-            totalPrice: totalPrice,
-            date: new Date().toISOString()
-        });
-        localStorage.setItem('watchCart', JSON.stringify(cart));
-    } catch (e) {
-        console.log("Não foi possível salvar no carrinho");
-    }
-}
-
-// Salvar design
-function saveDesign() {
-    const designName = prompt("Digite um nome para salvar seu design personalizado:");
-    
-    if (designName) {
-        alert(`Design "${designName}" salvo com sucesso!`);
-        
-        try {
-            const savedDesigns = JSON.parse(localStorage.getItem('watchDesigns')) || [];
-            savedDesigns.push({
-                name: designName,
-                selections: currentSelections,
-                timestamp: new Date().toISOString()
-            });
-            localStorage.setItem('watchDesigns', JSON.stringify(savedDesigns));
-        } catch (e) {
-            console.log("Não foi possível salvar no localStorage");
-        }
-    }
-}
-
-// FERRAMENTA DE AJUSTE DE POSIÇÃO (REMOVER EM PRODUÇÃO)
-// FERRAMENTA DE AJUSTE DE POSIÇÃO - VERSÃO SIMPLIFICADA
+// FERRAMENTA DE AJUSTE DE POSIÇÃO
 function initializePositionAdjuster() {
     console.log("🚀 Criando ferramenta de ajuste...");
     
@@ -570,8 +458,8 @@ function initializePositionAdjuster() {
         
         const handsOption = currentSelections.hands;
         handsOption.position = {
-            top: "-50%",
-            left: "-50%",
+            top: "0px",
+            left: "0px",
             scale: 1.0
         };
         
@@ -579,4 +467,3 @@ function initializePositionAdjuster() {
         alert('🔄 Ajustes resetados para padrão!');
     });
 }
-
