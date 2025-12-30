@@ -466,4 +466,65 @@ function initializePositionAdjuster() {
         updateWatchPreview();
         alert('🔄 Ajustes resetados para padrão!');
     });
+    // TESTE RÁPIDO - Adiciona controles visuais
+setTimeout(function() {
+    // Criar controles simples
+    const debugControls = document.createElement('div');
+    debugControls.style.cssText = `
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background: rgba(0,0,0,0.8);
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        z-index: 9999;
+        font-family: monospace;
+    `;
+    
+    debugControls.innerHTML = `
+        <h4 style="margin: 0 0 10px 0;">🎯 DEBUG Ponteiros</h4>
+        <div style="margin-bottom: 10px;">
+            <button onclick="moveHands(-10, 0)" style="padding: 5px 10px; margin-right: 5px;">← Esquerda</button>
+            <button onclick="moveHands(10, 0)" style="padding: 5px 10px;">Direita →</button>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <button onclick="moveHands(0, -10)" style="padding: 5px 10px; margin-right: 5px;">↑ Cima</button>
+            <button onclick="moveHands(0, 10)" style="padding: 5px 10px;">Baixo ↓</button>
+        </div>
+        <div style="font-size: 12px;">
+            <div id="debug-info">Posição: 0px, 0px</div>
+            <div id="debug-css">CSS: ...</div>
+        </div>
+    `;
+    
+    document.body.appendChild(debugControls);
+    
+    // Funções de movimento
+    window.moveHands = function(left, top) {
+        const hands = document.getElementById('watch-hands');
+        const currentLeft = parseInt(hands.style.left) || 50;
+        const currentTop = parseInt(hands.style.top) || 50;
+        
+        hands.style.left = `${currentLeft + left}%`;
+        hands.style.top = `${currentTop + top}%`;
+        
+        // Atualizar info
+        document.getElementById('debug-info').textContent = 
+            `Posição: ${hands.style.left}, ${hands.style.top}`;
+        document.getElementById('debug-css').textContent = 
+            `CSS: left: ${hands.style.left}; top: ${hands.style.top}`;
+        
+        console.log(`Movido: left=${hands.style.left}, top=${hands.style.top}`);
+    };
+    
+    // Atualizar info inicial
+    const hands = document.getElementById('watch-hands');
+    document.getElementById('debug-info').textContent = 
+        `Posição: ${hands.style.left || '50%'}, ${hands.style.top || '50%'}`;
+    document.getElementById('debug-css').textContent = 
+        `CSS: left: ${hands.style.left || '50%'}; top: ${hands.style.top || '50%'}`;
+    
+    console.log("🔧 Controles de debug adicionados!");
+}, 1000);
 }
