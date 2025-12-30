@@ -396,6 +396,19 @@ function saveDesign() {
 
 // FERRAMENTA DE AJUSTE DE POSIÇÃO (REMOVER EM PRODUÇÃO)
 function initializePositionAdjuster() {
+
+    console.log("initializePositionAdjuster chamada");
+    
+    // Verificar se já existe o botão (para evitar duplicação)
+    if (document.getElementById('toggle-adjuster')) {
+        console.log("Botão já existe, removendo...");
+        document.getElementById('toggle-adjuster').remove();
+    }
+    
+    if (document.getElementById('position-adjuster')) {
+        console.log("Painel já existe, removendo...");
+        document.getElementById('position-adjuster').remove();
+    }
     // Cria painel de ajuste
     const adjusterPanel = document.createElement('div');
     adjusterPanel.id = 'position-adjuster';
