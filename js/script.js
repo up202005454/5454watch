@@ -395,141 +395,55 @@ function saveDesign() {
 }
 
 // FERRAMENTA DE AJUSTE DE POSIÇÃO (REMOVER EM PRODUÇÃO)
+// FERRAMENTA DE AJUSTE DE POSIÇÃO - VERSÃO SIMPLIFICADA
 function initializePositionAdjuster() {
-
-    console.log("initializePositionAdjuster chamada");
+    console.log("CRIANDO BOTÃO DE AJUSTE...");
     
-    // Verificar se já existe o botão (para evitar duplicação)
-    if (document.getElementById('toggle-adjuster')) {
-        console.log("Botão já existe, removendo...");
-        document.getElementById('toggle-adjuster').remove();
-    }
-    
-    if (document.getElementById('position-adjuster')) {
-        console.log("Painel já existe, removendo...");
-        document.getElementById('position-adjuster').remove();
-    }
-    // Cria painel de ajuste
-    const adjusterPanel = document.createElement('div');
-    adjusterPanel.id = 'position-adjuster';
-    adjusterPanel.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: white;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        z-index: 1000;
-        width: 300px;
-        display: none;
-    `;
-    
-    adjusterPanel.innerHTML = `
-        <h4 style="margin-bottom: 15px;">Ajustar Posição dos Ponteiros</h4>
-        <div style="margin-bottom: 10px;">
-            <label>Horizontal: <span id="horizontal-value">0px</span></label>
-            <input type="range" id="horizontal-slider" min="-50" max="50" value="0" style="width: 100%;">
-        </div>
-        <div style="margin-bottom: 10px;">
-            <label>Vertical: <span id="vertical-value">0px</span></label>
-            <input type="range" id="vertical-slider" min="-50" max="50" value="0" style="width: 100%;">
-        </div>
-        <div style="margin-bottom: 15px;">
-            <label>Tamanho: <span id="scale-value">100%</span></label>
-            <input type="range" id="scale-slider" min="50" max="150" value="100" step="5" style="width: 100%;">
-        </div>
-        <div style="display: flex; gap: 10px;">
-            <button id="apply-adjustment" style="flex: 1; padding: 8px; background: #4CAF50; color: white; border: none; border-radius: 5px;">
-                Aplicar
-            </button>
-            <button id="reset-adjustment" style="flex: 1; padding: 8px; background: #f44336; color: white; border: none; border-radius: 5px;">
-                Resetar
-            </button>
-            <button id="hide-adjuster" style="flex: 1; padding: 8px; background: #2196F3; color: white; border: none; border-radius: 5px;">
-                Fechar
-            </button>
-        </div>
-        <div style="margin-top: 10px; font-size: 12px; color: #666;">
-            Dica: Use os sliders para ajustar, clique em "Aplicar" para salvar
-        </div>
-    `;
-    
-    document.body.appendChild(adjusterPanel);
-    
-    // Botão para mostrar/ocultar ajustador
+    // Criar botão simples
     const toggleButton = document.createElement('button');
     toggleButton.id = 'toggle-adjuster';
-    toggleButton.textContent = '⚙️ Ajustar Posição';
+    toggleButton.textContent = '⚙️ AJUSTAR';
     toggleButton.style.cssText = `
         position: fixed;
         bottom: 20px;
         right: 20px;
-        background: #2c3e50;
+        background: #e74c3c;
         color: white;
         border: none;
-        padding: 10px 15px;
-        border-radius: 5px;
+        padding: 15px 20px;
+        border-radius: 50px;
         cursor: pointer;
-        z-index: 999;
-        font-size: 14px;
+        z-index: 9999;
+        font-size: 16px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     `;
     
+    // Adicionar evento
+    toggleButton.onclick = function() {
+        alert('Ferramenta de ajuste ativada!\nAbre o console (F12) para ver os ajustes.');
+        showSimpleAdjuster();
+    };
+    
+    // Adicionar ao body
     document.body.appendChild(toggleButton);
+    console.log("✅ Botão criado com sucesso!");
     
-    // Eventos
-    toggleButton.addEventListener('click', () => {
-        adjusterPanel.style.display = adjusterPanel.style.display === 'none' ? 'block' : 'none';
-    });
-    
-    document.getElementById('hide-adjuster').addEventListener('click', () => {
-        adjusterPanel.style.display = 'none';
-    });
-    
-    // Atualizar valores dos sliders
-    const horizontalSlider = document.getElementById('horizontal-slider');
-    const verticalSlider = document.getElementById('vertical-slider');
-    const scaleSlider = document.getElementById('scale-slider');
-    
-    horizontalSlider.addEventListener('input', (e) => {
-        document.getElementById('horizontal-value').textContent = `${e.target.value}px`;
-    });
-    
-    verticalSlider.addEventListener('input', (e) => {
-        document.getElementById('vertical-value').textContent = `${e.target.value}px`;
-    });
-    
-    scaleSlider.addEventListener('input', (e) => {
-        document.getElementById('scale-value').textContent = `${e.target.value}%`;
-    });
-    
-    // Aplicar ajustes
-    document.getElementById('apply-adjustment').addEventListener('click', () => {
+    // Função simples para mostrar ajustes
+    function showSimpleAdjuster() {
         const handsOption = currentSelections.hands;
-        const horizontal = parseInt(horizontalSlider.value);
-        const vertical = parseInt(verticalSlider.value);
-        const scale = parseInt(scaleSlider.value) / 100;
-        
-        // Atualizar objeto da opção atual
-        handsOption.position = {
-            top: `${vertical}px`,
-            left: `${horizontal}px`,
-            scale: scale
-        };
-        
-        // Atualizar visualização
-        updateWatchPreview();
-        
-        // Mostrar no console os valores para copiar
-        console.log(`Ajustes aplicados para "${handsOption.name}":`);
-        console.log(`position: {`);
-        console.log(`  top: "${vertical}px",`);
-        console.log(`  left: "${horizontal}px",`);
-        console.log(`  scale: ${scale}`);
-        console.log(`}`);
-        
-        alert(`Ajustes aplicados! Copie os valores do console.`);
-    });
+        console.log("=== AJUSTAR PONTEIROS ===");
+        console.log("Opção atual:", handsOption.name);
+        console.log("Posição atual:", handsOption.position);
+        console.log("\nPara ajustar, copie e cole no seu código:");
+        console.log(`position: {
+  top: "0px",
+  left: "0px", 
+  scale: 1.0
+}`);
+        console.log("\nValores típicos: top (-50px a 50px), left (-50px a 50px), scale (0.5 a 1.5)");
+    }
+}
     
     // Resetar ajustes
     document.getElementById('reset-adjustment').addEventListener('click', () => {
