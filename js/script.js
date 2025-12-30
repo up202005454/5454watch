@@ -1,230 +1,3 @@
-// Dados das opções de personalização
-const customizationOptions = {
-    dials: [
-        { id: 1, name: "Wave Grey", image: "images/dials/wave1.png" },
-        { id: 2, name: "Wave Black", image: "images/dials/wave2.png" },
-        { id: 3, name: "Marine Master Y", image: "images/dials/marinemaster1.png" },
-        { id: 4, name: "Thin Preto", image: "images/dials/thindetailed1.png" },
-        { id: 5, name: "Thin Branco", image: "images/dials/thindetailed2.png" },
-        { id: 6, name: "Thin Azul", image: "images/dials/thindetailed3.png" },
-        { id: 7, name: "Diver Branco", image: "images/dials/diverwhite.png" },
-        { id: 8, name: "Diver Azul", image: "images/dials/diverbabyblue.png" },
-        { id: 9, name: "Marine Master Blue", image: "images/dials/marinemasterblue.png" },
-        { id: 10, name: "Romanic Grey", image: "images/dials/romangrey.png" },
-        { id: 11, name: "Romanic Green", image: "images/dials/romangreen.png" },
-        { id: 12, name: "Romanic Black", image: "images/dials/romanblack.png" },
-        { id: 13, name: "Romanic BabyBlue", image: "images/dials/romanbabyblue.png" },
-        { id: 14, name: "Diamond Brown", image: "images/dials/diamondbrown.png" },
-        { id: 15, name: "Diamond Grey", image: "images/dials/diamondgrey.png" }
-    ],
-    hands: [
-        { 
-            id: 1, 
-            name: "Clássicos", 
-            image: "images/hands/classic_set.png",
-            position: {
-                top: "10px",
-                left: "80px",
-                scale: 1.0
-            }
-        },
-        { 
-            id: 2, 
-            name: "Prata", 
-            image: "images/hands/silver_set.png",
-            position: {
-                top: "5px",
-                left: "-30px",
-                scale: 1.5
-            }
-        }
-        // Adiciona mais opções quando tiveres as imagens
-    ],
-    straps: [
-        { id: 1, name: "Couro Marrom", color: "#8B4513", material: "leather" },
-        { id: 2, name: "Couro Preto", color: "#111111", material: "leather" },
-        { id: 3, name: "Metal Prata", color: "#c0c0c0", material: "metal" },
-        { id: 4, name: "Silicone Azul", color: "#1e90ff", material: "silicone" },
-        { id: 5, name: "Náutico", color: "#2c3e50", material: "fabric" },
-        { id: 6, name: "Esportivo", color: "#e74c3c", material: "rubber" }
-    ]
-};
-
-// Estado atual das seleções
-let currentSelections = {
-    dial: customizationOptions.dials[0],
-    hands: customizationOptions.hands[0],
-    strap: customizationOptions.straps[0]
-};
-
-// Inicializar a interface
-document.addEventListener('DOMContentLoaded', function() {
-    initializeOptions();
-    updateWatchPreview();
-    
-    // Iniciar ferramenta de ajuste
-    initializePositionAdjuster();
-});
-
-// Inicializar as opções na página
-function initializeOptions() {
-    // Opções de mostrador
-    const dialOptionsContainer = document.getElementById('dial-options');
-    customizationOptions.dials.forEach(dial => {
-        const optionElement = createDialOptionElement(dial);
-        dialOptionsContainer.appendChild(optionElement);
-    });
-
-    // Opções de ponteiros
-    const handsOptionsContainer = document.getElementById('hands-options');
-    customizationOptions.hands.forEach(hand => {
-        const optionElement = createHandsOptionElement(hand);
-        handsOptionsContainer.appendChild(optionElement);
-    });
-
-    // Opções de pulseira
-    const strapOptionsContainer = document.getElementById('strap-options');
-    customizationOptions.straps.forEach(strap => {
-        const optionElement = createStrapOptionElement(strap);
-        strapOptionsContainer.appendChild(optionElement);
-    });
-}
-
-// Criar elemento de opção para mostradores
-function createDialOptionElement(dial) {
-    const div = document.createElement('div');
-    div.className = 'option-item';
-    div.dataset.id = dial.id;
-    div.dataset.type = 'dial';
-    
-    // Pré-visualização
-    const preview = document.createElement('div');
-    preview.className = 'option-preview';
-    
-    if (dial.image) {
-        preview.style.backgroundImage = `url('${dial.image}')`;
-        preview.style.backgroundSize = 'contain';
-        preview.style.backgroundPosition = 'center';
-        preview.style.backgroundRepeat = 'no-repeat';
-        preview.style.backgroundColor = '#f5f5f5';
-    }
-    
-    const name = document.createElement('p');
-    name.textContent = dial.name;
-    name.style.fontSize = '0.9rem';
-    name.style.marginTop = '5px';
-    name.style.fontWeight = '500';
-    
-    div.appendChild(preview);
-    div.appendChild(name);
-    
-    // Marcar a primeira opção como ativa
-    if (dial.id === 1) {
-        div.classList.add('active');
-    }
-    
-    div.addEventListener('click', () => selectOption(dial, 'dial'));
-    
-    return div;
-}
-
-// Criar elemento de opção para ponteiros
-function createHandsOptionElement(hand) {
-    const div = document.createElement('div');
-    div.className = 'option-item';
-    div.dataset.id = hand.id;
-    div.dataset.type = 'hands';
-    
-    // Pré-visualização
-    const preview = document.createElement('div');
-    preview.className = 'option-preview';
-    
-    if (hand.image) {
-        preview.style.backgroundImage = `url('${hand.image}')`;
-        preview.style.backgroundSize = 'contain';
-        preview.style.backgroundPosition = 'center';
-        preview.style.backgroundRepeat = 'no-repeat';
-        preview.style.backgroundColor = '#f5f5f5';
-    }
-    
-    const name = document.createElement('p');
-    name.textContent = hand.name;
-    name.style.fontSize = '0.9rem';
-    name.style.marginTop = '5px';
-    name.style.fontWeight = '500';
-    
-    div.appendChild(preview);
-    div.appendChild(name);
-    
-    if (hand.id === 1) {
-        div.classList.add('active');
-    }
-    
-    div.addEventListener('click', () => selectOption(hand, 'hands'));
-    
-    return div;
-}
-
-// Criar elemento de opção para pulseiras
-function createStrapOptionElement(strap) {
-    const div = document.createElement('div');
-    div.className = 'option-item';
-    div.dataset.id = strap.id;
-    div.dataset.type = 'strap';
-    
-    const preview = document.createElement('div');
-    preview.className = 'option-preview';
-    preview.style.backgroundColor = strap.color;
-    
-    if (strap.material === 'metal') {
-        preview.style.background = `linear-gradient(135deg, ${strap.color} 0%, #ffffff 100%)`;
-    } else if (strap.material === 'fabric') {
-        preview.style.background = `repeating-linear-gradient(45deg, ${strap.color} 0px, ${strap.color} 2px, #ffffff 2px, #ffffff 4px)`;
-    }
-    
-    const name = document.createElement('p');
-    name.textContent = strap.name;
-    name.style.fontSize = '0.9rem';
-    name.style.marginTop = '5px';
-    name.style.fontWeight = '500';
-    
-    div.appendChild(preview);
-    div.appendChild(name);
-    
-    if (strap.id === 1) {
-        div.classList.add('active');
-    }
-    
-    div.addEventListener('click', () => selectOption(strap, 'strap'));
-    
-    return div;
-}
-
-// Selecionar uma opção
-function selectOption(option, type) {
-    // Atualizar seleção atual
-    currentSelections[type] = option;
-    
-    // Atualizar visualização
-    updateWatchPreview();
-    
-    // Atualizar estado visual das opções
-    updateActiveOptions(type, option.id);
-}
-
-// Atualizar opções ativas
-function updateActiveOptions(type, id) {
-    // Remover classe 'active' de todas as opções deste tipo
-    const options = document.querySelectorAll(`.option-item[data-type="${type}"]`);
-    options.forEach(opt => opt.classList.remove('active'));
-    
-    // Adicionar classe 'active' à opção selecionada
-    const selectedOption = document.querySelector(`.option-item[data-type="${type}"][data-id="${id}"]`);
-    if (selectedOption) {
-        selectedOption.classList.add('active');
-    }
-}
-
 // Atualizar pré-visualização do relógio
 function updateWatchPreview() {
     // Atualizar mostrador
@@ -249,21 +22,22 @@ function updateWatchPreview() {
         handsOverlay.style.backgroundRepeat = 'no-repeat';
         handsOverlay.style.opacity = '1';
         
-        // APLICAR AJUSTES DE POSIÇÃO
+        // RESETAR POSIÇÃO PRIMEIRO
+        handsOverlay.style.top = '50%';
+        handsOverlay.style.left = '50%';
+        handsOverlay.style.transform = 'translate(-50%, -50%)';
+        
+        // APLICAR AJUSTES DE POSIÇÃO - VERSÃO SIMPLIFICADA
         if (handsOption.position) {
             const pos = handsOption.position;
+            const topValue = parseInt(pos.top) || 0;
+            const leftValue = parseInt(pos.left) || 0;
+            const scaleValue = pos.scale || 1.0;
             
-            // Ajustar posição
-            handsOverlay.style.top = `calc(50% ${pos.top})`;
-            handsOverlay.style.left = `calc(50% ${pos.left})`;
+            // USAR TRANSFORM PARA MOVER - FUNCIONA MELHOR
+            handsOverlay.style.transform = `translate(calc(-50% + ${leftValue}px), calc(-50% + ${topValue}px)) scale(${scaleValue})`;
             
-            // Ajustar tamanho
-            handsOverlay.style.transform = `translate(-50%, -50%) scale(${pos.scale})`;
-        } else {
-            // Posição padrão se não houver ajustes
-            handsOverlay.style.top = '50%';
-            handsOverlay.style.left = '50%';
-            handsOverlay.style.transform = 'translate(-50%, -50%)';
+            console.log(`Transform: translate(calc(-50% + ${leftValue}px), calc(-50% + ${topValue}px)) scale(${scaleValue})`);
         }
     } else {
         handsOverlay.style.opacity = '0';
@@ -281,7 +55,7 @@ function updateWatchPreview() {
     } else if (strapOption.material === 'fabric') {
         strap.style.background = `repeating-linear-gradient(45deg, ${strapOption.color} 0px, ${strapOption.color} 2px, #ffffff 2px, #ffffff 4px)`;
     }
-}
+} // ← FECHA AQUI A FUNÇÃO
 
 // FERRAMENTA DE AJUSTE DE POSIÇÃO
 function initializePositionAdjuster() {
@@ -466,7 +240,9 @@ function initializePositionAdjuster() {
         updateWatchPreview();
         alert('🔄 Ajustes resetados para padrão!');
     });
-    // TESTE RÁPIDO - Adiciona controles visuais
+}
+
+// TESTE RÁPIDO - Adiciona controles visuais
 setTimeout(function() {
     // Criar controles simples
     const debugControls = document.createElement('div');
@@ -527,4 +303,3 @@ setTimeout(function() {
     
     console.log("🔧 Controles de debug adicionados!");
 }, 1000);
-}
