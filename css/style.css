@@ -153,50 +153,20 @@ nav ul li a.active {
     background-repeat: no-repeat;
 }
 
-/* PONTEIROS COM IMAGENS PNG - TAMANHO CORRETO */
-.watch-hand {
+/* PONTEIROS ESTÁTICOS */
+#watch-hands {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
     position: absolute;
-    transform-origin: center bottom; /* Gira do fundo do ponteiro */
-    z-index: 3;
-    background-size: contain;
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    left: 50%;
     top: 50%;
-}
-
-/* Ponteiro das Horas - maior */
-#hour-hand {
-    width: 100px; /* Largura suficiente para a imagem */
-    height: 130px; /* Altura do ponteiro */
-    margin-left: -15px; /* Metade da largura para centralizar */
-    margin-top: -70px; /* Move para cima (altura total) */
-    transform-origin: 15px 70px; /* Ponto de rotação: centro inferior */
-}
-
-/* Ponteiro dos Minutos - mais comprido */
-#minute-hand {
-    width: 80px;
-    height: 200px;
-    margin-left: -12.5px;
-    margin-top: -90px;
-    transform-origin: 12.5px 90px;
-    z-index: 4;
-}
-
-/* Ponteiro dos Segundos - mais fino e comprido */
-#second-hand {
-    width: 60px;
-    height: 250px;
-    margin-left: -7.5px;
-    margin-top: -100px;
-    transform-origin: 7.5px 100px;
-    z-index: 5; /* Por cima dos outros */
-}
-
-/* Para debug - mostra bordas nos ponteiros */
-.debug-hands .watch-hand {
-    border: 1px solid red;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3; /* Acima do mostrador */
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    pointer-events: none; /* Não interfere com cliques */
 }
 
 #watch-strap {
