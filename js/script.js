@@ -33,9 +33,9 @@ const customizationOptions = {
             name: "Prata", 
             image: "/5454watch/images/hands/silver_set.png",
             position: {
-                top: "0px",
-                left: "0px",
-                scale: 1.0
+                top: "3px",
+                left: "-6px",
+                scale: 1.4
             }
         }
     ],
