@@ -36,7 +36,8 @@ const customizationOptions = {
                 top: "3px",
                 left: "-6px",
                 scale: 1.3
-            },
+            }
+        },
         { 
             id: 3, 
             name: "Red", 
@@ -45,7 +46,8 @@ const customizationOptions = {
                 top: "3px",
                 left: "-6px",
                 scale: 1.3
-            },
+            }
+        },
         { 
             id: 4 , 
             name: "Golden", 
@@ -54,7 +56,9 @@ const customizationOptions = {
                 top: "3px",
                 left: "-6px",
                 scale: 1.3
+            }
             },
+        
         { 
             id: 5, 
             name: "Silver", 
@@ -63,6 +67,7 @@ const customizationOptions = {
                 top: "3px",
                 left: "-6px",
                 scale: 1.3
+            }
             },
         { 
             id: 6, 
@@ -72,6 +77,7 @@ const customizationOptions = {
                 top: "3px",
                 left: "-6px",
                 scale: 1.3
+            }
             },
         { 
             id: 7, 
@@ -81,6 +87,7 @@ const customizationOptions = {
                 top: "3px",
                 left: "-6px",
                 scale: 1.3
+            }
             }
         
     ],
