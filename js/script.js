@@ -43,9 +43,9 @@ const customizationOptions = {
             name: "Red", 
             image: "/5454watch/images/hands/reds_set.png",
             position: {
-                top: "3px",
-                left: "-6px",
-                scale: 1.3
+            top: "-12px",
+            left: "10px",
+            scale: 1.20
             }
             },
         { 
@@ -53,9 +53,9 @@ const customizationOptions = {
             name: "Golden", 
             image: "/5454watch/images/hands/golds_set.png",
             position: {
-                top: "3px",
-                left: "-6px",
-                scale: 1.3
+                top: "-19px",
+                left: "10px",
+                scale: 1.15
             }
             },
         
@@ -64,9 +64,9 @@ const customizationOptions = {
             name: "Silver", 
             image: "/5454watch/images/hands/silvers_set.png",
             position: {
-                top: "3px",
-                left: "-6px",
-                scale: 1.3
+                top: "-17px",
+                left: "1px",
+                scale: 1.2
             }
             },
         { 
@@ -74,9 +74,9 @@ const customizationOptions = {
             name: "Black", 
             image: "/5454watch/images/hands/blacks_set.png",
             position: {
-                top: "3px",
-                left: "-6px",
-                scale: 1.3
+                top: "17px",
+                left: "6px",
+                scale: 1.2
             }
             },
         { 
@@ -84,9 +84,9 @@ const customizationOptions = {
             name: "Black 2", 
             image: "/5454watch/images/hands/blacks2_set.png",
             position: {
-                top: "3px",
-                left: "-6px",
-                scale: 1.3
+                top: "22px",
+                left: "10px",
+                scale: 1.2
             }
             },
         { 
