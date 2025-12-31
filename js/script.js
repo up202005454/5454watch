@@ -94,9 +94,9 @@ const customizationOptions = {
             name: "Rose Gold", 
             image: "/5454watch/images/hands/rosethin_set.png",
             position: {
-                top: "-10px",
-                left: "23px",
-                scale: 0.9
+                top: "-14 px",
+                left: "12px",
+                scale: 1.1
             }
             },
         { 
@@ -104,9 +104,9 @@ const customizationOptions = {
             name: "Black thin style", 
             image: "/5454watch/images/hands/blackthin_set.png",
             position: {
-                top: "-10px",
-                left: "23px",
-                scale: 0.9
+                top: "-28px",
+                left: "6px",
+                scale: 1.2
             }
             },
         
