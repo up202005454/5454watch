@@ -23,9 +23,9 @@ const customizationOptions = {
             name: "Clássicos", 
             image: "/5454watch/images/hands/classic_set.png",
             position: {
-                top: "-10px",
-                left: "23px",
-                scale: 0.9
+                top: "-8px",
+                left: "22px",
+                scale: 0.95
             }
             },
         { 
