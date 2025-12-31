@@ -3,12 +3,12 @@ const customizationOptions = {
     dials: [
         { id: 1, name: "Wave Grey", image: "/5454watch/images/dials/wave1.png" },
         { id: 2, name: "Wave Black", image: "/5454watch/images/dials/wave2.png" },
-        { id: 3, name: "Marine Master Y", image: "/5454watch/images/dials/marinemaster1.png" },
-        { id: 4, name: "Thin Preto", image: "/5454watch/images/dials/thindetailed1.png" },
-        { id: 5, name: "Thin Branco", image: "/5454watch/images/dials/thindetailed2.png" },
-        { id: 6, name: "Thin Azul", image: "/5454watch/images/dials/thindetailed3.png" },
-        { id: 7, name: "Diver Branco", image: "/5454watch/images/dials/diverwhite.png" },
-        { id: 8, name: "Diver Azul", image: "/5454watch/images/dials/diverbabyblue.png" },
+        { id: 3, name: "Marine Master", image: "/5454watch/images/dials/marinemaster1.png" },
+        { id: 4, name: "Thin Black", image: "/5454watch/images/dials/thindetailed1.png" },
+        { id: 5, name: "Thin White", image: "/5454watch/images/dials/thindetailed2.png" },
+        { id: 6, name: "Thin Blue", image: "/5454watch/images/dials/thindetailed3.png" },
+        { id: 7, name: "Diver White", image: "/5454watch/images/dials/diverwhite.png" },
+        { id: 8, name: "Diver Blue", image: "/5454watch/images/dials/diverbabyblue.png" },
         { id: 9, name: "Marine Master Blue", image: "/5454watch/images/dials/marinemasterblue.png" },
         { id: 10, name: "Romanic Grey", image: "/5454watch/images/dials/romangrey.png" },
         { id: 11, name: "Romanic Green", image: "/5454watch/images/dials/romangreen.png" },
@@ -30,12 +30,39 @@ const customizationOptions = {
         },
         { 
             id: 2, 
-            name: "Prata", 
+            name: "Class. Siver", 
             image: "/5454watch/images/hands/silver_set.png",
             position: {
                 top: "3px",
                 left: "-6px",
-                scale: 1.4
+                scale: 1.3
+            },
+        { 
+            id: 3, 
+            name: "Red", 
+            image: "/5454watch/images/hands/reds_set.png",
+            position: {
+                top: "3px",
+                left: "-6px",
+                scale: 1.3
+            },
+        { 
+            id: 4 , 
+            name: "Golden", 
+            image: "/5454watch/images/hands/golds_set.png",
+            position: {
+                top: "3px",
+                left: "-6px",
+                scale: 1.3
+            },
+        { 
+            id: 5, 
+            name: "Silver", 
+            image: "/5454watch/images/hands/silvers_set.png",
+            position: {
+                top: "3px",
+                left: "-6px",
+                scale: 1.3
             }
         }
     ],
