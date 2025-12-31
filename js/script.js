@@ -82,7 +82,7 @@ const customizationOptions = {
                 left: "-6px",
                 scale: 1.3
             }
-        }
+        
     ],
     straps: [
         { id: 1, name: "Couro Marrom", color: "#8B4513", material: "leather" },
