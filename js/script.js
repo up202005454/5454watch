@@ -63,6 +63,24 @@ const customizationOptions = {
                 top: "3px",
                 left: "-6px",
                 scale: 1.3
+            },
+        { 
+            id: 6, 
+            name: "Black", 
+            image: "/5454watch/images/hands/blacks_set.png",
+            position: {
+                top: "3px",
+                left: "-6px",
+                scale: 1.3
+            },
+        { 
+            id: 7, 
+            name: "Black 2", 
+            image: "/5454watch/images/hands/blacks2_set.png",
+            position: {
+                top: "3px",
+                left: "-6px",
+                scale: 1.3
             }
         }
     ],
