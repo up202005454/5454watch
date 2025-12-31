@@ -27,7 +27,7 @@ const customizationOptions = {
                 left: "23px",
                 scale: 0.9
             }
-        },
+            },
         { 
             id: 2, 
             name: "Class. Siver", 
@@ -37,7 +37,7 @@ const customizationOptions = {
                 left: "-6px",
                 scale: 1.3
             }
-        },
+            },
         { 
             id: 3, 
             name: "Red", 
@@ -47,7 +47,7 @@ const customizationOptions = {
                 left: "-6px",
                 scale: 1.3
             }
-        },
+            },
         { 
             id: 4 , 
             name: "Golden", 
@@ -88,7 +88,27 @@ const customizationOptions = {
                 left: "-6px",
                 scale: 1.3
             }
+            },
+        { 
+            id: 8, 
+            name: "Rose Gold", 
+            image: "/5454watch/images/hands/rosethin_set.png",
+            position: {
+                top: "-10px",
+                left: "23px",
+                scale: 0.9
             }
+            },
+        { 
+            id: 9, 
+            name: "Black thin style", 
+            image: "/5454watch/images/hands/blackthin_set.png",
+            position: {
+                top: "-10px",
+                left: "23px",
+                scale: 0.9
+            }
+            },
         
     ],
     straps: [
