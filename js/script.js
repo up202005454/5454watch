@@ -115,7 +115,7 @@ const customizationOptions = {
             name: "C1", 
             image: "images/cases/conc1brac.png",
             position: {
-                top: "24 px",
+                top: "24px",
                 left: "17px",
                 scale: 1.95
             }
@@ -135,8 +135,8 @@ const customizationOptions = {
             name: "Gold", 
             image: "images/cases/goldcrownbrac.png",
             position: {
-                top: "22px",
-                left: "17px",
+                top: "-5px",
+                left: "12px",
                 scale: 1.95
             }
         },
@@ -145,9 +145,9 @@ const customizationOptions = {
             name: "Rose", 
             image: "images/cases/rosecrownbrac.png",
             position: {
-                top: "22px",
-                left: "17px",
-                scale: 1.95
+                top: "7px",
+                left: "14px",
+                scale: 1.90
             }
         },
         { 
@@ -155,8 +155,8 @@ const customizationOptions = {
             name: "Wayne", 
             image: "images/cases/waynebrac.png",
             position: {
-                top: "22px",
-                left: "17px",
+                top: "43px",
+                left: "11px",
                 scale: 1.95
             }
         },
@@ -165,8 +165,8 @@ const customizationOptions = {
             name: "Batman", 
             image: "images/cases/batmanbrac.png",
             position: {
-                top: "22px",
-                left: "17px",
+                top: "-3px",
+                left: "16px",
                 scale: 1.95
             }
         },
@@ -175,8 +175,8 @@ const customizationOptions = {
             name: "Sub", 
             image: "images/cases/subbrac.png",
             position: {
-                top: "22px",
-                left: "17px",
+                top: "40px",
+                left: "9px",
                 scale: 1.95
             }
         },
@@ -185,9 +185,9 @@ const customizationOptions = {
             name: "Rubber", 
             image: "images/cases/rubberbrac.png",
             position: {
-                top: "22px",
-                left: "17px",
-                scale: 1.95
+                top: "42px",
+                left: "21px",
+                scale: 2
             }
         },
         { 
@@ -197,7 +197,7 @@ const customizationOptions = {
             position: {
                 top: "22px",
                 left: "17px",
-                scale: 1.950
+                scale: 1.80
             }
         },
         { 
@@ -205,9 +205,9 @@ const customizationOptions = {
             name: "Silver8", 
             image: "images/cases/octsilverbrac.png",
             position: {
-                top: "22px",
-                left: "17px",
-                scale: 1.95
+                top: "30px",
+                left: "14px",
+                scale: 2
             }
         },
         { 
@@ -215,7 +215,7 @@ const customizationOptions = {
             name: "Black8", 
             image: "images/cases/octblackbrac.png",
             position: {
-                top: "22px",
+                top: "32px",
                 left: "17px",
                 scale: 1.95
             }
