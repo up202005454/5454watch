@@ -111,11 +111,12 @@ nav ul li a.active {
     gap: 40px;
     margin-bottom: 60px;
     align-items: flex-start;
+    position: relative;
 }
 
 .watch-preview {
-    flex: 1;
-    min-width: 350px;
+    flex: 0 0 350px;
+
     background: white;
     border-radius: 16px;
     padding: 30px;
@@ -124,130 +125,83 @@ nav ul li a.active {
     flex-direction: column;
     align-items: center;
     transition: transform 0.3s ease;
+    position: sticky;
+    top: 120px; /* Abaixo do header */
+    align-self: flex-start;
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
 }
 
-.watch-preview:hover {
-    transform: translateY(-5px);
-}
-
-.watch-preview h2 {
-    color: #2c3e50;
-    margin-bottom: 20px;
-    font-size: 1.8rem;
-    text-align: center;
-}
-
-.watch-preview p {
-    color: #7f8c8d;
-    text-align: center;
-    margin-top: 20px;
-    font-size: 0.95rem;
-}
 
 /*->
 /* Estilo para preview fixo */
-
-
-/* ========== SISTEMA DE PREVIEW STICKY ========== */
-.watch-preview.sticky-preview {
-    position: fixed !important;
-    top: 20px !important;
-    width: 350px !important;
-    max-height: calc(100vh - 150px);
-    overflow-y: auto;
-    z-index: 1000 !important;
-    animation: slideDown 0.3s ease;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-    transition: all 0.3s ease !important;
+/* Preview fixo durante scroll */
+.watch-preview.sticky-fixed {
+    position: fixed;
+    top: 120px;
+    left: calc(50% - 600px); /* Ajuste conforme o layout */
+    width: 350px;
+    z-index: 100;
+    animation: slideInLeft 0.3s ease;
 }
 
-@keyframes slideDown {
+@keyframes slideInLeft {
     from {
-        opacity: 0.8;
-        transform: translateY(-10px);
+        opacity: 0;
+        transform: translateX(-20px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateX(0);
     }
 }
 
-/* Garantir que o container tenha posição relativa */
-.customizer-container {
-    position: relative;
-    min-height: 800px; /* Altura mínima para rolagem */
+/* Quando chegar ao final */
+.watch-preview.sticky-bottom {
+    position: absolute;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    width: 350px;
 }
 
-/* Botões de ajuste sempre visíveis */
-#toggle-adjuster, 
-#toggle-case-adjuster {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+/* Responsividade */
+@media (max-width: 1200px) {
+    .watch-preview.sticky-fixed {
+        left: 20px;
+    }
 }
 
-/* Responsividade para o preview sticky */
 @media (max-width: 992px) {
-    .watch-preview.sticky-preview {
+    .customizer-container {
+        flex-direction: column;
+    }
+    
+    .watch-preview {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
         width: 100% !important;
-        max-width: 350px;
-        left: 50%;
-        transform: translateX(-50%);
+        max-width: 400px;
+        margin: 0 auto 40px;
+        max-height: none;
+        overflow-y: visible;
+    }
+    
+    .customization-options {
+        min-width: 100%;
     }
 }
 
 @media (max-width: 768px) {
-    .watch-preview.sticky-preview {
-        position: relative !important;
-        top: auto !important;
-        width: 100% !important;
+    .watch-preview {
+        top: 100px;
         max-width: 100%;
-        left: auto;
-        transform: none;
-        margin: 20px auto;
-    }
-    
-    #toggle-case-adjuster {
-        right: 100px;
-        bottom: 80px;
-        width: 70px;
-        height: 70px;
-        font-size: 12px;
-    }
-    
-    #toggle-adjuster {
-        right: 20px;
-        bottom: 80px;
-        width: 70px;
-        height: 70px;
-        font-size: 12px;
     }
 }
 
-@media (max-width: 480px) {
-    #toggle-case-adjuster {
-        right: 90px;
-        bottom: 70px;
-        width: 60px;
-        height: 60px;
-        font-size: 10px;
-        padding: 10px;
-    }
-    
-    #toggle-adjuster {
-        right: 20px;
-        bottom: 70px;
-        width: 60px;
-        height: 60px;
-        font-size: 10px;
-        padding: 10px;
-    }
-    
-    .watch-preview.sticky-preview {
-        max-height: none;
-        overflow-y: visible;
-    }
-}
+/* ========== SISTEMA DE PREVIEW STICKY ========== */
+
 
 /*<-
 
