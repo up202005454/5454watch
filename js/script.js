@@ -115,7 +115,7 @@ const customizationOptions = {
             name: "C1", 
             image: "images/cases/conc1brac.png",
             position: {
-                top: "22px",
+                top: "24 px",
                 left: "17px",
                 scale: 1.95
             }
