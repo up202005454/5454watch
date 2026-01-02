@@ -144,6 +144,61 @@ nav ul li a.active {
     font-size: 0.95rem;
 }
 
+/*->
+/* Estilo para preview fixo */
+.watch-preview.sticky {
+    position: fixed;
+    top: 20px;
+    width: 350px !important;
+    z-index: 1000;
+    animation: slideDown 0.3s ease;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0.8;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Garantir que os botões de ajuste fiquem sempre visíveis */
+#toggle-adjuster, #toggle-case-adjuster {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Melhorar visibilidade dos botões de ajuste em mobile */
+@media (max-width: 768px) {
+    #toggle-case-adjuster {
+        right: 100px;
+        bottom: 80px;
+    }
+    
+    #toggle-adjuster {
+        right: 20px;
+        bottom: 80px;
+    }
+    
+    .watch-preview.sticky {
+        position: relative;
+        top: auto;
+        width: 100% !important;
+        margin: 20px auto;
+    }
+}
+
+/* Garantir que o container do customizer tenha posição relativa */
+.customizer-container {
+    position: relative;
+}
+/*<-
+
 /* DISPLAY DO RELÓGIO */
 .watch-display {
     width: 320px;
