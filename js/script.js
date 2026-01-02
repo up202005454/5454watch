@@ -518,6 +518,7 @@ function updateWatchPreview() {
 
 // Sistema de Preview Sticky
 // Sistema de Preview Sticky melhorado
+// Sistema de Preview Sticky melhorado
 function initializeWatchPreviewSticky() {
     const preview = document.querySelector('.watch-preview');
     const customizerContainer = document.querySelector('.customizer-container');
