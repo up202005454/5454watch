@@ -115,9 +115,9 @@ const customizationOptions = {
             name: "C1", 
             image: "images/cases/conc1brac.png",
             position: {
-                top: "0px",
-                left: "0px",
-                scale: 1.0
+                top: "22px",
+                left: "17px",
+                scale: 1.95
             }
         },
         { 
@@ -517,87 +517,149 @@ function updateWatchPreview() {
 }
 
 // Sistema de Preview Sticky
+// Sistema de Preview Sticky melhorado
 function initializeWatchPreviewSticky() {
     const preview = document.querySelector('.watch-preview');
     const customizerContainer = document.querySelector('.customizer-container');
+    const header = document.querySelector('header');
     
-    if (!preview || !customizerContainer) return;
+    if (!preview || !customizerContainer || !header) return;
     
     let isSticky = false;
-    let originalStyles = {};
+    let isBottom = false;
+    let originalTop = 0;
+    let originalLeft = 0;
+    let containerTop = 0;
+    let containerHeight = 0;
+    let previewHeight = 0;
     
-    // Salvar estilos originais
-    originalStyles = {
-        position: preview.style.position,
-        top: preview.style.top,
-        width: preview.style.width,
-        height: preview.style.height,
-        marginBottom: preview.style.marginBottom
-    };
-    
-    function updateSticky() {
+    function init() {
+        // Calcular posições iniciais
         const containerRect = customizerContainer.getBoundingClientRect();
         const previewRect = preview.getBoundingClientRect();
+        const headerRect = header.getBoundingClientRect();
+        
+        containerTop = containerRect.top + window.scrollY;
+        containerHeight = containerRect.height;
+        previewHeight = preview.offsetHeight;
+        originalTop = previewRect.top + window.scrollY;
+        originalLeft = previewRect.left;
+    }
+    
+    function updateSticky() {
         const scrollY = window.scrollY;
+        const headerHeight = header.offsetHeight;
+        const stickPoint = containerTop - headerHeight - 20;
+        const releasePoint = containerTop + containerHeight - previewHeight - 100;
         
-        // Altura disponível para o preview fixo
-        const availableHeight = window.innerHeight - 100; // 100px de margem
-        
-        // Quando o preview começar a sair da tela por cima
-        if (previewRect.top < 20 && !isSticky) {
+        // Quando começar a rolar além do ponto de fixação
+        if (scrollY > stickPoint && !isSticky && scrollY < releasePoint) {
             isSticky = true;
+            isBottom = false;
             
-            // Calcular largura apropriada
-            const previewWidth = Math.min(preview.offsetWidth, 350);
+            preview.classList.add('sticky-fixed');
+            preview.classList.remove('sticky-bottom');
             
-            preview.style.position = 'fixed';
-            preview.style.top = '20px';
-            preview.style.width = previewWidth + 'px';
-            preview.style.height = 'auto';
-            preview.style.zIndex = '1000';
-            preview.style.marginBottom = '0';
-            preview.style.boxShadow = '0 15px 35px rgba(0,0,0,0.15)';
-            preview.style.transition = 'all 0.3s ease';
+            // Calcular posição esquerda
+            const containerRect = customizerContainer.getBoundingClientRect();
+            const leftPosition = Math.max(20, containerRect.left);
             
-            // Adicionar classe para estilização
-            preview.classList.add('sticky-preview');
+            preview.style.left = leftPosition + 'px';
+            preview.style.width = preview.offsetWidth + 'px';
+            preview.style.top = (headerHeight + 20) + 'px';
+            
+            console.log('📌 Preview fixado à esquerda');
         }
         
         // Quando voltar ao topo
-        if (previewRect.top >= 20 && isSticky) {
+        if (scrollY <= stickPoint && isSticky) {
             isSticky = false;
+            isBottom = false;
             
-            // Restaurar estilos originais
-            preview.style.position = originalStyles.position;
-            preview.style.top = originalStyles.top;
-            preview.style.width = originalStyles.width;
-            preview.style.height = originalStyles.height;
-            preview.style.zIndex = '';
-            preview.style.marginBottom = originalStyles.marginBottom;
-            preview.style.boxShadow = '';
+            preview.classList.remove('sticky-fixed', 'sticky-bottom');
+            preview.style.left = '';
+            preview.style.width = '';
+            preview.style.top = '';
             
-            preview.classList.remove('sticky-preview');
+            console.log('🔓 Preview liberado');
         }
         
-        // Se estiver fixo e chegar no final do container
-        if (isSticky) {
-            const containerBottom = containerRect.bottom + scrollY;
-            const previewBottom = scrollY + previewRect.height + 40;
+        // Quando chegar ao final do container
+        if (scrollY >= releasePoint && isSticky && !isBottom) {
+            isBottom = true;
             
-            if (previewBottom > containerBottom) {
-                preview.style.position = 'absolute';
-                preview.style.top = (containerRect.height - previewRect.height - 20) + 'px';
-            }
+            preview.classList.remove('sticky-fixed');
+            preview.classList.add('sticky-bottom');
+            
+            preview.style.position = 'absolute';
+            preview.style.top = 'auto';
+            preview.style.bottom = '0';
+            preview.style.left = '0';
+            
+            console.log('⬇ Preview posicionado no final');
+        }
+        
+        // Ajustar se a janela for redimensionada
+        if (isSticky && !isBottom) {
+            const containerRect = customizerContainer.getBoundingClientRect();
+            const leftPosition = Math.max(20, containerRect.left);
+            preview.style.left = leftPosition + 'px';
+            preview.style.top = (headerHeight + 20) + 'px';
         }
     }
     
-    window.addEventListener('scroll', updateSticky);
-    window.addEventListener('resize', updateSticky);
-    
     // Inicializar
-    setTimeout(updateSticky, 100);
+    window.addEventListener('load', function() {
+        setTimeout(() => {
+            init();
+            updateSticky();
+        }, 500);
+    });
+    
+    window.addEventListener('scroll', updateSticky);
+    window.addEventListener('resize', function() {
+        init();
+        updateSticky();
+    });
+    
+    // Observar mudanças no DOM (opções sendo carregadas)
+    const observer = new MutationObserver(function() {
+        init();
+        updateSticky();
+    });
+    
+    observer.observe(customizerContainer, {
+        childList: true,
+        subtree: true
+    });
 }
 
+// Inicializar tudo
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("🚀 Inicializando customizador...");
+    initializeOptions();
+    updateWatchPreview();
+    
+    // Iniciar ferramentas com delay para garantir carregamento
+    setTimeout(() => {
+        initializePositionAdjuster();
+        initializeCasePositionAdjuster();
+        initializeWatchPreviewSticky();
+        
+        // Forçar mostrar botões
+        const caseBtn = document.getElementById('toggle-case-adjuster');
+        const handsBtn = document.getElementById('toggle-adjuster');
+        
+        if (caseBtn) {
+            caseBtn.style.display = 'flex';
+            console.log('✅ Botão de ajuste de cases visível');
+        }
+        if (handsBtn) {
+            handsBtn.style.display = 'flex';
+            console.log('✅ Botão de ajuste de ponteiros visível');
+        }
+    }, 300);
+});
 // NOVA FERRAMENTA: Ajuste de posição para Cases
 function initializeCasePositionAdjuster() {
     console.log("🔧 Inicializando ferramenta de ajuste para Cases...");
