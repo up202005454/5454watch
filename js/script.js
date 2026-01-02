@@ -527,7 +527,7 @@ function initializeCasePositionAdjuster() {
     toggleButton.style.cssText = `
         position: fixed;
         bottom: 100px;
-        right: 120px;  /* Mais à esquerda para não sobrepor o outro botão */
+        right: 120px;
         background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
         color: white;
         border: none;
@@ -545,6 +545,8 @@ function initializeCasePositionAdjuster() {
         align-items: center;
         justify-content: center;
         line-height: 1.2;
+        visibility: visible !important;
+        opacity: 1 !important;
     `;
     
     // 2. CRIAR PAINEL DE CONTROLE PARA CASES
@@ -703,3 +705,86 @@ function initializeCasePositionAdjuster() {
         alert('🔄 Ajustes do Case resetados para padrão!');
     });
 }
+
+// Scroll com o preview do relógio
+function initializeWatchPreviewSticky() {
+    const preview = document.querySelector('.watch-preview');
+    const customizerContainer = document.querySelector('.customizer-container');
+    
+    if (!preview || !customizerContainer) return;
+    
+    let isSticky = false;
+    let previewOriginalTop = 0;
+    
+    function updateSticky() {
+        const containerRect = customizerContainer.getBoundingClientRect();
+        const scrollPosition = window.scrollY;
+        
+        // Quando o container começar a sair da tela
+        if (containerRect.top < 20 && !isSticky) {
+            isSticky = true;
+            previewOriginalTop = preview.offsetTop;
+            
+            preview.style.position = 'fixed';
+            preview.style.top = '20px';
+            preview.style.width = preview.offsetWidth + 'px';
+            preview.style.zIndex = '1000';
+            preview.style.transition = 'all 0.3s ease';
+            
+            console.log('📌 Preview fixado');
+        }
+        
+        // Quando o container voltar à vista
+        if (containerRect.top >= 20 && isSticky) {
+            isSticky = false;
+            
+            preview.style.position = '';
+            preview.style.top = '';
+            preview.style.width = '';
+            preview.style.zIndex = '';
+            
+            console.log('🔓 Preview liberado');
+        }
+        
+        // Se estiver fixo e o container terminar
+        if (isSticky && scrollPosition > containerRect.bottom) {
+            preview.style.position = 'absolute';
+            preview.style.top = (customizerContainer.offsetHeight - preview.offsetHeight) + 'px';
+        }
+    }
+    
+    window.addEventListener('scroll', updateSticky);
+    window.addEventListener('resize', updateSticky);
+    
+    // Inicializar
+    setTimeout(updateSticky, 100);
+}
+
+// Inicializar tudo quando o DOM estiver pronto
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("🚀 Inicializando customizador...");
+    initializeOptions();
+    updateWatchPreview();
+    
+    // Iniciar ferramentas de ajuste
+    initializePositionAdjuster();
+    initializeCasePositionAdjuster();
+    
+    // Iniciar preview sticky
+    initializeWatchPreviewSticky();
+    
+    // Forçar mostrar botões de ajuste (caso estejam escondidos)
+    setTimeout(() => {
+        const caseBtn = document.getElementById('toggle-case-adjuster');
+        const handsBtn = document.getElementById('toggle-adjuster');
+        
+        if (caseBtn) {
+            caseBtn.style.display = 'flex';
+            console.log('✅ Botão de ajuste de cases visível');
+        }
+        if (handsBtn) {
+            handsBtn.style.display = 'flex';
+            console.log('✅ Botão de ajuste de ponteiros visível');
+        }
+    }, 500);
+});
