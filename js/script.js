@@ -1,132 +1,129 @@
 // Dados das opções de personalização
 const customizationOptions = {
     dials: [
-        { id: 1, name: "Wave Grey", image: "/5454watch/images/dials/wave1.png" },
-        { id: 2, name: "Wave Black", image: "/5454watch/images/dials/wave2.png" },
-        { id: 3, name: "Marine Master", image: "/5454watch/images/dials/marinemaster1.png" },
-        { id: 4, name: "Thin Black", image: "/5454watch/images/dials/thindetailed1.png" },
-        { id: 5, name: "Thin White", image: "/5454watch/images/dials/thindetailed2.png" },
-        { id: 6, name: "Thin Blue", image: "/5454watch/images/dials/thindetailed3.png" },
-        { id: 7, name: "Diver White", image: "/5454watch/images/dials/diverwhite.png" },
-        { id: 8, name: "Diver Blue", image: "/5454watch/images/dials/diverbabyblue.png" },
-        { id: 9, name: "Marine Master Blue", image: "/5454watch/images/dials/marinemasterblue.png" },
-        { id: 10, name: "Romanic Grey", image: "/5454watch/images/dials/romangrey.png" },
-        { id: 11, name: "Romanic Green", image: "/5454watch/images/dials/romangreen.png" },
-        { id: 12, name: "Romanic Black", image: "/5454watch/images/dials/romanblack.png" },
-        { id: 13, name: "Romanic BabyBlue", image: "/5454watch/images/dials/romanbabyblue.png" },
-        { id: 14, name: "Diamond Brown", image: "/5454watch/images/dials/diamondbrown.png" },
-        { id: 15, name: "Diamond Grey", image: "/5454watch/images/dials/diamondgrey.png" }
+        { id: 1, name: "Wave Grey", image: "images/dials/wave1.png" },
+        { id: 2, name: "Wave Black", image: "images/dials/wave2.png" },
+        { id: 3, name: "Marine Master", image: "images/dials/marinemaster1.png" },
+        { id: 4, name: "Thin Black", image: "images/dials/thindetailed1.png" },
+        { id: 5, name: "Thin White", image: "images/dials/thindetailed2.png" },
+        { id: 6, name: "Thin Blue", image: "images/dials/thindetailed3.png" },
+        { id: 7, name: "Diver White", image: "images/dials/diverwhite.png" },
+        { id: 8, name: "Diver Blue", image: "images/dials/diverbabyblue.png" },
+        { id: 9, name: "Marine Master Blue", image: "images/dials/marinemasterblue.png" },
+        { id: 10, name: "Romanic Grey", image: "images/dials/romangrey.png" },
+        { id: 11, name: "Romanic Green", image: "images/dials/romangreen.png" },
+        { id: 12, name: "Romanic Black", image: "images/dials/romanblack.png" },
+        { id: 13, name: "Romanic BabyBlue", image: "images/dials/romanbabyblue.png" },
+        { id: 14, name: "Diamond Brown", image: "images/dials/diamondbrown.png" },
+        { id: 15, name: "Diamond Grey", image: "images/dials/diamondgrey.png" }
     ],
     hands: [
         { 
             id: 1, 
             name: "Clássicos", 
-            image: "/5454watch/images/hands/classic_set.png",
+            image: "images/hands/classic_set.png",
             position: {
                 top: "-8px",
                 left: "22px",
                 scale: 0.95
             }
-            },
+        },
         { 
             id: 2, 
             name: "Class. Siver", 
-            image: "/5454watch/images/hands/silver_set.png",
+            image: "images/hands/silver_set.png",
             position: {
                 top: "3px",
                 left: "-6px",
                 scale: 1.3
             }
-            },
+        },
         { 
             id: 3, 
             name: "Red", 
-            image: "/5454watch/images/hands/reds_set.png",
+            image: "images/hands/reds_set.png",
             position: {
-            top: "-12px",
-            left: "10px",
-            scale: 1.20
+                top: "-12px",
+                left: "10px",
+                scale: 1.20
             }
-            },
+        },
         { 
-            id: 4 , 
+            id: 4, 
             name: "Golden", 
-            image: "/5454watch/images/hands/golds_set.png",
+            image: "images/hands/golds_set.png",
             position: {
                 top: "-19px",
                 left: "10px",
                 scale: 1.15
             }
-            },
-        
+        },
         { 
             id: 5, 
             name: "Silver", 
-            image: "/5454watch/images/hands/silvers_set.png",
+            image: "images/hands/silvers_set.png",
             position: {
                 top: "-17px",
                 left: "1px",
                 scale: 1.2
             }
-            },
+        },
         { 
             id: 6, 
             name: "Black", 
-            image: "/5454watch/images/hands/blacks_set.png",
+            image: "images/hands/blacks_set.png",
             position: {
                 top: "17px",
                 left: "6px",
                 scale: 1.2
             }
-            },
+        },
         { 
             id: 7, 
             name: "Black 2", 
-            image: "/5454watch/images/hands/blacks2_set.png",
+            image: "images/hands/blacks2_set.png",
             position: {
                 top: "22px",
                 left: "10px",
                 scale: 1.2
             }
-            },
+        },
         { 
             id: 8, 
             name: "Rose Gold", 
-            image: "/5454watch/images/hands/rosethin_set.png",
+            image: "images/hands/rosethin_set.png",
             position: {
-                top: "-14 px",
+                top: "-14px",
                 left: "12px",
                 scale: 1.1
             }
-            },
+        },
         { 
             id: 9, 
             name: "Black thin style", 
-            image: "/5454watch/images/hands/blackthin_set.png",
+            image: "images/hands/blackthin_set.png",
             position: {
                 top: "-28px",
                 left: "6px",
                 scale: 1.2
             }
-            },
-        
+        }
     ],
-   //* straps: [
-       cases: [
+    cases: [
         { 
             id: 1, 
             name: "C1", 
-            image: "./images/cases/conc1brac.png",
+            image: "images/cases/conc1brac.png",
             position: {
-                top: "23px",
-                left: "13px",
-                scale: 3.0
+                top: "0px",
+                left: "0px",
+                scale: 1.0
             }
         },
         { 
             id: 2, 
             name: "C2", 
-            image: "./images/cases/conc2brac.png",
+            image: "images/cases/conc2brac.png",
             position: {
                 top: "0px",
                 left: "0px",
@@ -136,7 +133,7 @@ const customizationOptions = {
         { 
             id: 3, 
             name: "Gold", 
-            image: "./images/cases/goldcrownbrac.png",
+            image: "images/cases/goldcrownbrac.png",
             position: {
                 top: "0px",
                 left: "0px",
@@ -146,7 +143,7 @@ const customizationOptions = {
         { 
             id: 4, 
             name: "Rose", 
-            image: "./images/cases/rosecrownbrac.png",
+            image: "images/cases/rosecrownbrac.png",
             position: {
                 top: "0px",
                 left: "0px",
@@ -156,73 +153,73 @@ const customizationOptions = {
         { 
             id: 5, 
             name: "Wayne", 
-            image: "./images/cases/waynebrac.png",
+            image: "images/cases/waynebrac.png",
             position: {
                 top: "0px",
                 left: "0px",
                 scale: 1.0
             }
-            },
-            { 
+        },
+        { 
             id: 6, 
             name: "Batman", 
-            image: "./images/cases/batmanbrac.png",
+            image: "images/cases/batmanbrac.png",
             position: {
                 top: "0px",
                 left: "0px",
                 scale: 1.0
-                }
-                },
-            { 
+            }
+        },
+        { 
             id: 7, 
             name: "Sub", 
-            image: "./images/cases/subbrac.png",
+            image: "images/cases/subbrac.png",
             position: {
                 top: "0px",
                 left: "0px",
                 scale: 1.0
             }
-            },
-            { 
+        },
+        { 
             id: 8, 
             name: "Rubber", 
-            image: "./images/cases/rubberbrac.png",
+            image: "images/cases/rubberbrac.png",
             position: {
                 top: "0px",
                 left: "0px",
                 scale: 1.0
             }
-            },
-            { 
+        },
+        { 
             id: 9, 
             name: "Silver", 
-            image: "./images/cases/simpsilverbrac.png",
+            image: "images/cases/simpsilverbrac.png",
             position: {
                 top: "0px",
                 left: "0px",
                 scale: 1.0
             }
-            },
-            { 
+        },
+        { 
             id: 10, 
             name: "Silver8", 
-            image: "./images/cases/octsilverbrac.png",
+            image: "images/cases/octsilverbrac.png",
             position: {
                 top: "0px",
                 left: "0px",
                 scale: 1.0
             }
-            },
-            { 
+        },
+        { 
             id: 11, 
             name: "Black8", 
-            image: "./images/cases/octblackbrac.png",
+            image: "images/cases/octblackbrac.png",
             position: {
                 top: "0px",
                 left: "0px",
                 scale: 1.0
             }
-            }
+        }
     ]
 };
 
@@ -239,28 +236,42 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeOptions();
     updateWatchPreview();
     
-    // Iniciar ferramenta de ajuste
-    initializePositionAdjuster();
-    initializeCasePositionAdjuster();
+    // Iniciar ferramentas de ajuste
+    setTimeout(() => {
+        initializePositionAdjuster();
+        initializeCasePositionAdjuster();
+        initializeWatchPreviewSticky();
+        
+        // Garantir que os botões apareçam
+        const caseBtn = document.getElementById('toggle-case-adjuster');
+        const handsBtn = document.getElementById('toggle-adjuster');
+        
+        if (caseBtn) caseBtn.style.display = 'flex';
+        if (handsBtn) handsBtn.style.display = 'flex';
+    }, 100);
 });
 
 // Inicializar as opções na página
 function initializeOptions() {
-        // Opções de mostrador (mantém igual)
+    // Opções de mostrador
     const dialOptionsContainer = document.getElementById('dial-options');
-    customizationOptions.dials.forEach(dial => {
-        const optionElement = createDialOptionElement(dial);
-        dialOptionsContainer.appendChild(optionElement);
-    });
+    if (dialOptionsContainer) {
+        customizationOptions.dials.forEach(dial => {
+            const optionElement = createDialOptionElement(dial);
+            dialOptionsContainer.appendChild(optionElement);
+        });
+    }
 
-    // Opções de ponteiros (mantém igual)
+    // Opções de ponteiros
     const handsOptionsContainer = document.getElementById('hands-options');
-    customizationOptions.hands.forEach(hand => {
-        const optionElement = createHandsOptionElement(hand);
-        handsOptionsContainer.appendChild(optionElement);
-    });
+    if (handsOptionsContainer) {
+        customizationOptions.hands.forEach(hand => {
+            const optionElement = createHandsOptionElement(hand);
+            handsOptionsContainer.appendChild(optionElement);
+        });
+    }
 
-    // NOVO: Opções de case/pulseira
+    // Opções de case/pulseira
     const caseOptionsContainer = document.getElementById('case-options');
     if (caseOptionsContainer) {
         caseOptionsContainer.innerHTML = '';
@@ -358,7 +369,7 @@ function createHandsOptionElement(hand) {
     return div;
 }
 
-// NOVA FUNÇÃO: Criar elemento de opção para cases
+// Criar elemento de opção para cases
 function createCaseOptionElement(caseItem) {
     const div = document.createElement('div');
     div.className = 'option-item';
@@ -376,7 +387,7 @@ function createCaseOptionElement(caseItem) {
         preview.style.backgroundRepeat = 'no-repeat';
         preview.style.backgroundColor = '#f5f5f5';
     } else {
-        preview.style.backgroundColor = caseItem.color || '#ccc';
+        preview.style.backgroundColor = '#ccc';
     }
     
     const name = document.createElement('p');
@@ -397,7 +408,6 @@ function createCaseOptionElement(caseItem) {
     
     return div;
 }
-
 
 // Selecionar uma opção
 function selectOption(option, type) {
@@ -441,16 +451,15 @@ function updateWatchPreview() {
     // Elementos
     const dial = document.getElementById('watch-dial');
     const handsOverlay = document.getElementById('watch-hands');
-    const caseOverlay = document.getElementById('watch-case-overlay'); // NOVO
+    const caseOverlay = document.getElementById('watch-case-overlay');
     
     if (!dial || !handsOverlay || !caseOverlay) {
         console.error("❌ Elementos do relógio não encontrados!");
         return;
     }
     
-    // 1. ATUALIZAR CASE/PULSEIRA (fica ATRÁS do mostrador)
+    // 1. ATUALIZAR CASE/PULSEIRA
     const caseOption = currentSelections.case;
-    console.log("Aplicando case:", caseOption.name, "Imagem:", caseOption.image);
     
     if (caseOption.image) {
         caseOverlay.style.backgroundImage = `url('${caseOption.image}')`;
@@ -469,8 +478,6 @@ function updateWatchPreview() {
             
             const transform = `translate(calc(-50% + ${leftValue}px), calc(-50% + ${topValue}px)) scale(${scaleValue})`;
             caseOverlay.style.transform = transform;
-            
-            console.log(`Case posição: transform="${transform}"`);
         } else {
             caseOverlay.style.transform = 'translate(-50%, -50%)';
         }
@@ -478,14 +485,14 @@ function updateWatchPreview() {
         caseOverlay.style.opacity = '0';
     }
     
-    // 2. ATUALIZAR MOSTRADOR (mantém igual)
+    // 2. ATUALIZAR MOSTRADOR
     const dialOption = currentSelections.dial;
     dial.style.backgroundImage = dialOption.image ? `url('${dialOption.image}')` : 'none';
     dial.style.backgroundSize = 'contain';
     dial.style.backgroundPosition = 'center';
     dial.style.backgroundRepeat = 'no-repeat';
     
-    // 3. ATUALIZAR PONTEIROS (mantém igual)
+    // 3. ATUALIZAR PONTEIROS
     const handsOption = currentSelections.hands;
     if (handsOption.image) {
         handsOverlay.style.backgroundImage = `url('${handsOption.image}')`;
@@ -507,6 +514,88 @@ function updateWatchPreview() {
     }
     
     console.log("✅ Visualização atualizada");
+}
+
+// Sistema de Preview Sticky
+function initializeWatchPreviewSticky() {
+    const preview = document.querySelector('.watch-preview');
+    const customizerContainer = document.querySelector('.customizer-container');
+    
+    if (!preview || !customizerContainer) return;
+    
+    let isSticky = false;
+    let originalStyles = {};
+    
+    // Salvar estilos originais
+    originalStyles = {
+        position: preview.style.position,
+        top: preview.style.top,
+        width: preview.style.width,
+        height: preview.style.height,
+        marginBottom: preview.style.marginBottom
+    };
+    
+    function updateSticky() {
+        const containerRect = customizerContainer.getBoundingClientRect();
+        const previewRect = preview.getBoundingClientRect();
+        const scrollY = window.scrollY;
+        
+        // Altura disponível para o preview fixo
+        const availableHeight = window.innerHeight - 100; // 100px de margem
+        
+        // Quando o preview começar a sair da tela por cima
+        if (previewRect.top < 20 && !isSticky) {
+            isSticky = true;
+            
+            // Calcular largura apropriada
+            const previewWidth = Math.min(preview.offsetWidth, 350);
+            
+            preview.style.position = 'fixed';
+            preview.style.top = '20px';
+            preview.style.width = previewWidth + 'px';
+            preview.style.height = 'auto';
+            preview.style.zIndex = '1000';
+            preview.style.marginBottom = '0';
+            preview.style.boxShadow = '0 15px 35px rgba(0,0,0,0.15)';
+            preview.style.transition = 'all 0.3s ease';
+            
+            // Adicionar classe para estilização
+            preview.classList.add('sticky-preview');
+        }
+        
+        // Quando voltar ao topo
+        if (previewRect.top >= 20 && isSticky) {
+            isSticky = false;
+            
+            // Restaurar estilos originais
+            preview.style.position = originalStyles.position;
+            preview.style.top = originalStyles.top;
+            preview.style.width = originalStyles.width;
+            preview.style.height = originalStyles.height;
+            preview.style.zIndex = '';
+            preview.style.marginBottom = originalStyles.marginBottom;
+            preview.style.boxShadow = '';
+            
+            preview.classList.remove('sticky-preview');
+        }
+        
+        // Se estiver fixo e chegar no final do container
+        if (isSticky) {
+            const containerBottom = containerRect.bottom + scrollY;
+            const previewBottom = scrollY + previewRect.height + 40;
+            
+            if (previewBottom > containerBottom) {
+                preview.style.position = 'absolute';
+                preview.style.top = (containerRect.height - previewRect.height - 20) + 'px';
+            }
+        }
+    }
+    
+    window.addEventListener('scroll', updateSticky);
+    window.addEventListener('resize', updateSticky);
+    
+    // Inicializar
+    setTimeout(updateSticky, 100);
 }
 
 // NOVA FERRAMENTA: Ajuste de posição para Cases
@@ -541,7 +630,7 @@ function initializeCasePositionAdjuster() {
         box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
         width: 80px;
         height: 80px;
-        display: flex;
+        display: flex !important;
         align-items: center;
         justify-content: center;
         line-height: 1.2;
@@ -623,6 +712,15 @@ function initializeCasePositionAdjuster() {
     toggleButton.addEventListener('click', function() {
         adjusterPanel.style.display = adjusterPanel.style.display === 'block' ? 'none' : 'block';
         document.getElementById('current-case-name').textContent = currentSelections.case.name;
+        
+        // Posicionar o painel se estiver muito baixo
+        const panel = document.getElementById('case-position-adjuster');
+        const panelRect = panel.getBoundingClientRect();
+        
+        if (panelRect.bottom > window.innerHeight - 20) {
+            panel.style.bottom = '20px';
+            panel.style.top = 'auto';
+        }
     });
     
     document.getElementById('close-case-adjuster').addEventListener('click', function() {
@@ -706,85 +804,20 @@ function initializeCasePositionAdjuster() {
     });
 }
 
-// Scroll com o preview do relógio
-function initializeWatchPreviewSticky() {
-    const preview = document.querySelector('.watch-preview');
-    const customizerContainer = document.querySelector('.customizer-container');
-    
-    if (!preview || !customizerContainer) return;
-    
-    let isSticky = false;
-    let previewOriginalTop = 0;
-    
-    function updateSticky() {
-        const containerRect = customizerContainer.getBoundingClientRect();
-        const scrollPosition = window.scrollY;
-        
-        // Quando o container começar a sair da tela
-        if (containerRect.top < 20 && !isSticky) {
-            isSticky = true;
-            previewOriginalTop = preview.offsetTop;
-            
-            preview.style.position = 'fixed';
-            preview.style.top = '20px';
-            preview.style.width = preview.offsetWidth + 'px';
-            preview.style.zIndex = '1000';
-            preview.style.transition = 'all 0.3s ease';
-            
-            console.log('📌 Preview fixado');
-        }
-        
-        // Quando o container voltar à vista
-        if (containerRect.top >= 20 && isSticky) {
-            isSticky = false;
-            
-            preview.style.position = '';
-            preview.style.top = '';
-            preview.style.width = '';
-            preview.style.zIndex = '';
-            
-            console.log('🔓 Preview liberado');
-        }
-        
-        // Se estiver fixo e o container terminar
-        if (isSticky && scrollPosition > containerRect.bottom) {
-            preview.style.position = 'absolute';
-            preview.style.top = (customizerContainer.offsetHeight - preview.offsetHeight) + 'px';
-        }
-    }
-    
-    window.addEventListener('scroll', updateSticky);
-    window.addEventListener('resize', updateSticky);
-    
-    // Inicializar
-    setTimeout(updateSticky, 100);
+// Função para ajuste de ponteiros (já existente)
+function initializePositionAdjuster() {
+    // Sua função existente para ajuste de ponteiros
+    // Mantenha o código que você já tem aqui
 }
 
-// Inicializar tudo quando o DOM estiver pronto
-document.addEventListener('DOMContentLoaded', function() {
-    console.log("🚀 Inicializando customizador...");
-    initializeOptions();
-    updateWatchPreview();
+// Fechar painéis ao clicar fora
+document.addEventListener('click', function(event) {
+    const casePanel = document.getElementById('case-position-adjuster');
+    const caseBtn = document.getElementById('toggle-case-adjuster');
     
-    // Iniciar ferramentas de ajuste
-    initializePositionAdjuster();
-    initializeCasePositionAdjuster();
-    
-    // Iniciar preview sticky
-    initializeWatchPreviewSticky();
-    
-    // Forçar mostrar botões de ajuste (caso estejam escondidos)
-    setTimeout(() => {
-        const caseBtn = document.getElementById('toggle-case-adjuster');
-        const handsBtn = document.getElementById('toggle-adjuster');
-        
-        if (caseBtn) {
-            caseBtn.style.display = 'flex';
-            console.log('✅ Botão de ajuste de cases visível');
+    if (casePanel && caseBtn) {
+        if (!casePanel.contains(event.target) && !caseBtn.contains(event.target) && casePanel.style.display === 'block') {
+            casePanel.style.display = 'none';
         }
-        if (handsBtn) {
-            handsBtn.style.display = 'flex';
-            console.log('✅ Botão de ajuste de ponteiros visível');
-        }
-    }, 500);
+    }
 });
