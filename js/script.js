@@ -9,7 +9,7 @@ const customizationOptions = {
         { id: 6, name: "Thin Blue", image: "images/dials/thindetailed3.png" },
         { id: 7, name: "Diver White", image: "images/dials/diverwhite.png" },
         { id: 8, name: "Diver Blue", image: "images/dials/diverbabyblue.png" },
-        { id: 9, name: "Marine Master Blue", image: "images/dials/marinemasterbluee.png" },
+        { id: 9, name: "Marine Master Blue", image: "images/dials/marinemasterblue.png" },
         { id: 10, name: "Romanic Grey", image: "images/dials/romangrey.png" },
         { id: 11, name: "Romanic Green", image: "images/dials/romangreen.png" },
         { id: 12, name: "Romanic Black", image: "images/dials/romanblack.png" },
@@ -115,9 +115,9 @@ const customizationOptions = {
             name: "C1", 
             image: "images/cases/conc1brac.png",
             position: {
-                top: "24px",
-                left: "17px",
-                scale: 1.95
+                top: "0px",
+                left: "0px",
+                scale: 1.0
             }
         },
         { 
@@ -125,9 +125,9 @@ const customizationOptions = {
             name: "C2", 
             image: "images/cases/conc2brac.png",
             position: {
-                top: "22px",
-                left: "17px",
-                scale: 1.95
+                top: "0px",
+                left: "0px",
+                scale: 1.0
             }
         },
         { 
@@ -135,9 +135,9 @@ const customizationOptions = {
             name: "Gold", 
             image: "images/cases/goldcrownbrac.png",
             position: {
-                top: "-5px",
-                left: "12px",
-                scale: 1.95
+                top: "0px",
+                left: "0px",
+                scale: 1.0
             }
         },
         { 
@@ -145,9 +145,9 @@ const customizationOptions = {
             name: "Rose", 
             image: "images/cases/rosecrownbrac.png",
             position: {
-                top: "7px",
-                left: "14px",
-                scale: 1.90
+                top: "0px",
+                left: "0px",
+                scale: 1.0
             }
         },
         { 
@@ -155,9 +155,9 @@ const customizationOptions = {
             name: "Wayne", 
             image: "images/cases/waynebrac.png",
             position: {
-                top: "43px",
-                left: "11px",
-                scale: 1.95
+                top: "0px",
+                left: "0px",
+                scale: 1.0
             }
         },
         { 
@@ -165,9 +165,9 @@ const customizationOptions = {
             name: "Batman", 
             image: "images/cases/batmanbrac.png",
             position: {
-                top: "-3px",
-                left: "16px",
-                scale: 1.95
+                top: "0px",
+                left: "0px",
+                scale: 1.0
             }
         },
         { 
@@ -175,9 +175,9 @@ const customizationOptions = {
             name: "Sub", 
             image: "images/cases/subbrac.png",
             position: {
-                top: "40px",
-                left: "9px",
-                scale: 1.95
+                top: "0px",
+                left: "0px",
+                scale: 1.0
             }
         },
         { 
@@ -185,9 +185,9 @@ const customizationOptions = {
             name: "Rubber", 
             image: "images/cases/rubberbrac.png",
             position: {
-                top: "42px",
-                left: "21px",
-                scale: 2
+                top: "0px",
+                left: "0px",
+                scale: 1.0
             }
         },
         { 
@@ -195,9 +195,9 @@ const customizationOptions = {
             name: "Silver", 
             image: "images/cases/simpsilverbrac.png",
             position: {
-                top: "22px",
-                left: "17px",
-                scale: 1.80
+                top: "0px",
+                left: "0px",
+                scale: 1.0
             }
         },
         { 
@@ -205,9 +205,9 @@ const customizationOptions = {
             name: "Silver8", 
             image: "images/cases/octsilverbrac.png",
             position: {
-                top: "30px",
-                left: "14px",
-                scale: 2
+                top: "0px",
+                left: "0px",
+                scale: 1.0
             }
         },
         { 
@@ -215,9 +215,9 @@ const customizationOptions = {
             name: "Black8", 
             image: "images/cases/octblackbrac.png",
             position: {
-                top: "32px",
-                left: "17px",
-                scale: 1.95
+                top: "0px",
+                left: "0px",
+                scale: 1.0
             }
         }
     ]
@@ -230,56 +230,61 @@ let currentSelections = {
     case: customizationOptions.cases[0]
 };
 
+// Controlador de inicialização
+let isInitialized = false;
+
 // Inicializar a interface
 document.addEventListener('DOMContentLoaded', function() {
     console.log("🚀 Inicializando customizador...");
+    
+    // Verificar se já foi inicializado
+    if (isInitialized) {
+        console.log("⚠️ Já inicializado, ignorando...");
+        return;
+    }
+    
+    isInitialized = true;
+    
     initializeOptions();
     updateWatchPreview();
-    
-    // Iniciar ferramentas de ajuste
-    setTimeout(() => {
-        initializePositionAdjuster();
-        initializeCasePositionAdjuster();
-        initializeWatchPreviewSticky();
-        
-        // Garantir que os botões apareçam
-        const caseBtn = document.getElementById('toggle-case-adjuster');
-        const handsBtn = document.getElementById('toggle-adjuster');
-        
-        if (caseBtn) caseBtn.style.display = 'flex';
-        if (handsBtn) handsBtn.style.display = 'flex';
-    }, 100);
+    initializeWatchPreviewSticky();
 });
 
-// Inicializar as opções na página
+// Inicializar as opções na página (APENAS UMA VEZ)
 function initializeOptions() {
-    // Opções de mostrador
+    console.log("🎨 Inicializando opções...");
+    
+    // 1. Mostradores
     const dialOptionsContainer = document.getElementById('dial-options');
-    if (dialOptionsContainer) {
+    if (dialOptionsContainer && dialOptionsContainer.children.length === 0) {
+        console.log("📋 Criando opções de mostrador...");
         customizationOptions.dials.forEach(dial => {
             const optionElement = createDialOptionElement(dial);
             dialOptionsContainer.appendChild(optionElement);
         });
     }
-
-    // Opções de ponteiros
+    
+    // 2. Ponteiros
     const handsOptionsContainer = document.getElementById('hands-options');
-    if (handsOptionsContainer) {
+    if (handsOptionsContainer && handsOptionsContainer.children.length === 0) {
+        console.log("🕐 Criando opções de ponteiros...");
         customizationOptions.hands.forEach(hand => {
             const optionElement = createHandsOptionElement(hand);
             handsOptionsContainer.appendChild(optionElement);
         });
     }
-
-    // Opções de case/pulseira
+    
+    // 3. Cases
     const caseOptionsContainer = document.getElementById('case-options');
-    if (caseOptionsContainer) {
-        caseOptionsContainer.innerHTML = '';
+    if (caseOptionsContainer && caseOptionsContainer.children.length === 0) {
+        console.log("⌚ Criando opções de case...");
         customizationOptions.cases.forEach(caseItem => {
             const optionElement = createCaseOptionElement(caseItem);
             caseOptionsContainer.appendChild(optionElement);
         });
     }
+    
+    console.log("✅ Todas as opções criadas!");
 }
 
 // Criar elemento de opção para mostradores
@@ -421,14 +426,6 @@ function selectOption(option, type) {
     
     // Atualizar estado visual das opções
     updateActiveOptions(type, option.id);
-
-    // Atualizar nome nas ferramentas de ajuste
-    if (type === 'hands' && document.getElementById('current-hands-name')) {
-        document.getElementById('current-hands-name').textContent = option.name;
-    }
-    if (type === 'case' && document.getElementById('current-case-name')) {
-        document.getElementById('current-case-name').textContent = option.name;
-    }
 }
 
 // Atualizar opções ativas
@@ -444,7 +441,7 @@ function updateActiveOptions(type, id) {
     }
 }
 
-// Atualizar pré-visualização do relógio COM CASES
+// Atualizar pré-visualização do relógio
 function updateWatchPreview() {
     console.log("🔄 Atualizando visualização...");
     
@@ -469,7 +466,7 @@ function updateWatchPreview() {
         caseOverlay.style.backgroundRepeat = 'no-repeat';
         caseOverlay.style.opacity = '1';
         
-        // APLICAR AJUSTES DE POSIÇÃO DO CASE
+        // Aplicar ajustes de posição do CASE
         if (caseOption.position) {
             const pos = caseOption.position;
             const topValue = parseInt(pos.top) || 0;
@@ -485,12 +482,19 @@ function updateWatchPreview() {
         caseOverlay.style.opacity = '0';
     }
     
-    // 2. ATUALIZAR MOSTRADOR
+    // 2. ATUALIZAR MOSTRADOR (sem círculo transparente)
     const dialOption = currentSelections.dial;
-    dial.style.backgroundImage = dialOption.image ? `url('${dialOption.image}')` : 'none';
-    dial.style.backgroundSize = 'contain';
-    dial.style.backgroundPosition = 'center';
-    dial.style.backgroundRepeat = 'no-repeat';
+    if (dialOption.image) {
+        dial.style.backgroundImage = `url('${dialOption.image}')`;
+        dial.style.backgroundSize = 'cover'; // Usar COVER para eliminar bordas transparentes
+        dial.style.backgroundPosition = 'center center';
+        dial.style.backgroundRepeat = 'no-repeat';
+        dial.style.border = 'none';
+        dial.style.boxShadow = 'none';
+        dial.style.outline = 'none';
+    } else {
+        dial.style.backgroundImage = 'none';
+    }
     
     // 3. ATUALIZAR PONTEIROS
     const handsOption = currentSelections.hands;
@@ -517,8 +521,6 @@ function updateWatchPreview() {
 }
 
 // Sistema de Preview Sticky
-// Sistema de Preview Sticky melhorado
-// Sistema de Preview Sticky melhorado
 function initializeWatchPreviewSticky() {
     const preview = document.querySelector('.watch-preview');
     const customizerContainer = document.querySelector('.customizer-container');
@@ -528,23 +530,17 @@ function initializeWatchPreviewSticky() {
     
     let isSticky = false;
     let isBottom = false;
-    let originalTop = 0;
-    let originalLeft = 0;
     let containerTop = 0;
     let containerHeight = 0;
     let previewHeight = 0;
     
     function init() {
-        // Calcular posições iniciais
         const containerRect = customizerContainer.getBoundingClientRect();
         const previewRect = preview.getBoundingClientRect();
-        const headerRect = header.getBoundingClientRect();
         
         containerTop = containerRect.top + window.scrollY;
         containerHeight = containerRect.height;
         previewHeight = preview.offsetHeight;
-        originalTop = previewRect.top + window.scrollY;
-        originalLeft = previewRect.left;
     }
     
     function updateSticky() {
@@ -568,8 +564,6 @@ function initializeWatchPreviewSticky() {
             preview.style.left = leftPosition + 'px';
             preview.style.width = preview.offsetWidth + 'px';
             preview.style.top = (headerHeight + 20) + 'px';
-            
-            console.log('📌 Preview fixado à esquerda');
         }
         
         // Quando voltar ao topo
@@ -581,8 +575,6 @@ function initializeWatchPreviewSticky() {
             preview.style.left = '';
             preview.style.width = '';
             preview.style.top = '';
-            
-            console.log('🔓 Preview liberado');
         }
         
         // Quando chegar ao final do container
@@ -596,8 +588,6 @@ function initializeWatchPreviewSticky() {
             preview.style.top = 'auto';
             preview.style.bottom = '0';
             preview.style.left = '0';
-            
-            console.log('⬇ Preview posicionado no final');
         }
         
         // Ajustar se a janela for redimensionada
@@ -623,7 +613,7 @@ function initializeWatchPreviewSticky() {
         updateSticky();
     });
     
-    // Observar mudanças no DOM (opções sendo carregadas)
+    // Observar mudanças no DOM
     const observer = new MutationObserver(function() {
         init();
         updateSticky();
@@ -635,252 +625,24 @@ function initializeWatchPreviewSticky() {
     });
 }
 
-// Inicializar tudo
-document.addEventListener('DOMContentLoaded', function() {
-    console.log("🚀 Inicializando customizador...");
-    initializeOptions();
-    updateWatchPreview();
+// Função auxiliar para verificar duplicatas (debug)
+function checkForDuplicates() {
+    console.log("🔍 Verificando duplicatas...");
     
-    // Iniciar ferramentas com delay para garantir carregamento
-    setTimeout(() => {
-        initializePositionAdjuster();
-        initializeCasePositionAdjuster();
-        initializeWatchPreviewSticky();
-        
-        // Forçar mostrar botões
-        const caseBtn = document.getElementById('toggle-case-adjuster');
-        const handsBtn = document.getElementById('toggle-adjuster');
-        
-        if (caseBtn) {
-            caseBtn.style.display = 'flex';
-            console.log('✅ Botão de ajuste de cases visível');
+    const containers = ['dial-options', 'hands-options', 'case-options'];
+    
+    containers.forEach(id => {
+        const container = document.getElementById(id);
+        if (container) {
+            const items = container.querySelectorAll('.option-item');
+            console.log(`${id}: ${items.length} itens`);
+            
+            if (items.length > 15) {
+                console.log(`⚠️ POSSÍVEL DUPLICAÇÃO em ${id}!`);
+            }
         }
-        if (handsBtn) {
-            handsBtn.style.display = 'flex';
-            console.log('✅ Botão de ajuste de ponteiros visível');
-        }
-    }, 300);
-});
-// NOVA FERRAMENTA: Ajuste de posição para Cases
-function initializeCasePositionAdjuster() {
-    console.log("🔧 Inicializando ferramenta de ajuste para Cases...");
-    
-    // REMOVER elementos antigos se existirem
-    const oldBtn = document.getElementById('toggle-case-adjuster');
-    const oldPanel = document.getElementById('case-position-adjuster');
-    
-    if (oldBtn) oldBtn.remove();
-    if (oldPanel) oldPanel.remove();
-    
-    // 1. CRIAR BOTÃO PARA CASES
-    const toggleButton = document.createElement('button');
-    toggleButton.id = 'toggle-case-adjuster';
-    toggleButton.innerHTML = '🔄<br>AJUSTAR<br>CASES';
-    toggleButton.style.cssText = `
-        position: fixed;
-        bottom: 100px;
-        right: 120px;
-        background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-        color: white;
-        border: none;
-        padding: 15px;
-        border-radius: 10px;
-        cursor: pointer;
-        z-index: 99999;
-        font-size: 14px;
-        font-weight: bold;
-        text-align: center;
-        box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
-        width: 80px;
-        height: 80px;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        line-height: 1.2;
-        visibility: visible !important;
-        opacity: 1 !important;
-    `;
-    
-    // 2. CRIAR PAINEL DE CONTROLE PARA CASES
-    const adjusterPanel = document.createElement('div');
-    adjusterPanel.id = 'case-position-adjuster';
-    adjusterPanel.style.cssText = `
-        position: fixed;
-        bottom: 200px;
-        right: 120px;
-        background: white;
-        padding: 20px;
-        border-radius: 15px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        z-index: 99998;
-        width: 350px;
-        border: 3px solid #3498db;
-        display: none;
-    `;
-    
-    adjusterPanel.innerHTML = `
-        <div style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
-            <h3 style="margin: 0; color: #2c3e50;">📐 AJUSTAR CASE/PULSEIRA</h3>
-            <button id="close-case-adjuster" style="background: #f44336; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">X</button>
-        </div>
-        
-        <div style="background: #f8f9fa; padding: 10px; border-radius: 8px; margin-bottom: 15px;">
-            <div style="font-size: 12px; color: #666; margin-bottom: 5px;">Case atual: <strong id="current-case-name">${currentSelections.case.name}</strong></div>
-        </div>
-        
-        <div style="margin-bottom: 15px;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                <label style="font-weight: bold;">← ESQUERDA → DIREITA</label>
-                <span id="case-horizontal-value" style="font-weight: bold; color: #3498db;">0px</span>
-            </div>
-            <input type="range" id="case-horizontal-slider" min="-100" max="100" value="0" style="width: 100%; height: 10px;">
-        </div>
-        
-        <div style="margin-bottom: 15px;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                <label style="font-weight: bold;">↑ CIMA ↓ BAIXO</label>
-                <span id="case-vertical-value" style="font-weight: bold; color: #9b59b6;">0px</span>
-            </div>
-            <input type="range" id="case-vertical-slider" min="-100" max="100" value="0" style="width: 100%; height: 10px;">
-        </div>
-        
-        <div style="margin-bottom: 20px;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                <label style="font-weight: bold;">🔍 TAMANHO</label>
-                <span id="case-scale-value" style="font-weight: bold; color: #2ecc71;">100%</span>
-            </div>
-            <input type="range" id="case-scale-slider" min="50" max="200" value="100" step="5" style="width: 100%; height: 10px;">
-        </div>
-        
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-            <button id="apply-case-adjustment" style="padding: 12px; background: #27ae60; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
-                ✅ APLICAR
-            </button>
-            <button id="reset-case-adjustment" style="padding: 12px; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
-                🔄 RESETAR
-            </button>
-        </div>
-        
-        <div style="margin-top: 15px; padding: 10px; background: #e8f4fc; border-radius: 5px; font-size: 12px; color: #2c3e50;">
-            💡 <strong>Como usar:</strong> Ajuste os sliders e clique em "APLICAR". Copie os valores do console (F12).
-        </div>
-    `;
-    
-    // 3. ADICIONAR AO BODY
-    document.body.appendChild(toggleButton);
-    document.body.appendChild(adjusterPanel);
-    console.log("✅ Ferramenta de ajuste para Cases criada!");
-    
-    // 4. EVENTOS
-    toggleButton.addEventListener('click', function() {
-        adjusterPanel.style.display = adjusterPanel.style.display === 'block' ? 'none' : 'block';
-        document.getElementById('current-case-name').textContent = currentSelections.case.name;
-        
-        // Posicionar o painel se estiver muito baixo
-        const panel = document.getElementById('case-position-adjuster');
-        const panelRect = panel.getBoundingClientRect();
-        
-        if (panelRect.bottom > window.innerHeight - 20) {
-            panel.style.bottom = '20px';
-            panel.style.top = 'auto';
-        }
-    });
-    
-    document.getElementById('close-case-adjuster').addEventListener('click', function() {
-        adjusterPanel.style.display = 'none';
-    });
-    
-    // Sliders para cases
-    const horizontalSlider = document.getElementById('case-horizontal-slider');
-    const verticalSlider = document.getElementById('case-vertical-slider');
-    const scaleSlider = document.getElementById('case-scale-slider');
-    
-    // Configurar valores iniciais
-    const currentPos = currentSelections.case.position || { top: "0px", left: "0px", scale: 1.0 };
-    horizontalSlider.value = parseInt(currentPos.left) || 0;
-    verticalSlider.value = parseInt(currentPos.top) || 0;
-    scaleSlider.value = (currentPos.scale || 1.0) * 100;
-    
-    document.getElementById('case-horizontal-value').textContent = `${horizontalSlider.value}px`;
-    document.getElementById('case-vertical-value').textContent = `${verticalSlider.value}px`;
-    document.getElementById('case-scale-value').textContent = `${scaleSlider.value}%`;
-    
-    // Eventos dos sliders
-    horizontalSlider.addEventListener('input', (e) => {
-        document.getElementById('case-horizontal-value').textContent = `${e.target.value}px`;
-    });
-    
-    verticalSlider.addEventListener('input', (e) => {
-        document.getElementById('case-vertical-value').textContent = `${e.target.value}px`;
-    });
-    
-    scaleSlider.addEventListener('input', (e) => {
-        document.getElementById('case-scale-value').textContent = `${e.target.value}%`;
-    });
-    
-    // Aplicar ajustes para cases
-    document.getElementById('apply-case-adjustment').addEventListener('click', function() {
-        const caseOption = currentSelections.case;
-        const horizontal = parseInt(horizontalSlider.value);
-        const vertical = parseInt(verticalSlider.value);
-        const scale = parseInt(scaleSlider.value) / 100;
-        
-        caseOption.position = {
-            top: `${vertical}px`,
-            left: `${horizontal}px`,
-            scale: scale
-        };
-        
-        updateWatchPreview();
-        
-        console.log('🎯 ===== VALORES PARA COPIAR (CASE) =====');
-        console.log(`// Ajustes para: ${caseOption.name}`);
-        console.log(`position: {`);
-        console.log(`  top: "${vertical}px",`);
-        console.log(`  left: "${horizontal}px",`);
-        console.log(`  scale: ${scale.toFixed(2)}`);
-        console.log(`}`);
-        console.log('=========================================');
-        
-        alert(`✅ Ajustes do Case aplicados!\n\nAbra o console (F12) para copiar os valores.`);
-    });
-    
-    // Resetar ajustes para cases
-    document.getElementById('reset-case-adjustment').addEventListener('click', function() {
-        horizontalSlider.value = 0;
-        verticalSlider.value = 0;
-        scaleSlider.value = 100;
-        
-        document.getElementById('case-horizontal-value').textContent = '0px';
-        document.getElementById('case-vertical-value').textContent = '0px';
-        document.getElementById('case-scale-value').textContent = '100%';
-        
-        const caseOption = currentSelections.case;
-        caseOption.position = {
-            top: "0px",
-            left: "0px",
-            scale: 1.0
-        };
-        
-        updateWatchPreview();
-        alert('🔄 Ajustes do Case resetados para padrão!');
     });
 }
 
-// Função para ajuste de ponteiros (já existente)
-function initializePositionAdjuster() {
-    // Sua função existente para ajuste de ponteiros
-    // Mantenha o código que você já tem aqui
-}
-
-// Fechar painéis ao clicar fora
-document.addEventListener('click', function(event) {
-    const casePanel = document.getElementById('case-position-adjuster');
-    const caseBtn = document.getElementById('toggle-case-adjuster');
-    
-    if (casePanel && caseBtn) {
-        if (!casePanel.contains(event.target) && !caseBtn.contains(event.target) && casePanel.style.display === 'block') {
-            casePanel.style.display = 'none';
-        }
-    }
-});
+// Chamar para debug (opcional)
+setTimeout(checkForDuplicates, 1000);
