@@ -9,7 +9,7 @@ const customizationOptions = {
         { id: 6, name: "Thin Blue", image: "images/dials/thindetailed3.png" },
         { id: 7, name: "Diver White", image: "images/dials/diverwhite.png" },
         { id: 8, name: "Diver Blue", image: "images/dials/diverbabyblue.png" },
-        { id: 9, name: "Marine Master Blue", image: "images/dials/marinemasterblue.png" },
+        { id: 9, name: "Marine Master Blue", image: "images/dials/marinemasterbluee.png" },
         { id: 10, name: "Romanic Grey", image: "images/dials/romangrey.png" },
         { id: 11, name: "Romanic Green", image: "images/dials/romangreen.png" },
         { id: 12, name: "Romanic Black", image: "images/dials/romanblack.png" },
