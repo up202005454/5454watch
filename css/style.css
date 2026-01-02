@@ -146,13 +146,19 @@ nav ul li a.active {
 
 /*->
 /* Estilo para preview fixo */
-.watch-preview.sticky {
-    position: fixed;
-    top: 20px;
+
+
+/* ========== SISTEMA DE PREVIEW STICKY ========== */
+.watch-preview.sticky-preview {
+    position: fixed !important;
+    top: 20px !important;
     width: 350px !important;
-    z-index: 1000;
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+    z-index: 1000 !important;
     animation: slideDown 0.3s ease;
     box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    transition: all 0.3s ease !important;
 }
 
 @keyframes slideDown {
@@ -166,37 +172,83 @@ nav ul li a.active {
     }
 }
 
-/* Garantir que os botões de ajuste fiquem sempre visíveis */
-#toggle-adjuster, #toggle-case-adjuster {
+/* Garantir que o container tenha posição relativa */
+.customizer-container {
+    position: relative;
+    min-height: 800px; /* Altura mínima para rolagem */
+}
+
+/* Botões de ajuste sempre visíveis */
+#toggle-adjuster, 
+#toggle-case-adjuster {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
 }
 
-/* Melhorar visibilidade dos botões de ajuste em mobile */
+/* Responsividade para o preview sticky */
+@media (max-width: 992px) {
+    .watch-preview.sticky-preview {
+        width: 100% !important;
+        max-width: 350px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
 @media (max-width: 768px) {
+    .watch-preview.sticky-preview {
+        position: relative !important;
+        top: auto !important;
+        width: 100% !important;
+        max-width: 100%;
+        left: auto;
+        transform: none;
+        margin: 20px auto;
+    }
+    
     #toggle-case-adjuster {
         right: 100px;
         bottom: 80px;
+        width: 70px;
+        height: 70px;
+        font-size: 12px;
     }
     
     #toggle-adjuster {
         right: 20px;
         bottom: 80px;
-    }
-    
-    .watch-preview.sticky {
-        position: relative;
-        top: auto;
-        width: 100% !important;
-        margin: 20px auto;
+        width: 70px;
+        height: 70px;
+        font-size: 12px;
     }
 }
 
-/* Garantir que o container do customizer tenha posição relativa */
-.customizer-container {
-    position: relative;
+@media (max-width: 480px) {
+    #toggle-case-adjuster {
+        right: 90px;
+        bottom: 70px;
+        width: 60px;
+        height: 60px;
+        font-size: 10px;
+        padding: 10px;
+    }
+    
+    #toggle-adjuster {
+        right: 20px;
+        bottom: 70px;
+        width: 60px;
+        height: 60px;
+        font-size: 10px;
+        padding: 10px;
+    }
+    
+    .watch-preview.sticky-preview {
+        max-height: none;
+        overflow-y: visible;
+    }
 }
+
 /*<-
 
 /* DISPLAY DO RELÓGIO */
